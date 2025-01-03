@@ -34,11 +34,11 @@ This document outlines the planned features and improvements for our project.
   - [x] Custom solution options
   - [x] FAQ section
   
-- [ ] Blog Section
-  - Article categories
-  - Search functionality
-  - Author profiles
-  - Related posts feature
+- [x] Blog Section
+  - [x] Article categories
+  - [x] Search functionality
+  - [x] Author profiles
+  - [ ] Related posts feature
   
 - [ ] Contact Page
   - Contact form
