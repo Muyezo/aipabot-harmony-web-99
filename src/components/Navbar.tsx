@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
   const navItems = [
     { name: "Home", path: "/" },
@@ -13,6 +14,10 @@ const Navbar = () => {
     { name: "Blog", path: "/blog" },
     { name: "Contact", path: "/contact" },
   ];
+
+  const isCurrentPath = (path: string) => {
+    return location.pathname === path;
+  };
 
   return (
     <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-lg z-50 border-b border-gray-200">
@@ -30,7 +35,11 @@ const Navbar = () => {
               <Link
                 key={item.name}
                 to={item.path}
-                className="text-gray-700 hover:text-primary transition-colors duration-200"
+                className={`transition-all duration-200 ${
+                  isCurrentPath(item.path)
+                    ? "text-primary relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary after:shadow-[0_0_10px_#9b87f5] after:rounded-full"
+                    : "text-gray-700 hover:text-primary"
+                }`}
               >
                 {item.name}
               </Link>
@@ -62,7 +71,11 @@ const Navbar = () => {
                 <Link
                   key={item.name}
                   to={item.path}
-                  className="block px-3 py-2 text-gray-700 hover:text-primary transition-colors duration-200"
+                  className={`block px-3 py-2 transition-all duration-200 ${
+                    isCurrentPath(item.path)
+                      ? "text-primary bg-primary/5 relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary after:shadow-[0_0_10px_#9b87f5] after:rounded-full"
+                      : "text-gray-700 hover:text-primary"
+                  }`}
                   onClick={() => setIsOpen(false)}
                 >
                   {item.name}
