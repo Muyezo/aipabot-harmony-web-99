@@ -12,14 +12,14 @@ This document outlines the planned features and improvements for our project.
 - [x] Implement smooth scroll transitions between sections
 - [x] Create testimonials carousel/grid component
 - [x] Design community membership comparison cards
-- [ ] Add more interactive elements to membership cards
+- [x] Add more interactive elements to membership cards
 
 ### Core Pages Development
-- [ ] About Us Page
-  - Company mission and vision
-  - Team member profiles
-  - Company values section
-  - Company timeline
+- [x] About Us Page
+  - [x] Company mission and vision
+  - [x] Team member profiles
+  - [x] Company values section
+  - [x] Company timeline
   
 - [ ] Services Pages
   - Individual service detail pages

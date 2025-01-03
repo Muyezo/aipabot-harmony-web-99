@@ -18,6 +18,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Testimonials carousel with client feedback
 - Membership tiers comparison component with pricing plans
 - Popular plan highlighting feature
+- About Us page with company mission, team profiles, values, and timeline
+- Animated sections using Framer Motion
+- Responsive design for all new components
+- Social media links for team members
+- Interactive timeline component
 
 ### Changed
 - Updated hero section headline to "AI That Works for You! Seamlessly Automating Your Operations"
@@ -26,6 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Optimized background animations for better performance
 - Reorganized component structure for better maintainability
 - Updated pricing structure with three distinct tiers
+- Refactored MembershipTiers component into smaller components
 
 ### Fixed
 - Resolved issue where gradient background was covering other sections
