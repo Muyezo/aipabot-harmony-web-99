@@ -18,12 +18,12 @@ const MembershipCard = ({
 }: MembershipCardProps) => {
   return (
     <div
-      className={`relative rounded-2xl overflow-hidden transition-all duration-300 
+      className={`relative rounded-2xl overflow-hidden transition-all duration-300 bg-[#1A1F2C] 
         ${isHovered ? "transform scale-105 shadow-2xl" : "shadow-xl"}
         ${
           tier.isPopular
             ? "border-2 border-primary ring-2 ring-primary/20"
-            : "border border-gray-200"
+            : "border border-gray-200/20"
         }`}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
@@ -34,14 +34,14 @@ const MembershipCard = ({
         </div>
       )}
       <div className="p-8">
-        <h3 className="text-2xl font-bold text-gray-900 mb-2">{tier.name}</h3>
+        <h3 className="text-2xl font-bold text-white mb-2">{tier.name}</h3>
         <div className="flex items-baseline mb-4">
-          <span className="text-4xl font-bold text-gray-900">{tier.price}</span>
+          <span className="text-4xl font-bold text-white">{tier.price}</span>
           {tier.price !== "Custom" && (
-            <span className="text-gray-600 ml-2">/month</span>
+            <span className="text-gray-300 ml-2">/month</span>
           )}
         </div>
-        <p className="text-gray-600 mb-6">{tier.description}</p>
+        <p className="text-gray-300 mb-6">{tier.description}</p>
         <ul className="space-y-4 mb-8">
           {tier.features.map((feature) => (
             <li
@@ -51,7 +51,7 @@ const MembershipCard = ({
               }`}
             >
               <Check className="h-5 w-5 text-primary flex-shrink-0" />
-              <span className="text-gray-700">{feature}</span>
+              <span className="text-gray-300">{feature}</span>
             </li>
           ))}
         </ul>
@@ -61,7 +61,7 @@ const MembershipCard = ({
             ${
               tier.isPopular
                 ? "bg-primary text-white hover:bg-primary/90"
-                : "bg-white text-primary border-2 border-primary hover:bg-primary hover:text-white"
+                : "bg-white/10 text-white border-2 border-primary hover:bg-primary hover:text-white"
             }`}
         >
           Get Started
