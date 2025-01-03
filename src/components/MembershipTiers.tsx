@@ -1,13 +1,18 @@
 import { useState } from "react";
-import { toast } from "sonner";
 import { tiers } from "../constants/membershipTiers";
 import MembershipCard from "./membership/MembershipCard";
 
-const MembershipTiers = () => {
+interface MembershipTiersProps {
+  onGetStarted?: (tierName: string) => void;
+}
+
+const MembershipTiers = ({ onGetStarted }: MembershipTiersProps) => {
   const [hoveredTier, setHoveredTier] = useState<string | null>(null);
 
   const handleGetStarted = (tierName: string) => {
-    toast.success(`Thank you for your interest in our ${tierName} plan! We'll contact you soon.`);
+    if (onGetStarted) {
+      onGetStarted(tierName);
+    }
   };
 
   return (
