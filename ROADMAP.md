@@ -8,7 +8,7 @@
 - [x] Pricing Page (Service plans, Membership tiers, FAQ)
 - [x] Blog Section (Categories, Search, Author profiles)
 - [x] Contact Page (Form, Map, Locations, Support channels)
-- [x] Community Hub Page (Community section, Success stories, Event calendar, Resource library, Membership benefits, Event booking system)
+- [x] Community Hub Page (Community section, Success stories, Event calendar, Resource library with search, Membership benefits, Event booking system)
 
 ### UI/UX
 - [x] Dynamic gradient background with aurora effect
@@ -25,7 +25,7 @@
 ### Community & Coaching Hub
 - [x] Membership benefits overview
 - [x] Event booking system
-- [ ] Resource library search functionality
+- [x] Resource library search functionality
 - [ ] Community forum integration
 
 ### Core Features

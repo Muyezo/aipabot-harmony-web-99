@@ -1,68 +1,114 @@
+import { useState } from "react";
+import { Search, BookOpen } from "lucide-react";
 import { motion } from "framer-motion";
-import { BookOpen, FileText, Video, Download } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
 
-const resources = [
+interface Resource {
+  id: number;
+  title: string;
+  description: string;
+  category: string;
+  type: string;
+}
+
+const resources: Resource[] = [
   {
-    title: "Getting Started Guide",
-    type: "Documentation",
-    icon: FileText,
-    description: "Complete guide to getting started with our AI tools",
-    downloadUrl: "#",
+    id: 1,
+    title: "Getting Started with AI",
+    description: "A comprehensive guide for beginners",
+    category: "Guides",
+    type: "PDF"
   },
   {
-    title: "Video Tutorials",
-    type: "Video",
-    icon: Video,
-    description: "Step-by-step video guides for common use cases",
-    downloadUrl: "#",
+    id: 2,
+    title: "Advanced AI Techniques",
+    description: "Deep dive into advanced concepts",
+    category: "Technical",
+    type: "Video"
   },
   {
-    title: "Best Practices",
-    type: "Guide",
-    icon: BookOpen,
-    description: "Learn the best practices for AI implementation",
-    downloadUrl: "#",
-  },
+    id: 3,
+    title: "AI Best Practices",
+    description: "Industry-standard best practices",
+    category: "Best Practices",
+    type: "Article"
+  }
 ];
 
 const ResourceLibrary = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const { toast } = useToast();
+
+  const filteredResources = resources.filter((resource) =>
+    resource.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    resource.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    resource.category.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+    if (e.target.value && filteredResources.length === 0) {
+      toast({
+        title: "No results found",
+        description: "Try adjusting your search terms",
+        variant: "destructive",
+      });
+    }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="mb-16"
+      className="bg-white p-6 rounded-lg shadow-lg"
     >
-      <h2 className="text-2xl font-semibold mb-6 text-center">Resource Library</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {resources.map((resource, index) => (
+      <h2 className="text-2xl font-semibold mb-6">Resource Library</h2>
+      
+      <div className="relative mb-6">
+        <input
+          type="text"
+          placeholder="Search resources..."
+          value={searchQuery}
+          onChange={handleSearch}
+          className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50"
+        />
+        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {filteredResources.map((resource) => (
           <motion.div
-            key={resource.title}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 * index }}
-            className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
+            key={resource.id}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
+            className="p-4 border border-gray-200 rounded-lg hover:shadow-md transition-shadow"
           >
-            <resource.icon className="h-12 w-12 text-primary mb-4" />
-            <div className="mb-4">
-              <h3 className="text-xl font-semibold mb-2">{resource.title}</h3>
-              <span className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">
-                {resource.type}
-              </span>
+            <div className="flex items-start space-x-3">
+              <BookOpen className="text-primary" size={24} />
+              <div>
+                <h3 className="font-semibold text-lg">{resource.title}</h3>
+                <p className="text-gray-600 text-sm mt-1">{resource.description}</p>
+                <div className="flex items-center space-x-2 mt-2">
+                  <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">
+                    {resource.category}
+                  </span>
+                  <span className="text-xs px-2 py-1 bg-gray-100 text-gray-600 rounded-full">
+                    {resource.type}
+                  </span>
+                </div>
+              </div>
             </div>
-            <p className="text-gray-600 mb-4">{resource.description}</p>
-            <Button
-              variant="outline"
-              className="w-full flex items-center justify-center gap-2"
-              onClick={() => window.open(resource.downloadUrl, "_blank")}
-            >
-              <Download className="h-4 w-4" />
-              Access Resource
-            </Button>
           </motion.div>
         ))}
       </div>
+
+      {filteredResources.length === 0 && searchQuery && (
+        <div className="text-center py-8 text-gray-500">
+          No resources found matching your search.
+        </div>
+      )}
     </motion.div>
   );
 };
