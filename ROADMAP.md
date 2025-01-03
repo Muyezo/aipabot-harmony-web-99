@@ -28,11 +28,11 @@ This document outlines the planned features and improvements for our project.
   - [x] Integration examples
   - [x] Use case scenarios
   
-- [ ] Pricing Page
-  - Service plan comparisons
-  - Community membership tiers
-  - Custom solution options
-  - FAQ section
+- [x] Pricing Page
+  - [x] Service plan comparisons
+  - [x] Community membership tiers
+  - [x] Custom solution options
+  - [x] FAQ section
   
 - [ ] Blog Section
   - Article categories
