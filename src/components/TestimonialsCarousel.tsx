@@ -50,11 +50,11 @@ const TestimonialsCarousel = () => {
   };
 
   return (
-    <section className="py-24 bg-gradient-to-b from-white to-gray-50">
+    <section className="py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">What Our Clients Say</h2>
-          <p className="text-xl text-gray-600">
+          <h2 className="text-4xl font-bold text-white mb-4">What Our Clients Say</h2>
+          <p className="text-xl text-gray-200">
             Discover how we've helped businesses transform their operations
           </p>
         </div>
@@ -70,7 +70,7 @@ const TestimonialsCarousel = () => {
                   key={testimonial.id}
                   className="w-full flex-shrink-0 px-4"
                 >
-                  <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 relative">
+                  <div className="bg-[#1A1F2C] rounded-2xl shadow-xl p-8 md:p-12 relative">
                     <Quote className="absolute text-primary/10 w-16 h-16 -top-6 -left-6" />
                     <div className="flex flex-col md:flex-row gap-8 items-center">
                       <div className="w-24 h-24 md:w-32 md:h-32 flex-shrink-0">
@@ -81,14 +81,14 @@ const TestimonialsCarousel = () => {
                         />
                       </div>
                       <div className="flex-1">
-                        <blockquote className="text-lg md:text-xl text-gray-700 mb-6">
+                        <blockquote className="text-lg md:text-xl text-white mb-6">
                           "{testimonial.content}"
                         </blockquote>
                         <div className="text-right">
                           <cite className="not-italic">
-                            <span className="block font-semibold text-gray-900">{testimonial.name}</span>
+                            <span className="block font-semibold text-white">{testimonial.name}</span>
                             <span className="block text-primary">{testimonial.role}</span>
-                            <span className="block text-gray-500">{testimonial.company}</span>
+                            <span className="block text-gray-300">{testimonial.company}</span>
                           </cite>
                         </div>
                       </div>
