@@ -1,4 +1,4 @@
-import { Facebook, Twitter, Instagram, Linkedin, Github } from "lucide-react";
+import { Facebook, X, Instagram, Linkedin, Github } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
@@ -30,8 +30,8 @@ const Footer = () => {
               <a href="https://facebook.com" className="hover:text-primary transition-colors">
                 <Facebook className="w-6 h-6" />
               </a>
-              <a href="https://twitter.com" className="hover:text-primary transition-colors">
-                <Twitter className="w-6 h-6" />
+              <a href="https://x.com" className="hover:text-primary transition-colors">
+                <X className="w-6 h-6" />
               </a>
               <a href="https://instagram.com" className="hover:text-primary transition-colors">
                 <Instagram className="w-6 h-6" />
