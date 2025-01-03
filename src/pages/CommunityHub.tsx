@@ -6,6 +6,7 @@ import SuccessStories from "../components/community/SuccessStories";
 import EventCalendar from "../components/community/EventCalendar";
 import ResourceLibrary from "../components/community/ResourceLibrary";
 import MembershipBenefits from "../components/community/MembershipBenefits";
+import EventBooking from "../components/community/EventBooking";
 
 const CommunityHub = () => {
   return (
@@ -31,6 +32,7 @@ const CommunityHub = () => {
             <CommunitySection />
             <MembershipBenefits />
             <SuccessStories />
+            <EventBooking />
             <EventCalendar />
             <ResourceLibrary />
           </div>
