@@ -6,6 +6,8 @@ import OfficeLocations from "../components/contact/OfficeLocations";
 import SupportChannels from "../components/contact/SupportChannels";
 import CommunitySection from "../components/community/CommunitySection";
 import SuccessStories from "../components/community/SuccessStories";
+import EventCalendar from "../components/community/EventCalendar";
+import ResourceLibrary from "../components/community/ResourceLibrary";
 
 const Contact = () => {
   return (
@@ -61,6 +63,8 @@ const Contact = () => {
 
             <CommunitySection />
             <SuccessStories />
+            <EventCalendar />
+            <ResourceLibrary />
           </div>
         </div>
       </main>
