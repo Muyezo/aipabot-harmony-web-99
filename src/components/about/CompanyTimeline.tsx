@@ -33,8 +33,8 @@ const CompanyTimeline = () => {
         transition={{ duration: 0.5 }}
         className="text-center mb-12"
       >
-        <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Journey</h2>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+        <h2 className="text-3xl font-bold text-white mb-4">Our Journey</h2>
+        <p className="text-lg text-white/80 max-w-2xl mx-auto">
           The key milestones that have shaped our growth
         </p>
       </motion.div>

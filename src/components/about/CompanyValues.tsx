@@ -33,8 +33,8 @@ const CompanyValues = () => {
         transition={{ duration: 0.5 }}
         className="text-center mb-12"
       >
-        <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Values</h2>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+        <h2 className="text-3xl font-bold text-white mb-4">Our Values</h2>
+        <p className="text-lg text-white/80 max-w-2xl mx-auto">
           The principles that guide our mission and shape our culture
         </p>
       </motion.div>
