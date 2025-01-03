@@ -40,11 +40,11 @@ This document outlines the planned features and improvements for our project.
   - [x] Author profiles
   - [x] Related posts feature
   
-- [ ] Contact Page
-  - Contact form
-  - Interactive map
-  - Office locations
-  - Support channels
+- [x] Contact Page
+  - [x] Contact form
+  - [x] Interactive map (pending Mapbox integration)
+  - [x] Office locations
+  - [x] Support channels
   
 - [ ] Community & Coaching Hub
   - Membership benefits overview
@@ -102,4 +102,3 @@ This document outlines the planned features and improvements for our project.
 
 ## Contributing
 We welcome contributions! Please read our contributing guidelines before submitting pull requests.
-
