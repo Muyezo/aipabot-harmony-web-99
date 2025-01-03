@@ -9,6 +9,7 @@ import Services from "./pages/Services";
 import ServiceDetail from "./components/services/ServiceDetail";
 import Pricing from "./pages/Pricing";
 import Blog from "./pages/Blog";
+import Contact from "./pages/Contact";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/services/:serviceId" element={<ServiceDetail />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
