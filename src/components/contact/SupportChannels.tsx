@@ -34,11 +34,11 @@ const SupportChannels = () => {
       {channels.map((channel) => (
         <div
           key={channel.title}
-          className="bg-white p-6 rounded-lg shadow hover:shadow-lg transition-shadow"
+          className="bg-[#1A1F2C] p-6 rounded-lg shadow hover:shadow-lg transition-shadow"
         >
           <channel.icon className="h-8 w-8 text-primary mb-4" />
-          <h3 className="text-lg font-semibold mb-2">{channel.title}</h3>
-          <p className="text-gray-600">{channel.description}</p>
+          <h3 className="text-lg font-semibold mb-2 text-white">{channel.title}</h3>
+          <p className="text-gray-300">{channel.description}</p>
         </div>
       ))}
     </div>

@@ -53,15 +53,15 @@ const ServiceGrid = () => {
           transition={{ duration: 0.5, delay: index * 0.1 }}
         >
           <Link to={service.path} className="block h-full">
-            <Card className="h-full hover:shadow-lg transition-shadow duration-300 cursor-pointer group">
+            <Card className="h-full hover:shadow-lg transition-shadow duration-300 cursor-pointer group bg-[#1A1F2C] border-gray-700">
               <CardHeader>
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                   <service.icon className="w-6 h-6 text-primary" />
                 </div>
-                <CardTitle className="text-xl mb-2 group-hover:text-primary transition-colors">
+                <CardTitle className="text-xl mb-2 group-hover:text-primary transition-colors text-white">
                   {service.title}
                 </CardTitle>
-                <CardDescription className="text-gray-600">
+                <CardDescription className="text-gray-300">
                   {service.description}
                 </CardDescription>
               </CardHeader>

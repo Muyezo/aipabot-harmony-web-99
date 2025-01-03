@@ -21,13 +21,13 @@ const OfficeLocations = () => {
       {offices.map((office) => (
         <div
           key={office.city}
-          className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
+          className="bg-[#1A1F2C] p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
         >
-          <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+          <h3 className="text-xl font-semibold mb-4 flex items-center gap-2 text-white">
             <Building2 className="h-5 w-5" />
             {office.city}
           </h3>
-          <div className="space-y-3 text-gray-600">
+          <div className="space-y-3 text-gray-300">
             <p>{office.address}</p>
             <p className="flex items-center gap-2">
               <Phone className="h-4 w-4" />

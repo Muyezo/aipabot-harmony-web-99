@@ -15,7 +15,6 @@ const ContactForm = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real application, this would send the data to a backend
     toast({
       title: "Message sent!",
       description: "We'll get back to you as soon as possible.",
@@ -39,6 +38,7 @@ const ContactForm = () => {
           value={formData.name}
           onChange={handleChange}
           required
+          className="bg-[#1A1F2C] text-white placeholder:text-gray-400 border-gray-700"
         />
       </div>
       <div>
@@ -49,6 +49,7 @@ const ContactForm = () => {
           value={formData.email}
           onChange={handleChange}
           required
+          className="bg-[#1A1F2C] text-white placeholder:text-gray-400 border-gray-700"
         />
       </div>
       <div>
@@ -58,6 +59,7 @@ const ContactForm = () => {
           value={formData.subject}
           onChange={handleChange}
           required
+          className="bg-[#1A1F2C] text-white placeholder:text-gray-400 border-gray-700"
         />
       </div>
       <div>
@@ -67,10 +69,10 @@ const ContactForm = () => {
           value={formData.message}
           onChange={handleChange}
           required
-          className="min-h-[150px]"
+          className="min-h-[150px] bg-[#1A1F2C] text-white placeholder:text-gray-400 border-gray-700"
         />
       </div>
-      <Button type="submit" className="w-full">
+      <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-white">
         Send Message
       </Button>
     </form>
