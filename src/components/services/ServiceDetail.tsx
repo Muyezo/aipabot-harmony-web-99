@@ -1,8 +1,9 @@
-import { motion } from "framer-motion";
-import { ArrowLeft } from "lucide-react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
+import ServiceHeader from "./ServiceHeader";
+import ServiceFeatures from "./ServiceFeatures";
+import ServiceBenefits from "./ServiceBenefits";
 
 const serviceDetails = {
   "ai-consulting": {
@@ -131,12 +132,7 @@ const ServiceDetail = () => {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen">
         <h1 className="text-2xl font-bold mb-4">Service not found</h1>
-        <Link to="/services">
-          <Button>
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Services
-          </Button>
-        </Link>
+        <Button onClick={() => window.history.back()}>Go Back</Button>
       </div>
     );
   }
@@ -144,81 +140,32 @@ const ServiceDetail = () => {
   const handleContactClick = () => {
     toast({
       title: "Contact Request Sent",
-      description: "We'll get back to you shortly about our " + service.title + " services.",
+      description: `We'll get back to you shortly about our ${service.title} services.`,
     });
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 pt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-8">
-          <Link to="/services" className="inline-flex items-center text-primary hover:text-primary/80 transition-colors">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Services
-          </Link>
+        <ServiceHeader
+          title={service.title}
+          description={service.description}
+          longDescription={service.longDescription}
+        />
+
+        <div className="grid md:grid-cols-2 gap-8 mt-12">
+          <ServiceFeatures features={service.features} />
+          <ServiceBenefits benefits={service.benefits} />
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="space-y-12"
-        >
-          <div className="text-center">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">{service.title}</h1>
-            <p className="text-xl text-gray-600">{service.description}</p>
-          </div>
-
-          <div className="bg-white rounded-xl shadow-lg p-8">
-            <h2 className="text-2xl font-semibold mb-4">Overview</h2>
-            <p className="text-gray-700">{service.longDescription}</p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-white rounded-xl shadow-lg p-8"
-            >
-              <h2 className="text-2xl font-semibold mb-4">Key Features</h2>
-              <ul className="space-y-3">
-                {service.features.map((feature, index) => (
-                  <li key={index} className="flex items-center text-gray-700">
-                    <div className="w-2 h-2 bg-primary rounded-full mr-3" />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="bg-white rounded-xl shadow-lg p-8"
-            >
-              <h2 className="text-2xl font-semibold mb-4">Benefits</h2>
-              <ul className="space-y-3">
-                {service.benefits.map((benefit, index) => (
-                  <li key={index} className="flex items-center text-gray-700">
-                    <div className="w-2 h-2 bg-accent rounded-full mr-3" />
-                    {benefit}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          </div>
-
-          <div className="text-center">
-            <Button
-              onClick={handleContactClick}
-              className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full text-lg"
-            >
-              Contact Us About This Service
-            </Button>
-          </div>
-        </motion.div>
+        <div className="text-center mt-12">
+          <Button
+            onClick={handleContactClick}
+            className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full text-lg"
+          >
+            Contact Us About This Service
+          </Button>
+        </div>
       </div>
     </div>
   );
