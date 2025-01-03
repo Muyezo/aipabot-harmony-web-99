@@ -46,8 +46,8 @@ const TeamProfiles = () => {
         transition={{ duration: 0.5 }}
         className="text-center mb-12"
       >
-        <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Team</h2>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+        <h2 className="text-3xl font-bold text-white mb-4">Our Team</h2>
+        <p className="text-lg text-white/80 max-w-2xl mx-auto">
           Meet the innovative minds behind our AI solutions
         </p>
       </motion.div>
