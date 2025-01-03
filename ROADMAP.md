@@ -38,7 +38,7 @@ This document outlines the planned features and improvements for our project.
   - [x] Article categories
   - [x] Search functionality
   - [x] Author profiles
-  - [ ] Related posts feature
+  - [x] Related posts feature
   
 - [ ] Contact Page
   - Contact form
@@ -102,3 +102,4 @@ This document outlines the planned features and improvements for our project.
 
 ## Contributing
 We welcome contributions! Please read our contributing guidelines before submitting pull requests.
+

@@ -3,6 +3,8 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import BlogGrid from "../components/blog/BlogGrid";
 import BlogSearch from "../components/blog/BlogSearch";
+import RelatedPosts from "../components/blog/RelatedPosts";
+import { blogPosts } from "../constants/blogPosts";
 import { useToast } from "@/hooks/use-toast";
 
 const Blog = () => {
@@ -14,6 +16,9 @@ const Blog = () => {
       description: `Searching for: ${query}`,
     });
   };
+
+  // For demonstration, we'll use the first post as the current post
+  const currentPost = blogPosts[0];
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -36,6 +41,7 @@ const Blog = () => {
             </motion.div>
             <BlogSearch onSearch={handleSearch} />
             <BlogGrid />
+            <RelatedPosts currentPost={currentPost} posts={blogPosts} />
           </div>
         </div>
       </main>

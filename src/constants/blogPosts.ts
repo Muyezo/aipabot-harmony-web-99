@@ -42,5 +42,33 @@ export const blogPosts: BlogPost[] = [
       avatar: "/placeholder.svg"
     },
     category: "Trends"
+  },
+  {
+    id: "4",
+    title: "Advanced AI Automation Techniques",
+    excerpt: "Deep dive into advanced automation strategies",
+    content: "Full article content here...",
+    date: "March 12, 2024",
+    imageUrl: "/placeholder.svg",
+    author: {
+      name: "Sarah Wilson",
+      role: "AI Engineer",
+      avatar: "/placeholder.svg"
+    },
+    category: "Tutorials"
+  },
+  {
+    id: "5",
+    title: "AI Integration Case Studies",
+    excerpt: "Real-world examples of successful AI implementations",
+    content: "Full article content here...",
+    date: "March 11, 2024",
+    imageUrl: "/placeholder.svg",
+    author: {
+      name: "David Brown",
+      role: "Solutions Architect",
+      avatar: "/placeholder.svg"
+    },
+    category: "Best Practices"
   }
 ];
