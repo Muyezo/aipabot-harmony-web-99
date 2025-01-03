@@ -4,6 +4,8 @@ import Footer from "../components/Footer";
 import ContactForm from "../components/contact/ContactForm";
 import OfficeLocations from "../components/contact/OfficeLocations";
 import SupportChannels from "../components/contact/SupportChannels";
+import CommunitySection from "../components/community/CommunitySection";
+import SuccessStories from "../components/community/SuccessStories";
 
 const Contact = () => {
   return (
@@ -56,6 +58,9 @@ const Contact = () => {
               </h2>
               <SupportChannels />
             </motion.div>
+
+            <CommunitySection />
+            <SuccessStories />
           </div>
         </div>
       </main>
