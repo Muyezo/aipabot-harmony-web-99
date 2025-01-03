@@ -1,100 +1,91 @@
-import { Phone, Users, HeadphonesIcon, Bot } from "lucide-react";
-
-const services = [
-  {
-    title: "AI Appointment Voice Agent",
-    description: "Streamline your scheduling with intelligent voice assistance",
-    longDescription: "Our AI Appointment Voice Agent revolutionizes how businesses handle scheduling. Using advanced natural language processing, it understands and manages appointment requests with human-like interaction. Available 24/7, it reduces scheduling conflicts, sends automated reminders, and integrates seamlessly with your existing calendar systems.",
-    icon: Phone,
-    image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d"
-  },
-  {
-    title: "AI Lead Conversion",
-    description: "Convert prospects into customers with AI-powered engagement",
-    longDescription: "Transform your lead conversion process with our AI-powered system. It analyzes customer behavior patterns, identifies high-potential leads, and engages them with personalized communication. Using machine learning algorithms, it optimizes conversion strategies in real-time, significantly improving your sales pipeline efficiency.",
-    icon: Users,
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f"
-  },
-  {
-    title: "AI Receptionist",
-    description: "24/7 professional reception service powered by AI",
-    longDescription: "Experience round-the-clock professional reception services with our AI Receptionist. It handles incoming calls, routes inquiries to appropriate departments, and manages basic customer service requests. With natural language processing capabilities, it provides a seamless, professional first point of contact for your business.",
-    icon: HeadphonesIcon,
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c"
-  },
-  {
-    title: "Customer Service Agent",
-    description: "Instant support and resolution for customer inquiries",
-    longDescription: "Our AI Customer Service Agent provides immediate, intelligent responses to customer inquiries across multiple channels. Using advanced machine learning, it handles common questions, troubleshooting, and support tickets while continuously learning from interactions to improve its responses. It seamlessly escalates complex issues to human agents when needed.",
-    icon: Bot,
-    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b"
-  },
-];
+import { ArrowRight } from "lucide-react";
 
 const Services = () => {
+  const services = [
+    {
+      title: "AI Integration",
+      shortDesc: "Seamlessly integrate AI into your workflow",
+      longDesc: "Transform your business operations with cutting-edge AI solutions. Our integration services ensure smooth implementation of AI technologies tailored to your specific needs.",
+      image: "/placeholder.svg"
+    },
+    {
+      title: "Process Automation",
+      shortDesc: "Automate repetitive tasks",
+      longDesc: "Streamline your operations with intelligent process automation. Reduce manual work and increase efficiency across your organization.",
+      image: "/placeholder.svg"
+    },
+    {
+      title: "Data Analytics",
+      shortDesc: "Turn data into actionable insights",
+      longDesc: "Leverage the power of advanced analytics to make data-driven decisions. Our solutions help you understand and utilize your data effectively.",
+      image: "/placeholder.svg"
+    }
+  ];
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+
   return (
-    <section className="py-20 bg-white">
+    <div className="bg-white py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-3xl font-bold text-gray-900">Our Services</h2>
-          <p className="mt-4 text-xl text-gray-600">
-            Comprehensive AI solutions for your business needs
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
+          <p className="text-xl text-gray-600">
+            Comprehensive solutions to transform your business
           </p>
+          <div className="flex justify-center gap-4 mt-8">
+            {services.map((service, index) => (
+              <button
+                key={index}
+                onClick={() => scrollToSection(`service-${index}`)}
+                className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-primary transition-colors"
+              >
+                {service.title}
+              </button>
+            ))}
+          </div>
         </div>
-        <div className="space-y-32">
-          {services.map((service, index) => (
-            <div
-              key={index}
-              className={`flex flex-col ${
-                index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
-              } gap-8 items-center animate-fade-in`}
-              style={{
-                animationDelay: `${index * 150}ms`,
-              }}
-            >
-              <div className="w-full lg:w-1/2">
-                <div className="relative group overflow-hidden rounded-2xl">
+
+        {services.map((service, index) => (
+          <div
+            key={index}
+            id={`service-${index}`}
+            className="group mb-32 last:mb-0 scroll-mt-24"
+          >
+            <div className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12`}>
+              <div className="w-full lg:w-1/2 transform transition-transform duration-500 group-hover:scale-105">
+                <div className="relative aspect-video overflow-hidden rounded-xl shadow-2xl">
                   <img
                     src={service.image}
                     alt={service.title}
-                    className="w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-black/40 transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </div>
               </div>
-              <div className="w-full lg:w-1/2 space-y-6">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 
-                            group-hover:bg-primary/20 transition-all duration-300">
-                  <service.icon className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900">{service.title}</h3>
-                <p className="text-lg text-gray-600">{service.description}</p>
-                <p className="text-gray-700 leading-relaxed">
-                  {service.longDescription}
-                </p>
-                <button className="inline-flex items-center text-primary hover:text-primary/80 transition-colors">
-                  Learn more
-                  <svg
-                    className="ml-2 w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
+              <div className="w-full lg:w-1/2 space-y-6 transform transition-all duration-500 group-hover:translate-x-4">
+                <h3 className="text-3xl font-bold text-gray-900 group-hover:text-primary transition-colors duration-300">
+                  {service.title}
+                </h3>
+                <p className="text-xl text-gray-600">{service.shortDesc}</p>
+                <p className="text-gray-700">{service.longDesc}</p>
+                <button className="group inline-flex items-center gap-2 text-primary hover:text-accent transition-colors duration-300">
+                  Learn more 
+                  <ArrowRight className="transform transition-transform duration-300 group-hover:translate-x-2" />
                 </button>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
-    </section>
+    </div>
   );
 };
 
