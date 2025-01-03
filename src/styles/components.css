@@ -1,0 +1,12 @@
+/* Content contrast improvements */
+.content-wrapper {
+  @apply relative bg-white/10 backdrop-blur-lg rounded-lg p-6 shadow-xl;
+}
+
+.text-content {
+  @apply text-white/90;
+}
+
+.card-content {
+  @apply bg-white/20 backdrop-blur-md rounded-xl shadow-lg;
+}

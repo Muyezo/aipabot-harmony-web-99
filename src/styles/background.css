@@ -1,0 +1,29 @@
+/* Global background styling */
+#root {
+  @apply relative min-h-screen;
+}
+
+#root::before {
+  content: '';
+  @apply fixed inset-0 -z-10;
+  background: #1A1F2C;
+}
+
+#root::after {
+  content: '';
+  @apply fixed inset-0 -z-10 opacity-30;
+  background: 
+    linear-gradient(to right, #221F26, #9b87f5, #F97316),
+    linear-gradient(to top, #0EA5E9, #8B5CF6, transparent),
+    linear-gradient(40deg, #0EA5E9, #D946EF, #F97316);
+  background-blend-mode: overlay;
+}
+
+/* Grid overlay */
+.grid-overlay {
+  @apply fixed inset-0 -z-10;
+  background-image: 
+    linear-gradient(to right, #80808012 1px, transparent 1px),
+    linear-gradient(to bottom, #80808012 1px, transparent 1px);
+  background-size: 24px 24px;
+}

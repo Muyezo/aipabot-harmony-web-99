@@ -1,0 +1,33 @@
+/* Glowing orbs */
+.glow-orb {
+  @apply absolute rounded-full filter blur-[128px] animate-pulse;
+}
+
+.glow-orb-1 {
+  @apply top-1/4 left-1/4 w-96 h-96 bg-purple-500/30;
+}
+
+.glow-orb-2 {
+  @apply bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/30 delay-700;
+}
+
+.glow-orb-3 {
+  @apply top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-orange-500/30 delay-1000;
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 1s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
