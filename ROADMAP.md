@@ -8,10 +8,11 @@ This document outlines the planned features and improvements for our project.
 - [x] Dynamic gradient background with aurora effect
 - [x] Responsive hero section
 - [x] Animated button effects
-- [ ] Add more interactive animations to service cards
-- [ ] Implement smooth scroll transitions between sections
-- [ ] Create testimonials carousel/grid component
-- [ ] Design community membership comparison cards
+- [x] Add more interactive animations to service cards
+- [x] Implement smooth scroll transitions between sections
+- [x] Create testimonials carousel/grid component
+- [x] Design community membership comparison cards
+- [ ] Add more interactive elements to membership cards
 
 ### Core Pages Development
 - [ ] About Us Page
