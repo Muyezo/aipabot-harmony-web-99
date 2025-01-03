@@ -4,10 +4,12 @@ import Services from "../components/Services";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       <Navbar />
       <Hero />
-      <Services />
+      <div className="bg-white">
+        <Services />
+      </div>
     </div>
   );
 };
