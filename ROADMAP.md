@@ -21,11 +21,12 @@ This document outlines the planned features and improvements for our project.
   - [x] Company values section
   - [x] Company timeline
   
-- [ ] Services Pages
-  - Individual service detail pages
-  - Feature comparison tables
-  - Integration examples
-  - Use case scenarios
+- [-] Services Pages
+  - [x] Services overview grid
+  - [ ] Individual service detail pages
+  - [ ] Feature comparison tables
+  - [ ] Integration examples
+  - [ ] Use case scenarios
   
 - [ ] Pricing Page
   - Service plan comparisons
