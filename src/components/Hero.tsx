@@ -8,7 +8,8 @@ const Hero = () => {
         <div className="text-center space-y-8">
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 animate-fade-in">
             AI That Works for{" "}
-            <span className="text-primary animate-glow">You!</span>
+            <span className="text-primary animate-glow">You!</span>{" "}
+            Seamlessly Automating Your Operations
           </h1>
           <p className="max-w-2xl mx-auto text-xl text-gray-600">
             Empowering businesses with AI-powered automation for streamlined
