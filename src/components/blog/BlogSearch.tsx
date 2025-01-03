@@ -16,11 +16,11 @@ interface BlogSearchProps {
 
 const BlogSearch = ({ onSearch, categories }: BlogSearchProps) => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSearch(searchQuery, selectedCategory);
+    onSearch(searchQuery, selectedCategory === "all" ? "" : selectedCategory);
   };
 
   return (
@@ -44,7 +44,7 @@ const BlogSearch = ({ onSearch, categories }: BlogSearchProps) => {
             <SelectValue placeholder="Select category" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">All Categories</SelectItem>
+            <SelectItem value="all">All Categories</SelectItem>
             {categories.map((category) => (
               <SelectItem key={category} value={category}>
                 {category}
