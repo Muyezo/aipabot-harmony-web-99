@@ -1,7 +1,7 @@
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import Services from "../components/Services";
-import Testimonials from "../components/Testimonials";
+import TestimonialsCarousel from "../components/TestimonialsCarousel";
 import Footer from "../components/Footer";
 
 const Index = () => {
@@ -11,7 +11,7 @@ const Index = () => {
       <Hero />
       <div className="bg-white">
         <Services />
-        <Testimonials />
+        <TestimonialsCarousel />
       </div>
       <Footer />
     </div>
