@@ -5,6 +5,7 @@ import CommunitySection from "../components/community/CommunitySection";
 import SuccessStories from "../components/community/SuccessStories";
 import EventCalendar from "../components/community/EventCalendar";
 import ResourceLibrary from "../components/community/ResourceLibrary";
+import MembershipBenefits from "../components/community/MembershipBenefits";
 
 const CommunityHub = () => {
   return (
@@ -28,6 +29,7 @@ const CommunityHub = () => {
             </motion.div>
 
             <CommunitySection />
+            <MembershipBenefits />
             <SuccessStories />
             <EventCalendar />
             <ResourceLibrary />
