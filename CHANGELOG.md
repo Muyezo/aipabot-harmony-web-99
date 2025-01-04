@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- User dashboard with profile display and AI interaction history
+- Recent AI interactions display with timestamps and details
+- Loading states for dashboard data fetching
+- Profile information display with avatar support
 - Authentication system with user registration and login
 - Protected routes requiring authentication
 - Session management and persistence
@@ -29,6 +33,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Interactive timeline component
 
 ### Changed
+- Updated Index page layout to include dashboard section
+- Improved visual hierarchy with new dashboard components
 - Updated hero section headline to "AI That Works for You! Seamlessly Automating Your Operations"
 - Improved layout structure to ensure proper section visibility
 - Enhanced color palette with deep blues, vibrant reds, and subtle purples
