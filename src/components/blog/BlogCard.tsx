@@ -2,6 +2,7 @@ import { Calendar } from "lucide-react";
 import { BlogPost } from "../../types/blog";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { LazyImage } from "@/components/ui/lazy-image";
 
 interface BlogCardProps {
   post: BlogPost;
@@ -24,10 +25,13 @@ const BlogCard = ({ post }: BlogCardProps) => {
 
   return (
     <div className="bg-[#1A1F2C] rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-      <img
+      <LazyImage
         src={post.featured_image || "/placeholder.svg"}
         alt={post.title}
-        className="w-full h-48 object-cover"
+        className="w-full h-48"
+        width={800}
+        height={400}
+        quality={85}
       />
       <div className="p-6">
         <div className="flex items-center text-sm text-gray-300 mb-2">
@@ -38,10 +42,13 @@ const BlogCard = ({ post }: BlogCardProps) => {
         <p className="text-gray-200 mb-4">{post.excerpt}</p>
         {author && (
           <div className="flex items-center">
-            <img
+            <LazyImage
               src={author.avatar_url || "/placeholder.svg"}
               alt={author.full_name || "Author"}
               className="h-10 w-10 rounded-full mr-3"
+              width={40}
+              height={40}
+              quality={90}
             />
             <div>
               <p className="text-sm font-medium text-white">

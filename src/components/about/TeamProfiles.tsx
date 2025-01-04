@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Github, Linkedin, Twitter } from "lucide-react";
+import { LazyImage } from "@/components/ui/lazy-image";
 
 const teamMembers = [
   {
@@ -62,10 +63,13 @@ const TeamProfiles = () => {
             className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
           >
             <div className="aspect-square relative overflow-hidden">
-              <img
+              <LazyImage
                 src={member.image}
                 alt={member.name}
-                className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                className="w-full h-full object-cover"
+                width={400}
+                height={400}
+                quality={85}
               />
             </div>
             <div className="p-6">
