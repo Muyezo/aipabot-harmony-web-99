@@ -1,10 +1,16 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
+import { useToast } from "@/components/ui/use-toast";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const session = useSession();
+  const supabase = useSupabaseClient();
+  const { toast } = useToast();
 
   const navItems = [
     { name: "Home", path: "/" },
@@ -18,6 +24,23 @@ const Navbar = () => {
 
   const isCurrentPath = (path: string) => {
     return location.pathname === path;
+  };
+
+  const handleSignOut = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      toast({
+        title: "Error signing out",
+        description: error.message,
+        variant: "destructive",
+      });
+    } else {
+      toast({
+        title: "Signed out",
+        description: "You have been successfully signed out.",
+      });
+      navigate("/");
+    }
   };
 
   return (
@@ -46,12 +69,21 @@ const Navbar = () => {
                   {item.name}
                 </Link>
               ))}
-              <Link
-                to="/get-started"
-                className="bg-white/10 text-white px-6 py-2 rounded-full hover:bg-white/20 transition-colors duration-200 backdrop-blur-sm"
-              >
-                Get Started
-              </Link>
+              {session ? (
+                <button
+                  onClick={handleSignOut}
+                  className="bg-white/10 text-white px-6 py-2 rounded-full hover:bg-white/20 transition-colors duration-200 backdrop-blur-sm"
+                >
+                  Sign Out
+                </button>
+              ) : (
+                <Link
+                  to="/auth"
+                  className="bg-white/10 text-white px-6 py-2 rounded-full hover:bg-white/20 transition-colors duration-200 backdrop-blur-sm"
+                >
+                  Sign In
+                </Link>
+              )}
             </div>
 
             {/* Mobile menu button */}
@@ -83,13 +115,25 @@ const Navbar = () => {
                     {item.name}
                   </Link>
                 ))}
-                <Link
-                  to="/get-started"
-                  className="block px-3 py-2 text-white font-medium hover:bg-white/10 rounded-lg transition-colors duration-200"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Get Started
-                </Link>
+                {session ? (
+                  <button
+                    onClick={() => {
+                      handleSignOut();
+                      setIsOpen(false);
+                    }}
+                    className="block w-full text-left px-3 py-2 text-white font-medium hover:bg-white/10 rounded-lg transition-colors duration-200"
+                  >
+                    Sign Out
+                  </button>
+                ) : (
+                  <Link
+                    to="/auth"
+                    className="block px-3 py-2 text-white font-medium hover:bg-white/10 rounded-lg transition-colors duration-200"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Sign In
+                  </Link>
+                )}
               </div>
             </div>
           )}
