@@ -1,6 +1,5 @@
 import { useSession } from "@supabase/auth-helpers-react";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 import { useAdmin } from "../hooks/useAdmin";
 import { useToast } from "@/hooks/use-toast";
 import Hero from "../components/Hero";
@@ -16,12 +15,6 @@ const Index = () => {
   const navigate = useNavigate();
   const { isAdmin, isLoading } = useAdmin();
   const { toast } = useToast();
-
-  useEffect(() => {
-    if (!session) {
-      navigate("/auth");
-    }
-  }, [session, navigate]);
 
   if (!session) {
     return (
