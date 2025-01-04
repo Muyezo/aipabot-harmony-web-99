@@ -26,20 +26,10 @@ export const animations = {
         "background-size": "200% 100%"
       }
     },
-    "gradient-y": {
-      "0%, 100%": {
-        "background-position": "0 200%",
-        "background-size": "100% 200%"
-      },
-      "50%": {
-        "background-position": "0 0",
-        "background-size": "100% 200%"
-      }
-    },
     aurora: {
-      "0%": { transform: "rotate(0deg) scale(1)" },
-      "50%": { transform: "rotate(180deg) scale(1.5)" },
-      "100%": { transform: "rotate(360deg) scale(1)" }
+      "0%": { transform: "rotate(0deg) scale(1) translateZ(0)" },
+      "50%": { transform: "rotate(180deg) scale(1.2) translateZ(0)" },
+      "100%": { transform: "rotate(360deg) scale(1) translateZ(0)" }
     },
     "slide-up": {
       "0%": { transform: "translateY(20px)", opacity: "0" },
@@ -55,9 +45,8 @@ export const animations = {
     "accordion-up": "accordion-up 0.2s ease-out",
     float: "float 6s ease-in-out infinite",
     glow: "glow 2s ease-in-out infinite",
-    "gradient-x": "gradient-x 15s ease infinite",
-    "gradient-y": "gradient-y 15s ease infinite",
-    "aurora": "aurora 20s ease infinite",
+    "gradient-x": "gradient-x 30s ease infinite",
+    "aurora": "aurora 30s ease infinite",
     "slide-up": "slide-up 0.5s ease-out",
     "slide-down": "slide-down 0.5s ease-out",
   },
