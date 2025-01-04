@@ -34,6 +34,7 @@ export const AIChat = () => {
       toast({
         title: "AI Response",
         description: data.response,
+        duration: null, // This makes the toast stay until manually closed
       });
       setPrompt("");
     } catch (error) {
