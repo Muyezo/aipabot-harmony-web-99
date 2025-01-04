@@ -32,4 +32,7 @@ export const colors = {
     DEFAULT: "hsl(var(--card))",
     foreground: "hsl(var(--card-foreground))",
   },
+  custom: {
+    burgundy: "#7c1c4c"
+  }
 };
