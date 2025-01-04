@@ -50,22 +50,29 @@ export const AIChat = () => {
   };
 
   return (
-    <Card className="w-full max-w-2xl mx-auto p-6 space-y-4 bg-white/10 backdrop-blur-sm">
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <Textarea
-          value={prompt}
-          onChange={(e) => setPrompt(e.target.value)}
-          placeholder="Ask me anything..."
-          className="min-h-[100px] bg-white/5 border-white/10 text-white placeholder:text-white/50"
-        />
-        <Button 
-          type="submit" 
-          disabled={isLoading || !prompt.trim()}
-          className="w-full bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600"
-        >
-          {isLoading ? "Processing..." : "Send"}
-        </Button>
-      </form>
-    </Card>
+    <section className="w-full py-12">
+      <div className="container max-w-4xl mx-auto px-4">
+        <h2 className="text-3xl font-bold text-white mb-6 text-center">
+          AI Assistant Chat
+        </h2>
+        <Card className="w-full mx-auto p-6 space-y-4 bg-[#1A1F2C]/80 backdrop-blur-lg border-white/10 shadow-xl">
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <Textarea
+              value={prompt}
+              onChange={(e) => setPrompt(e.target.value)}
+              placeholder="Ask me anything..."
+              className="min-h-[100px] bg-white/5 border-white/10 text-white placeholder:text-white/50"
+            />
+            <Button 
+              type="submit" 
+              disabled={isLoading || !prompt.trim()}
+              className="w-full bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600"
+            >
+              {isLoading ? "Processing..." : "Send"}
+            </Button>
+          </form>
+        </Card>
+      </div>
+    </section>
   );
 };
