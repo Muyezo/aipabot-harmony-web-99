@@ -18,7 +18,7 @@ interface AIInteraction {
   tokens_used: number;
 }
 
-export const Dashboard = () => {
+const Dashboard = () => {
   const session = useSession();
   const { toast } = useToast();
   const [profile, setProfile] = useState<Profile | null>(null);
@@ -177,3 +177,5 @@ export const Dashboard = () => {
     </section>
   );
 };
+
+export default Dashboard;

@@ -6,7 +6,7 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { Card } from "@/components/ui/card";
 
-export const AIChat = () => {
+const AIChat = () => {
   const [prompt, setPrompt] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const session = useSession();
@@ -76,3 +76,5 @@ export const AIChat = () => {
     </section>
   );
 };
+
+export default AIChat;
