@@ -19,16 +19,6 @@ const Index = () => {
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  useEffect(() => {
-    if (!session) {
-      navigate("/auth");
-    }
-  }, [session, navigate]);
-
-  if (!session) {
-    return null;
-  }
-
   return (
     <div className="min-h-screen relative">
       {/* Background gradient and effects */}
@@ -69,8 +59,12 @@ const Index = () => {
         <Hero />
         <div className="relative z-10">
           <Services />
-          <Dashboard />
-          <AIChat />
+          {session ? (
+            <>
+              <Dashboard />
+              <AIChat />
+            </>
+          ) : null}
           <CallToAction />
           <TestimonialsCarousel />
           <MembershipTiers />
