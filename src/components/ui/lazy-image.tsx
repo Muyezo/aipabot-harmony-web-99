@@ -11,7 +11,7 @@ interface LazyImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   format?: 'webp' | 'jpeg' | 'png';
 }
 
-const LazyImage = ({ 
+export const LazyImage = ({ 
   src, 
   alt, 
   className,
