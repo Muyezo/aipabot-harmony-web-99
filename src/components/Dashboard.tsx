@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSession } from "@supabase/auth-helpers-react";
 import { supabase } from "@/integrations/supabase/client";
-import { Card } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
+import UserProfile from "./dashboard/UserProfile";
+import AIInteractionsList from "./dashboard/AIInteractionsList";
 
 interface Profile {
   username: string;
@@ -120,59 +121,8 @@ const Dashboard = () => {
     <section className="w-full py-12">
       <div className="container max-w-4xl mx-auto px-4">
         <h2 className="text-3xl font-bold text-white mb-6">Dashboard</h2>
-        
-        {/* User Profile Card */}
-        <Card className="w-full p-6 mb-8 bg-[#1A1F2C]/80 backdrop-blur-lg border-white/10">
-          <div className="flex items-center space-x-4">
-            {profile?.avatar_url && (
-              <img
-                src={profile.avatar_url}
-                alt="Profile"
-                className="w-16 h-16 rounded-full"
-              />
-            )}
-            <div>
-              <h3 className="text-xl font-semibold text-white">
-                {profile?.full_name || "User"}
-              </h3>
-              {profile?.username && (
-                <p className="text-white/60">@{profile.username}</p>
-              )}
-            </div>
-          </div>
-        </Card>
-
-        {/* Recent AI Interactions */}
-        <h3 className="text-xl font-semibold text-white mb-4">
-          Recent AI Interactions
-        </h3>
-        <div className="space-y-4">
-          {interactions.map((interaction, index) => (
-            <Card
-              key={`${interaction.created_at}-${index}`}
-              className="w-full p-6 bg-[#1A1F2C]/80 backdrop-blur-lg border-white/10"
-            >
-              <div className="space-y-2">
-                <p className="text-white/60 text-sm">
-                  {new Date(interaction.created_at).toLocaleDateString()}
-                </p>
-                <p className="text-white font-medium">
-                  Prompt: {interaction.prompt}
-                </p>
-                <p className="text-white/80">Response: {interaction.response}</p>
-                <div className="flex justify-between text-sm text-white/60">
-                  <span>Model: {interaction.model}</span>
-                  <span>Tokens: {interaction.tokens_used}</span>
-                </div>
-              </div>
-            </Card>
-          ))}
-          {interactions.length === 0 && (
-            <p className="text-white/60 text-center py-8">
-              No AI interactions yet. Try asking a question above!
-            </p>
-          )}
-        </div>
+        <UserProfile profile={profile} />
+        <AIInteractionsList interactions={interactions} />
       </div>
     </section>
   );
