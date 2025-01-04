@@ -52,8 +52,8 @@
 ## In Progress 🚧
 
 ### Performance Optimization
-- [ ] Optimize gradient animations
-- [ ] Implement lazy loading for images
+- [x] Optimize gradient animations
+- [x] Implement lazy loading for images
 - [ ] Add loading states
 - [ ] Optimize bundle size
 - [ ] Implement image optimization pipeline
