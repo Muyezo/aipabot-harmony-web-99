@@ -8,8 +8,12 @@ import EventBooking from "../components/community/EventBooking";
 import EventCalendar from "../components/community/EventCalendar";
 import ResourceLibrary from "../components/community/ResourceLibrary";
 import ForumSection from "../components/community/ForumSection";
+import EventManagement from "../components/community/EventManagement";
+import { useAdmin } from "@/hooks/useAdmin";
 
 const CommunityHub = () => {
+  const { isAdmin } = useAdmin();
+
   return (
     <div className="min-h-screen flex flex-col relative">
       <div className="glow-orb glow-orb-1" />
@@ -44,6 +48,11 @@ const CommunityHub = () => {
               <div className="content-wrapper">
                 <SuccessStories />
               </div>
+              {isAdmin && (
+                <div className="content-wrapper">
+                  <EventManagement />
+                </div>
+              )}
               <div className="content-wrapper">
                 <EventBooking />
               </div>
