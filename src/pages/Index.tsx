@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import Services from "../components/Services";
+import CallToAction from "../components/CallToAction";
 import TestimonialsCarousel from "../components/TestimonialsCarousel";
 import MembershipTiers from "../components/MembershipTiers";
 import Footer from "../components/Footer";
@@ -29,6 +30,7 @@ const Index = () => {
       <Hero />
       <div className="relative z-10">
         <Services />
+        <CallToAction />
         <TestimonialsCarousel />
         <MembershipTiers />
       </div>
