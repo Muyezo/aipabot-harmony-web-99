@@ -9,6 +9,7 @@ import Hero from "../components/Hero";
 import Services from "../components/Services";
 import { AIChat } from "../components/AIChat";
 import { Dashboard } from "../components/Dashboard";
+import AnalyticsDashboard from "../components/analytics/AnalyticsDashboard";
 import CallToAction from "../components/CallToAction";
 import TestimonialsCarousel from "../components/TestimonialsCarousel";
 import MembershipTiers from "../components/MembershipTiers";
@@ -62,6 +63,7 @@ const Index = () => {
           {session ? (
             <>
               <Dashboard />
+              <AnalyticsDashboard />
               <AIChat />
             </>
           ) : null}
