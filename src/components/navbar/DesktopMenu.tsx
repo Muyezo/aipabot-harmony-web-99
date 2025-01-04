@@ -13,11 +13,7 @@ export const DesktopMenu = () => {
   };
 
   const handleNavigation = (path: string) => {
-    if (path === "/" && !session) {
-      navigate("/auth");
-    } else {
-      navigate(path);
-    }
+    navigate(path);
   };
 
   return (

@@ -18,11 +18,7 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
   };
 
   const handleNavigation = (path: string) => {
-    if (path === "/" && !session) {
-      navigate("/auth");
-    } else {
-      navigate(path);
-    }
+    navigate(path);
     onClose();
   };
 
