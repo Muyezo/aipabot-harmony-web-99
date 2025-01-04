@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
-import { Github, Linkedin, Twitter } from "lucide-react";
-import { LazyImage } from "@/components/ui/lazy-image";
+import TeamGrid from "./TeamGrid";
+import { TeamMemberType } from "@/types/team";
 
-const teamMembers = [
+const teamMembers: TeamMemberType[] = [
   {
     name: "Sarah Johnson",
     role: "CEO & Founder",
@@ -52,57 +52,7 @@ const TeamProfiles = () => {
           Meet the innovative minds behind our AI solutions
         </p>
       </motion.div>
-
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {teamMembers.map((member, index) => (
-          <motion.div
-            key={member.name}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
-          >
-            <div className="aspect-square relative overflow-hidden">
-              <LazyImage
-                src={member.image}
-                alt={member.name}
-                className="w-full h-full object-cover"
-                width={400}
-                height={400}
-                quality={85}
-              />
-            </div>
-            <div className="p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-1">{member.name}</h3>
-              <p className="text-primary font-medium mb-3">{member.role}</p>
-              <p className="text-gray-600 mb-4">{member.bio}</p>
-              <div className="flex gap-4">
-                <a
-                  href={member.social.twitter}
-                  className="text-gray-400 hover:text-primary transition-colors"
-                  aria-label={`${member.name}'s Twitter`}
-                >
-                  <Twitter className="w-5 h-5" />
-                </a>
-                <a
-                  href={member.social.linkedin}
-                  className="text-gray-400 hover:text-primary transition-colors"
-                  aria-label={`${member.name}'s LinkedIn`}
-                >
-                  <Linkedin className="w-5 h-5" />
-                </a>
-                <a
-                  href={member.social.github}
-                  className="text-gray-400 hover:text-primary transition-colors"
-                  aria-label={`${member.name}'s GitHub`}
-                >
-                  <Github className="w-5 h-5" />
-                </a>
-              </div>
-            </div>
-          </motion.div>
-        ))}
-      </div>
+      <TeamGrid members={teamMembers} />
     </section>
   );
 };
