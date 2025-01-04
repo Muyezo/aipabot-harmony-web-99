@@ -14,7 +14,7 @@ const Contact = () => {
       <div className="grid-overlay" />
       
       <Navbar />
-      <main className="flex-grow">
+      <main className="flex-grow pt-20">
         <div className="relative">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
             <motion.div

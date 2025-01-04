@@ -1,46 +1,32 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
-import { Button } from "@/components/ui/button";
-import { useToast } from "@/hooks/use-toast";
+import { Menu } from "lucide-react";
+import { DesktopMenu } from "./navbar/DesktopMenu";
+import { MobileMenu } from "./navbar/MobileMenu";
 
 const Navbar = () => {
-  const session = useSession();
-  const supabase = useSupabaseClient();
   const navigate = useNavigate();
-  const { toast } = useToast();
-
-  const handleLogout = async () => {
-    try {
-      await supabase.auth.signOut();
-      toast({
-        title: "Logged out successfully",
-        description: "You have been logged out of your account.",
-      });
-      navigate("/auth");
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "Failed to log out. Please try again.",
-        variant: "destructive",
-      });
-    }
-  };
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-lg border-b border-white/10">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <div className="text-white font-bold text-xl">Your Logo</div>
-          {session && (
-            <Button
-              onClick={handleLogout}
-              variant="ghost"
-              className="text-white hover:bg-white/10"
-            >
-              Logout
-            </Button>
-          )}
+          <div 
+            className="text-white font-bold text-xl cursor-pointer" 
+            onClick={() => navigate("/")}
+          >
+            Your Logo
+          </div>
+          <DesktopMenu />
+          <button
+            className="md:hidden text-white"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            <Menu className="w-6 h-6" />
+          </button>
         </div>
+        <MobileMenu isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
       </div>
     </nav>
   );
