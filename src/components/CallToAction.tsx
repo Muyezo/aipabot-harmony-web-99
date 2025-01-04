@@ -89,7 +89,7 @@ const CallToAction = () => {
             <div className="space-y-8">
               <div>
                 <h2 className="text-4xl font-bold text-white mb-4">
-                  Give <span className="text-blue-400">Our AI Agent</span> a Call
+                  Give <span className="text-blue-400">Reggy (Our AI Agent)</span> a Call
                 </h2>
                 <p className="text-xl text-gray-300">
                   and Experience the Future of Communication!
