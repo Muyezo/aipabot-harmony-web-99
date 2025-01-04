@@ -23,7 +23,7 @@ const Blog = () => {
       const matchesSearch = searchQuery === "" || 
         post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         post.content.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
+        post.excerpt?.toLowerCase().includes(searchQuery.toLowerCase());
       
       const matchesCategory = selectedCategory === "" || 
         post.category === selectedCategory;
@@ -69,7 +69,7 @@ const Blog = () => {
             </motion.div>
             <div className="space-y-12">
               <BlogSearch onSearch={handleSearch} categories={categories} />
-              <BlogGrid posts={filteredPosts} />
+              <BlogGrid />
               <RelatedPosts currentPost={currentPost} posts={blogPosts} />
             </div>
           </div>

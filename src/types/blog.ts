@@ -9,11 +9,11 @@ export interface BlogPost {
   title: string;
   slug: string;
   content: string;
-  excerpt?: string;
-  featured_image?: string;
+  excerpt?: string | null;
+  featured_image?: string | null;
   category: string;
-  status: 'draft' | 'published' | 'archived';
-  published_at?: string;
+  status: string;
+  published_at?: string | null;
   created_at: string;
   updated_at: string;
   author_id: string;
