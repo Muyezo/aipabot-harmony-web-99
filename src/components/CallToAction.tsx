@@ -7,53 +7,55 @@ const CallToAction = () => {
     // VAPI Call button configuration
     const script = document.createElement('script');
     script.innerHTML = `
-      var vapiInstance = null;
-      const assistant = "2a53a28d-f870-4ff4-9a0a-482a46caa9a7";
-      const apiKey = "591fec56-287b-4df1-b806-a2f27925490b";
-      const buttonConfig = {
-        position: "bottom-right",
-        offset: "40px",
-        width: "50px",
-        height: "50px",
-        idle: {
-          color: "rgb(93, 254, 202)",
-          type: "pill",
-          title: "Meet AipaBOT",
-          subtitle: "",
-          icon: "https://unpkg.com/lucide-static@0.321.0/icons/phone.svg",
-        },
-        loading: {
-          color: "rgb(93, 124, 202)",
-          type: "pill",
-          title: "Connecting...",
-          subtitle: "Please wait",
-          icon: "https://unpkg.com/lucide-static@0.321.0/icons/loader-2.svg",
-        },
-        active: {
-          color: "rgb(255, 0, 0)",
-          type: "pill",
-          title: "Call is in progress...",
-          subtitle: "End the call.",
-          icon: "https://unpkg.com/lucide-static@0.321.0/icons/phone-off.svg",
-        },
-      };
-
-      (function (d, t) {
-        var g = document.createElement(t),
-          s = d.getElementsByTagName(t)[0];
-        g.src =
-          "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
-        g.defer = true;
-        g.async = true;
-        s.parentNode.insertBefore(g, s);
-        g.onload = function () {
-          vapiInstance = window.vapiSDK.run({
-            apiKey: apiKey,
-            assistant: assistant,
-            config: buttonConfig,
-          });
+      if (typeof vapiInstance === 'undefined') {
+        var vapiInstance = null;
+        const assistant = "2a53a28d-f870-4ff4-9a0a-482a46caa9a7";
+        const apiKey = "591fec56-287b-4df1-b806-a2f27925490b";
+        const buttonConfig = {
+          position: "bottom-right",
+          offset: "40px",
+          width: "50px",
+          height: "50px",
+          idle: {
+            color: "rgb(93, 254, 202)",
+            type: "pill",
+            title: "Meet AipaBOT",
+            subtitle: "",
+            icon: "https://unpkg.com/lucide-static@0.321.0/icons/phone.svg",
+          },
+          loading: {
+            color: "rgb(93, 124, 202)",
+            type: "pill",
+            title: "Connecting...",
+            subtitle: "Please wait",
+            icon: "https://unpkg.com/lucide-static@0.321.0/icons/loader-2.svg",
+          },
+          active: {
+            color: "rgb(255, 0, 0)",
+            type: "pill",
+            title: "Call is in progress...",
+            subtitle: "End the call.",
+            icon: "https://unpkg.com/lucide-static@0.321.0/icons/phone-off.svg",
+          },
         };
-      })(document, "script");
+
+        (function (d, t) {
+          var g = document.createElement(t),
+            s = d.getElementsByTagName(t)[0];
+          g.src =
+            "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
+          g.defer = true;
+          g.async = true;
+          s.parentNode.insertBefore(g, s);
+          g.onload = function () {
+            window.vapiSDK.run({
+              apiKey: apiKey,
+              assistant: assistant,
+              config: buttonConfig,
+            });
+          };
+        })(document, "script");
+      }
     `;
     document.body.appendChild(script);
 
