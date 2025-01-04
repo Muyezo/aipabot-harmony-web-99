@@ -63,6 +63,43 @@ export const Dashboard = () => {
     };
 
     fetchUserData();
+
+    // Set up real-time subscription
+    const channel = supabase
+      .channel('schema-db-changes')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'ai_interactions',
+          filter: `user_id=eq.${session?.user?.id}`,
+        },
+        async (payload) => {
+          console.log('Real-time update:', payload);
+          
+          // Fetch latest interactions after any change
+          const { data, error } = await supabase
+            .from("ai_interactions")
+            .select("*")
+            .eq("user_id", session?.user?.id)
+            .order("created_at", { ascending: false })
+            .limit(5);
+
+          if (!error && data) {
+            setInteractions(data);
+            toast({
+              title: "Update",
+              description: "AI interactions have been updated in real-time.",
+            });
+          }
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, [session, toast]);
 
   if (isLoading) {
@@ -112,7 +149,7 @@ export const Dashboard = () => {
         <div className="space-y-4">
           {interactions.map((interaction, index) => (
             <Card
-              key={index}
+              key={`${interaction.created_at}-${index}`}
               className="w-full p-6 bg-[#1A1F2C]/80 backdrop-blur-lg border-white/10"
             >
               <div className="space-y-2">
