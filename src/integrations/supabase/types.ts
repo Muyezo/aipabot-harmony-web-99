@@ -103,6 +103,84 @@ export type Database = {
           },
         ]
       }
+      event_bookings: {
+        Row: {
+          created_at: string | null
+          event_id: string
+          id: string
+          status: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          event_id: string
+          id?: string
+          status?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          event_id?: string
+          id?: string
+          status?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "event_bookings_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "events"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "event_bookings_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      events: {
+        Row: {
+          capacity: number
+          created_at: string | null
+          date: string
+          description: string | null
+          id: string
+          location: string
+          spots_taken: number
+          status: Database["public"]["Enums"]["event_status"]
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          capacity?: number
+          created_at?: string | null
+          date: string
+          description?: string | null
+          id?: string
+          location: string
+          spots_taken?: number
+          status?: Database["public"]["Enums"]["event_status"]
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          capacity?: number
+          created_at?: string | null
+          date?: string
+          description?: string | null
+          id?: string
+          location?: string
+          spots_taken?: number
+          status?: Database["public"]["Enums"]["event_status"]
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -157,6 +235,7 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "user"
+      event_status: "upcoming" | "ongoing" | "completed" | "cancelled"
     }
     CompositeTypes: {
       [_ in never]: never

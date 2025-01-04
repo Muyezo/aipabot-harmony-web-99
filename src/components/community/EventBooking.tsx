@@ -1,54 +1,84 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Calendar, Clock, MapPin, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
+import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
+import { format } from "date-fns";
 
 interface Event {
   id: string;
   title: string;
   date: string;
-  time: string;
   location: string;
   capacity: number;
-  spotsLeft: number;
+  spots_taken: number;
+  description: string | null;
 }
 
-const upcomingEvents: Event[] = [
-  {
-    id: "1",
-    title: "AI Workshop",
-    date: "March 15, 2024",
-    time: "2:00 PM EST",
-    location: "Virtual",
-    capacity: 50,
-    spotsLeft: 15,
-  },
-  {
-    id: "2",
-    title: "Community Meetup",
-    date: "March 20, 2024",
-    time: "6:00 PM EST",
-    location: "San Francisco",
-    capacity: 100,
-    spotsLeft: 45,
-  },
-  {
-    id: "3",
-    title: "Tech Talk Series",
-    date: "March 25, 2024",
-    time: "3:00 PM EST",
-    location: "Virtual",
-    capacity: 200,
-    spotsLeft: 120,
-  },
-];
-
 const EventBooking = () => {
+  const [events, setEvents] = useState<Event[]>([]);
   const [bookedEvents, setBookedEvents] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const { toast } = useToast();
+  const session = useSession();
+  const supabase = useSupabaseClient();
 
-  const handleBookEvent = (eventId: string) => {
+  useEffect(() => {
+    fetchEvents();
+    if (session?.user) {
+      fetchUserBookings();
+    }
+  }, [session]);
+
+  const fetchEvents = async () => {
+    const { data, error } = await supabase
+      .from("events")
+      .select("*")
+      .eq("status", "upcoming")
+      .order("date", { ascending: true });
+
+    if (error) {
+      toast({
+        title: "Error fetching events",
+        description: error.message,
+        variant: "destructive",
+      });
+    } else if (data) {
+      setEvents(data);
+    }
+    setIsLoading(false);
+  };
+
+  const fetchUserBookings = async () => {
+    if (!session?.user?.id) return;
+
+    const { data, error } = await supabase
+      .from("event_bookings")
+      .select("event_id")
+      .eq("user_id", session.user.id);
+
+    if (error) {
+      toast({
+        title: "Error fetching bookings",
+        description: error.message,
+        variant: "destructive",
+      });
+    } else if (data) {
+      setBookedEvents(data.map((booking) => booking.event_id));
+    }
+  };
+
+  const handleBookEvent = async (eventId: string) => {
+    if (!session) {
+      toast({
+        title: "Authentication required",
+        description: "Please sign in to book events.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     if (bookedEvents.includes(eventId)) {
       toast({
         title: "Already Booked",
@@ -58,12 +88,33 @@ const EventBooking = () => {
       return;
     }
 
-    setBookedEvents([...bookedEvents, eventId]);
-    toast({
-      title: "Event Booked!",
-      description: "You have successfully booked this event.",
+    const { error } = await supabase.from("event_bookings").insert({
+      event_id: eventId,
+      user_id: session.user.id,
     });
+
+    if (error) {
+      toast({
+        title: "Booking failed",
+        description: error.message,
+        variant: "destructive",
+      });
+    } else {
+      setBookedEvents([...bookedEvents, eventId]);
+      toast({
+        title: "Event Booked!",
+        description: "You have successfully booked this event.",
+      });
+    }
   };
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center min-h-[200px]">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+      </div>
+    );
+  }
 
   return (
     <motion.div
@@ -74,7 +125,7 @@ const EventBooking = () => {
     >
       <h2 className="text-2xl font-semibold mb-6 text-center">Book an Event</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {upcomingEvents.map((event, index) => (
+        {events.map((event, index) => (
           <motion.div
             key={event.id}
             initial={{ opacity: 0, y: 20 }}
@@ -87,12 +138,12 @@ const EventBooking = () => {
             <div className="space-y-3 mb-4">
               <div className="flex items-center gap-2 text-gray-600">
                 <Calendar className="h-4 w-4" />
-                <span>{event.date}</span>
+                <span>{format(new Date(event.date), "MMMM d, yyyy")}</span>
               </div>
               
               <div className="flex items-center gap-2 text-gray-600">
                 <Clock className="h-4 w-4" />
-                <span>{event.time}</span>
+                <span>{format(new Date(event.date), "h:mm a")}</span>
               </div>
               
               <div className="flex items-center gap-2 text-gray-600">
@@ -102,7 +153,9 @@ const EventBooking = () => {
               
               <div className="flex items-center gap-2 text-gray-600">
                 <Users className="h-4 w-4" />
-                <span>{event.spotsLeft} spots left</span>
+                <span>
+                  {event.capacity - event.spots_taken} spots left
+                </span>
               </div>
             </div>
 
