@@ -21,79 +21,81 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-lg z-50 border-b border-gray-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          <div className="flex-shrink-0 flex items-center">
-            <Link to="/" className="text-2xl font-bold text-primary">
-              AipaBOT
-            </Link>
-          </div>
-
-          {/* Desktop menu */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                to={item.path}
-                className={`transition-all duration-200 ${
-                  isCurrentPath(item.path)
-                    ? "text-primary relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary after:shadow-[0_0_10px_#9b87f5] after:rounded-full"
-                    : "text-gray-700 hover:text-primary"
-                }`}
-              >
-                {item.name}
+    <div className="fixed top-4 left-1/2 -translate-x-1/2 w-[98%] max-w-7xl z-50">
+      <nav className="bg-gradient-to-r from-[#1A1F2C] via-[#221F26] to-[#ea384c] rounded-xl shadow-lg border border-white/10 backdrop-blur-lg">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between h-16">
+            <div className="flex-shrink-0 flex items-center">
+              <Link to="/" className="text-2xl font-bold text-white">
+                AipaBOT
               </Link>
-            ))}
-            <Link
-              to="/get-started"
-              className="bg-primary text-white px-6 py-2 rounded-full hover:bg-primary/90 transition-colors duration-200"
-            >
-              Get Started
-            </Link>
-          </div>
+            </div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden flex items-center">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-700 hover:text-primary"
-            >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile menu */}
-        {isOpen && (
-          <div className="md:hidden">
-            <div className="pt-2 pb-3 space-y-1">
+            {/* Desktop menu */}
+            <div className="hidden md:flex items-center space-x-8">
               {navItems.map((item) => (
                 <Link
                   key={item.name}
                   to={item.path}
-                  className={`block px-3 py-2 transition-all duration-200 ${
+                  className={`transition-all duration-200 ${
                     isCurrentPath(item.path)
-                      ? "text-primary bg-primary/5 relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary after:shadow-[0_0_10px_#9b87f5] after:rounded-full"
-                      : "text-gray-700 hover:text-primary"
+                      ? "text-white relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-white after:shadow-[0_0_10px_#ffffff] after:rounded-full"
+                      : "text-gray-300 hover:text-white"
                   }`}
-                  onClick={() => setIsOpen(false)}
                 >
                   {item.name}
                 </Link>
               ))}
               <Link
                 to="/get-started"
-                className="block px-3 py-2 text-primary font-medium"
-                onClick={() => setIsOpen(false)}
+                className="bg-white/10 text-white px-6 py-2 rounded-full hover:bg-white/20 transition-colors duration-200 backdrop-blur-sm"
               >
                 Get Started
               </Link>
             </div>
+
+            {/* Mobile menu button */}
+            <div className="md:hidden flex items-center">
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="text-gray-300 hover:text-white"
+              >
+                {isOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
           </div>
-        )}
-      </div>
-    </nav>
+
+          {/* Mobile menu */}
+          {isOpen && (
+            <div className="md:hidden">
+              <div className="pt-2 pb-3 space-y-1">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.name}
+                    to={item.path}
+                    className={`block px-3 py-2 transition-all duration-200 ${
+                      isCurrentPath(item.path)
+                        ? "text-white bg-white/10 relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-white after:shadow-[0_0_10px_#ffffff] after:rounded-full"
+                        : "text-gray-300 hover:text-white"
+                    }`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+                <Link
+                  to="/get-started"
+                  className="block px-3 py-2 text-white font-medium hover:bg-white/10 rounded-lg transition-colors duration-200"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Get Started
+                </Link>
+              </div>
+            </div>
+          )}
+        </div>
+      </nav>
+    </div>
   );
 };
 
