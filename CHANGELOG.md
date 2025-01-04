@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Authentication system with user registration and login
+- Protected routes requiring authentication
+- Session management and persistence
+- Logout functionality in navbar
 - Dynamic gradient background with aurora borealis effect
 - Grid overlay pattern for enhanced depth
 - Responsive hero section with animated text
@@ -32,6 +36,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Reorganized component structure for better maintainability
 - Updated pricing structure with three distinct tiers
 - Refactored MembershipTiers component into smaller components
+- Added authentication check to Index page
+- Updated navbar with logout functionality
 
 ### Fixed
 - Resolved issue where gradient background was covering other sections

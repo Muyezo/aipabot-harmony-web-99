@@ -20,10 +20,16 @@
 - [x] Community membership comparison cards
 - [x] Interactive membership cards
 
+### Core Features
+- [x] Authentication system
+  - User registration and login
+  - Protected routes
+  - Session management
+  - Logout functionality
+
 ## In Progress 🚧
 
 ### Core Features
-- [ ] Authentication system
 - [ ] User dashboard
 - [ ] AI integration capabilities
 - [ ] Real-time data processing

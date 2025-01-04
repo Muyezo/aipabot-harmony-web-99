@@ -1,3 +1,6 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSession } from "@supabase/auth-helpers-react";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import Services from "../components/Services";
@@ -8,6 +11,19 @@ import MembershipTiers from "../components/MembershipTiers";
 import Footer from "../components/Footer";
 
 const Index = () => {
+  const session = useSession();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!session) {
+      navigate("/auth");
+    }
+  }, [session, navigate]);
+
+  if (!session) {
+    return null;
+  }
+
   return (
     <div className="min-h-screen relative">
       {/* Background gradient and effects */}
