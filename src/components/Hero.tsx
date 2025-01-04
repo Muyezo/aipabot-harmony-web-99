@@ -38,7 +38,7 @@ const Hero = () => {
                 Get Started <ArrowRight size={20} />
               </span>
             </button>
-            <button className="px-8 py-3 border-2 border-[#3f80f6] text-[#3f80f6] rounded-full hover:bg-[#3f80f6] hover:text-white transition-colors duration-200 bg-white/10 backdrop-blur-sm">
+            <button className="px-8 py-3 border-2 border-[#3f80f6] text-white rounded-full hover:bg-[#3f80f6] hover:text-white transition-colors duration-200 bg-white/10 backdrop-blur-sm">
               Watch Demo
             </button>
           </div>
