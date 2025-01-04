@@ -38,11 +38,20 @@ const Index = () => {
       <Navbar />
       <div className="container mx-auto px-4 py-8 space-y-8">
         <Dashboard />
-        {isAdmin ? (
+        {isLoading ? (
+          <div className="text-white text-center py-4">
+            Checking admin status...
+          </div>
+        ) : isAdmin ? (
           <BlogManagement />
         ) : (
           <div className="text-white text-center py-4">
             Blog management is only available to administrators.
+            {session?.user?.email && (
+              <div className="mt-2 text-sm text-gray-400">
+                Logged in as: {session.user.email}
+              </div>
+            )}
           </div>
         )}
         <AIChat />
