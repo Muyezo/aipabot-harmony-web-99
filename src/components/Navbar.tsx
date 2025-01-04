@@ -22,7 +22,7 @@ const Navbar = () => {
 
   return (
     <div className="fixed top-4 left-1/2 -translate-x-1/2 w-[98%] max-w-7xl z-50">
-      <nav className="bg-gradient-to-r from-[#1A1F2C] via-[#221F26] to-[#ea384c] rounded-xl shadow-lg border border-white/10 backdrop-blur-lg">
+      <nav className="bg-gradient-to-r from-[#1A1F2C] via-[#ea384c] to-[#1A1F2C] rounded-xl shadow-lg border border-white/10 backdrop-blur-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex-shrink-0 flex items-center">
