@@ -7,10 +7,14 @@ export interface Author {
 export interface BlogPost {
   id: string;
   title: string;
-  excerpt: string;
+  slug: string;
   content: string;
-  date: string;
-  imageUrl: string;
-  author: Author;
+  excerpt?: string;
+  featured_image?: string;
   category: string;
+  status: 'draft' | 'published' | 'archived';
+  published_at?: string;
+  created_at: string;
+  updated_at: string;
+  author_id: string;
 }

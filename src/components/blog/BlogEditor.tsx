@@ -28,7 +28,7 @@ const BlogEditor = ({ post, onSave, onCancel }: BlogEditorProps) => {
   const [content, setContent] = useState(post?.content || "");
   const [excerpt, setExcerpt] = useState(post?.excerpt || "");
   const [category, setCategory] = useState(post?.category || "");
-  const [status, setStatus] = useState(post?.status || "draft");
+  const [status, setStatus] = useState<BlogPost['status']>(post?.status || "draft");
 
   const handleSave = async () => {
     if (!title || !content || !category) {
@@ -130,7 +130,7 @@ const BlogEditor = ({ post, onSave, onCancel }: BlogEditorProps) => {
             />
           </div>
 
-          <Select value={status} onValueChange={setStatus}>
+          <Select value={status} onValueChange={(value: BlogPost['status']) => setStatus(value)}>
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="Status" />
             </SelectTrigger>

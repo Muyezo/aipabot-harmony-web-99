@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "@supabase/auth-helpers-react";
 import { Button } from "@/components/ui/button";
-import { Plus, Edit, Trash, Save, X } from "lucide-react";
+import { Plus, Edit, Trash } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import BlogEditor from "./BlogEditor";
@@ -23,7 +23,7 @@ const BlogManagement = () => {
         .eq("author_id", session?.user?.id);
 
       if (error) throw error;
-      return data;
+      return data as BlogPost[];
     },
     enabled: !!session?.user?.id,
   });

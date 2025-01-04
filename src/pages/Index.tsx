@@ -3,8 +3,8 @@ import Hero from "../components/Hero";
 import Services from "../components/Services";
 import Testimonials from "../components/Testimonials";
 import CallToAction from "../components/CallToAction";
-import Dashboard from "../components/Dashboard";
-import AIChat from "../components/AIChat";
+import { Dashboard } from "../components/Dashboard";
+import { AIChat } from "../components/AIChat";
 import BlogManagement from "../components/blog/BlogManagement";
 
 const Index = () => {
