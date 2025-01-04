@@ -8,12 +8,14 @@ export const useAdmin = () => {
   const { data: isAdmin, isLoading } = useQuery({
     queryKey: ["admin-status", session?.user?.id],
     queryFn: async () => {
-      console.log("Checking admin status for user:", session?.user?.id);
+      if (!session?.user?.id) return false;
+      
+      console.log("Checking admin status for user:", session.user.id);
       
       const { data, error } = await supabase
         .from("user_roles")
         .select("*")
-        .eq("user_id", session?.user?.id)
+        .eq("user_id", session.user.id)
         .eq("role", "admin")
         .single();
 

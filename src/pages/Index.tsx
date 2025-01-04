@@ -43,7 +43,12 @@ const Index = () => {
             Checking admin status...
           </div>
         ) : isAdmin ? (
-          <BlogManagement />
+          <>
+            <div className="text-white text-sm mb-4">
+              Logged in as admin: {session.user.email}
+            </div>
+            <BlogManagement />
+          </>
         ) : (
           <div className="text-white text-center py-4">
             Blog management is only available to administrators.
