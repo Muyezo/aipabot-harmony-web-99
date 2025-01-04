@@ -23,7 +23,7 @@ const Hero = () => {
         <div className="text-center space-y-8">
           <h1 className="text-4xl md:text-6xl font-bold text-white animate-fade-in backdrop-blur-sm">
             AI That Works for{" "}
-            <span className="text-custom-burgundy animate-glow relative">
+            <span className="text-white animate-glow relative">
               You!
               <span className="absolute inset-0 blur-sm bg-[#1A1F2C]/30 animate-pulse"></span>
             </span>{" "}
