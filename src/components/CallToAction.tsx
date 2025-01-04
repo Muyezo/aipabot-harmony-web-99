@@ -19,7 +19,7 @@ const CallToAction = () => {
           idle: {
             color: "rgb(93, 254, 202)",
             type: "pill",
-            title: "Meet AipaBOT",
+            title: "Meet Reggy",
             subtitle: "",
             icon: "https://unpkg.com/lucide-static@0.321.0/icons/phone.svg",
           },
