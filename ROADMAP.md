@@ -47,11 +47,9 @@
   - Real-time blog post updates
   - Live user interaction tracking
   - Instant notification system
+- [x] Event booking system
 
 ## In Progress 🚧
-
-### Core Features
-- [ ] Event booking system
 
 ### Performance Optimization
 - [ ] Optimize gradient animations
