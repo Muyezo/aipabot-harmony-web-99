@@ -1,7 +1,67 @@
-import { Phone } from "lucide-react";
+import { Phone, PhoneCall } from "lucide-react";
 import { Button } from "./ui/button";
+import { useEffect } from "react";
 
 const CallToAction = () => {
+  useEffect(() => {
+    // VAPI Call button configuration
+    const script = document.createElement('script');
+    script.innerHTML = `
+      var vapiInstance = null;
+      const assistant = "2a53a28d-f870-4ff4-9a0a-482a46caa9a7";
+      const apiKey = "591fec56-287b-4df1-b806-a2f27925490b";
+      const buttonConfig = {
+        position: "bottom-right",
+        offset: "40px",
+        width: "50px",
+        height: "50px",
+        idle: {
+          color: "rgb(93, 254, 202)",
+          type: "pill",
+          title: "Meet AipaBOT",
+          subtitle: "",
+          icon: "https://unpkg.com/lucide-static@0.321.0/icons/phone.svg",
+        },
+        loading: {
+          color: "rgb(93, 124, 202)",
+          type: "pill",
+          title: "Connecting...",
+          subtitle: "Please wait",
+          icon: "https://unpkg.com/lucide-static@0.321.0/icons/loader-2.svg",
+        },
+        active: {
+          color: "rgb(255, 0, 0)",
+          type: "pill",
+          title: "Call is in progress...",
+          subtitle: "End the call.",
+          icon: "https://unpkg.com/lucide-static@0.321.0/icons/phone-off.svg",
+        },
+      };
+
+      (function (d, t) {
+        var g = document.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+        g.src =
+          "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
+        g.defer = true;
+        g.async = true;
+        s.parentNode.insertBefore(g, s);
+        g.onload = function () {
+          vapiInstance = window.vapiSDK.run({
+            apiKey: apiKey,
+            assistant: assistant,
+            config: buttonConfig,
+          });
+        };
+      })(document, "script");
+    `;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   return (
     <div className="py-24 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -55,6 +115,15 @@ const CallToAction = () => {
                     <span className="relative flex items-center justify-center gap-2">
                       <Phone className="w-4 h-4" />
                       +49 1573 5992309
+                    </span>
+                  </Button>
+                  <Button
+                    className="group relative overflow-hidden px-6 py-3 w-full sm:w-auto bg-gradient-to-r from-[#5dfeca] to-[#5d7cca] hover:from-[#4ed3a9] hover:to-[#4d69a9]"
+                    onClick={() => window.vapiInstance?.toggle()}
+                  >
+                    <span className="relative flex items-center justify-center gap-2">
+                      <PhoneCall className="w-4 h-4" />
+                      Call AI Agent
                     </span>
                   </Button>
                 </div>
