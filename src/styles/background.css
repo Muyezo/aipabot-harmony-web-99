@@ -14,7 +14,7 @@
   @apply fixed inset-0 -z-10 opacity-30;
   background: 
     linear-gradient(to right, #221F26, #ea384c, #F97316),
-    linear-gradient(to top, #0EA5E9, #8B5CF6, transparent),
+    linear-gradient(to top, #0EA5E9, #6B46C1, transparent),
     linear-gradient(40deg, #0EA5E9, #ea384c, #F97316);
   background-blend-mode: overlay;
 }
