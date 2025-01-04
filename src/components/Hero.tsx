@@ -26,7 +26,8 @@ const Hero = () => {
             <span className="text-white animate-glow relative">
               You!
               <span className="absolute inset-0 blur-sm bg-[#1A1F2C]/30 animate-pulse"></span>
-            </span>{" "}
+            </span>
+            <br />
             Seamlessly Automating Your Operations
           </h1>
           <p className="max-w-2xl mx-auto text-xl text-gray-200 backdrop-blur-sm">
