@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import Services from "../components/Services";
+import { AIChat } from "../components/AIChat";
 import CallToAction from "../components/CallToAction";
 import TestimonialsCarousel from "../components/TestimonialsCarousel";
 import MembershipTiers from "../components/MembershipTiers";
@@ -30,6 +31,7 @@ const Index = () => {
       <Hero />
       <div className="relative z-10">
         <Services />
+        <AIChat />
         <CallToAction />
         <TestimonialsCarousel />
         <MembershipTiers />
