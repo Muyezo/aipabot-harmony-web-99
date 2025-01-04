@@ -49,7 +49,7 @@ const Auth = () => {
       </div>
 
       <div className="container max-w-md mx-auto pt-20 px-4">
-        <div className="bg-white/10 backdrop-blur-lg rounded-lg p-6 shadow-xl border border-white/20">
+        <div className="bg-[#1A1F2C]/90 backdrop-blur-lg rounded-lg p-6 shadow-xl border border-white/20">
           <h1 className="text-2xl font-bold text-white mb-6 text-center">Welcome to AipaBOT</h1>
           <SupabaseAuth 
             supabaseClient={supabase} 
@@ -60,8 +60,23 @@ const Auth = () => {
                   colors: {
                     brand: '#8f33ec',
                     brandAccent: '#7928ca',
+                    inputBackground: '#2A2F3C',
+                    inputText: 'white',
+                    inputPlaceholder: '#9CA3AF',
+                    inputBorder: '#4B5563',
+                    inputBorderHover: '#6B7280',
+                    inputBorderFocus: '#8B5CF6',
                   },
                 },
+              },
+              className: {
+                anchor: 'text-purple-400 hover:text-purple-300',
+                button: 'bg-purple-600 hover:bg-purple-700 text-white',
+                container: 'text-white',
+                divider: 'bg-white/20',
+                label: 'text-white',
+                loader: 'border-t-purple-600',
+                message: 'text-white',
               },
             }}
           />
