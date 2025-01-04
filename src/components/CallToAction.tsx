@@ -88,7 +88,7 @@ const CallToAction = () => {
             {/* Right side with content */}
             <div className="space-y-8">
               <div>
-                <h2 className="text-4xl font-bold text-white mb-4">
+                <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4 whitespace-nowrap">
                   Give <span className="text-blue-400">Reggy (Our AI Agent)</span> a Call
                 </h2>
                 <p className="text-xl text-gray-300">
