@@ -2,6 +2,7 @@ import { useSession } from "@supabase/auth-helpers-react";
 import { useNavigate } from "react-router-dom";
 import { useAdmin } from "../hooks/useAdmin";
 import { useToast } from "@/hooks/use-toast";
+import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import Services from "../components/Services";
 import Testimonials from "../components/Testimonials";
@@ -18,17 +19,23 @@ const Index = () => {
 
   if (!session) {
     return (
-      <>
+      <div className="min-h-screen flex flex-col">
+        <div className="glow-orb glow-orb-1" />
+        <div className="glow-orb glow-orb-2" />
+        <div className="glow-orb glow-orb-3" />
+        <div className="grid-overlay" />
+        <Navbar />
         <Hero />
         <Services />
         <Testimonials />
         <CallToAction />
-      </>
+      </div>
     );
   }
 
   return (
     <div className="min-h-screen bg-[#1A1F2C]">
+      <Navbar />
       <div className="container mx-auto px-4 py-8 space-y-8">
         <Dashboard />
         {isAdmin ? (
