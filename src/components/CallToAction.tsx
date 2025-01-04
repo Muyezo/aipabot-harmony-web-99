@@ -109,25 +109,6 @@ const CallToAction = () => {
                       +1 541 569 4668
                     </span>
                   </Button>
-                  <Button
-                    className="group relative overflow-hidden px-6 py-3 w-full sm:w-auto"
-                    variant="outline"
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-red-600/10 to-purple-600/10 transition-transform group-hover:scale-105"></div>
-                    <span className="relative flex items-center justify-center gap-2">
-                      <Phone className="w-4 h-4" />
-                      +49 1573 5992309
-                    </span>
-                  </Button>
-                  <Button
-                    className="group relative overflow-hidden px-6 py-3 w-full sm:w-auto bg-gradient-to-r from-[#5dfeca] to-[#5d7cca] hover:from-[#4ed3a9] hover:to-[#4d69a9]"
-                    onClick={() => window.vapiInstance?.toggle()}
-                  >
-                    <span className="relative flex items-center justify-center gap-2">
-                      <PhoneCall className="w-4 h-4" />
-                      Call AI Agent
-                    </span>
-                  </Button>
                 </div>
               </div>
 
