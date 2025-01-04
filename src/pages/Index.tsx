@@ -10,12 +10,22 @@ import CallToAction from "../components/CallToAction";
 import { Dashboard } from "../components/Dashboard";
 import { AIChat } from "../components/AIChat";
 import BlogManagement from "../components/blog/BlogManagement";
+import LoadingSpinner from "../components/ui/loading-spinner";
+import { Skeleton } from "../components/ui/skeleton";
 
 const Index = () => {
   const session = useSession();
   const navigate = useNavigate();
-  const { isAdmin, isLoading } = useAdmin();
+  const { isAdmin, isLoading: isAdminLoading } = useAdmin();
   const { toast } = useToast();
+
+  if (isAdminLoading) {
+    return (
+      <div className="min-h-screen bg-[#1A1F2C] flex items-center justify-center">
+        <LoadingSpinner size={32} />
+      </div>
+    );
+  }
 
   if (!session) {
     return (
@@ -38,9 +48,10 @@ const Index = () => {
       <Navbar />
       <div className="container mx-auto px-4 py-8 space-y-8">
         <Dashboard />
-        {isLoading ? (
-          <div className="text-white text-center py-4">
-            Checking admin status...
+        {isAdminLoading ? (
+          <div className="space-y-4">
+            <Skeleton className="h-8 w-48" />
+            <Skeleton className="h-64 w-full" />
           </div>
         ) : isAdmin ? (
           <>

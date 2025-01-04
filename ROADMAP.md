@@ -54,7 +54,7 @@
 ### Performance Optimization
 - [x] Optimize gradient animations
 - [x] Implement lazy loading for images
-- [ ] Add loading states
+- [x] Add loading states
 - [ ] Optimize bundle size
 - [ ] Implement image optimization pipeline
 - [ ] Add caching for blog content
