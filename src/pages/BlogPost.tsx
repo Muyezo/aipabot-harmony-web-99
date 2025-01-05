@@ -127,7 +127,20 @@ const BlogPost = () => {
               )}
             </header>
             <div 
-              className="prose prose-invert max-w-none text-white"
+              className="prose prose-invert prose-lg max-w-none text-white
+                prose-headings:text-white
+                prose-h1:text-4xl prose-h1:font-bold
+                prose-h2:text-3xl prose-h2:font-semibold
+                prose-h3:text-2xl prose-h3:font-medium
+                prose-h4:text-xl
+                prose-p:text-gray-200
+                prose-a:text-blue-400 hover:prose-a:text-blue-300
+                prose-strong:text-white
+                prose-blockquote:text-gray-300
+                prose-code:text-blue-300
+                prose-pre:bg-gray-900
+                prose-ol:text-gray-200
+                prose-ul:text-gray-200"
               dangerouslySetInnerHTML={{ __html: post.content }}
             />
           </div>
