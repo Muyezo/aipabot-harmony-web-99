@@ -18,7 +18,7 @@ const BlogCard = ({ post }: BlogCardProps) => {
         .from("profiles")
         .select("*")
         .eq("id", post.author_id)
-        .single();
+        .maybeSingle();
 
       if (error) {
         console.error("Error fetching author:", error);
