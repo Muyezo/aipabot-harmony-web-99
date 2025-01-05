@@ -14,15 +14,24 @@ interface Profile {
 }
 
 interface UserProfileProps {
-  profile: Profile;
+  profile: Profile | null;
 }
 
 const UserProfile = ({ profile }: UserProfileProps) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [fullName, setFullName] = useState(profile?.full_name || "");
+  const [formData, setFormData] = useState({
+    username: profile?.username || "",
+    full_name: profile?.full_name || "",
+    avatar_url: profile?.avatar_url || "",
+  });
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
   const session = useSession();
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
 
   const handleSave = async () => {
     if (!session?.user?.id) return;
@@ -31,21 +40,25 @@ const UserProfile = ({ profile }: UserProfileProps) => {
     try {
       const { error } = await supabase
         .from("profiles")
-        .update({ full_name: fullName })
+        .update({
+          username: formData.username,
+          full_name: formData.full_name,
+          avatar_url: formData.avatar_url,
+        })
         .eq("id", session.user.id);
 
       if (error) throw error;
 
       toast({
         title: "Success",
-        description: "Your full name has been updated.",
+        description: "Your profile has been updated.",
       });
       setIsEditing(false);
     } catch (error) {
       console.error("Error updating profile:", error);
       toast({
         title: "Error",
-        description: "Failed to update your full name. Please try again.",
+        description: "Failed to update your profile. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -65,15 +78,50 @@ const UserProfile = ({ profile }: UserProfileProps) => {
         )}
         <div className="flex-1">
           {isEditing ? (
-            <div className="space-y-2">
-              <Input
-                type="text"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-                placeholder="Enter your full name"
-                className="max-w-xs"
-              />
-              <div className="space-x-2">
+            <div className="space-y-4">
+              <div>
+                <label htmlFor="username" className="block text-sm font-medium text-white/60 mb-1">
+                  Username
+                </label>
+                <Input
+                  id="username"
+                  name="username"
+                  type="text"
+                  value={formData.username}
+                  onChange={handleInputChange}
+                  placeholder="Enter your username"
+                  className="max-w-xs"
+                />
+              </div>
+              <div>
+                <label htmlFor="full_name" className="block text-sm font-medium text-white/60 mb-1">
+                  Full Name
+                </label>
+                <Input
+                  id="full_name"
+                  name="full_name"
+                  type="text"
+                  value={formData.full_name}
+                  onChange={handleInputChange}
+                  placeholder="Enter your full name"
+                  className="max-w-xs"
+                />
+              </div>
+              <div>
+                <label htmlFor="avatar_url" className="block text-sm font-medium text-white/60 mb-1">
+                  Avatar URL
+                </label>
+                <Input
+                  id="avatar_url"
+                  name="avatar_url"
+                  type="text"
+                  value={formData.avatar_url}
+                  onChange={handleInputChange}
+                  placeholder="Enter your avatar URL"
+                  className="max-w-xs"
+                />
+              </div>
+              <div className="space-x-2 pt-2">
                 <Button 
                   onClick={handleSave} 
                   disabled={isLoading}
@@ -84,7 +132,11 @@ const UserProfile = ({ profile }: UserProfileProps) => {
                 <Button 
                   onClick={() => {
                     setIsEditing(false);
-                    setFullName(profile?.full_name || "");
+                    setFormData({
+                      username: profile?.username || "",
+                      full_name: profile?.full_name || "",
+                      avatar_url: profile?.avatar_url || "",
+                    });
                   }}
                   variant="outline"
                   size="sm"
@@ -103,7 +155,7 @@ const UserProfile = ({ profile }: UserProfileProps) => {
                   size="sm"
                   className="h-6 px-2"
                 >
-                  Edit
+                  Edit Profile
                 </Button>
               </h3>
               {profile?.username && (
