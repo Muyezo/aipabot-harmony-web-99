@@ -10,7 +10,7 @@ export const blogPosts: BlogPost[] = [
     featured_image: "/placeholder.svg",
     category: "Tutorials",
     status: "published",
-    author_id: "1",
+    author_id: "d7bed21c-5a38-4c44-86c5-3e872ed78a38",
     published_at: "2024-03-15T00:00:00Z",
     created_at: "2024-03-15T00:00:00Z",
     updated_at: "2024-03-15T00:00:00Z"
@@ -24,7 +24,7 @@ export const blogPosts: BlogPost[] = [
     featured_image: "/placeholder.svg",
     category: "Best Practices",
     status: "published",
-    author_id: "2",
+    author_id: "e9bed21c-5a38-4c44-86c5-3e872ed78a39",
     published_at: "2024-03-14T00:00:00Z",
     created_at: "2024-03-14T00:00:00Z",
     updated_at: "2024-03-14T00:00:00Z"
@@ -38,7 +38,7 @@ export const blogPosts: BlogPost[] = [
     featured_image: "/placeholder.svg",
     category: "Trends",
     status: "published",
-    author_id: "3",
+    author_id: "f7bed21c-5a38-4c44-86c5-3e872ed78a40",
     published_at: "2024-03-13T00:00:00Z",
     created_at: "2024-03-13T00:00:00Z",
     updated_at: "2024-03-13T00:00:00Z"
@@ -52,7 +52,7 @@ export const blogPosts: BlogPost[] = [
     featured_image: "/placeholder.svg",
     category: "Tutorials",
     status: "published",
-    author_id: "4",
+    author_id: "g7bed21c-5a38-4c44-86c5-3e872ed78a41",
     published_at: "2024-03-12T00:00:00Z",
     created_at: "2024-03-12T00:00:00Z",
     updated_at: "2024-03-12T00:00:00Z"
@@ -66,7 +66,7 @@ export const blogPosts: BlogPost[] = [
     featured_image: "/placeholder.svg",
     category: "Best Practices",
     status: "published",
-    author_id: "5",
+    author_id: "h7bed21c-5a38-4c44-86c5-3e872ed78a42",
     published_at: "2024-03-11T00:00:00Z",
     created_at: "2024-03-11T00:00:00Z",
     updated_at: "2024-03-11T00:00:00Z"
