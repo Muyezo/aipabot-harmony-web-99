@@ -9,17 +9,35 @@ import { DesktopMenu } from "@/components/navbar/DesktopMenu";
 import { MobileMenu } from "@/components/navbar/MobileMenu";
 import { Menu } from "lucide-react";
 import { useState } from "react";
+import { useToast } from "@/components/ui/use-toast";
 
 const Auth = () => {
   const session = useSession();
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { toast } = useToast();
 
   useEffect(() => {
     if (session) {
       navigate("/");
     }
   }, [session, navigate]);
+
+  // Listen for auth errors
+  useEffect(() => {
+    const handleAuthError = (event: MessageEvent) => {
+      if (event.data?.error_description === "User already registered") {
+        toast({
+          title: "Account already exists",
+          description: "Please sign in instead.",
+          variant: "destructive",
+        });
+      }
+    };
+
+    window.addEventListener("message", handleAuthError);
+    return () => window.removeEventListener("message", handleAuthError);
+  }, [toast]);
 
   return (
     <div className="min-h-screen bg-[#1A1F2C]">
@@ -60,7 +78,7 @@ const Auth = () => {
                 },
               }}
               providers={[]}
-              view="sign_up"
+              view="sign_in"
               additionalData={{
                 full_name: true,
               }}
