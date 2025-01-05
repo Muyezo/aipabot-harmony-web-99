@@ -81,7 +81,7 @@ const BlogPost = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-[#1A1F2C]">
       <div className="glow-orb glow-orb-1" />
       <div className="glow-orb glow-orb-2" />
       <div className="glow-orb glow-orb-3" />
@@ -90,45 +90,47 @@ const BlogPost = () => {
       <Navbar />
       <main className="flex-grow pt-20">
         <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <header className="mb-8">
-            <h1 className="text-4xl font-bold text-white mb-4">{post.title}</h1>
-            <div className="flex items-center text-sm text-gray-300 mb-6">
-              <Calendar className="h-4 w-4 mr-2" />
-              <span>{new Date(post.published_at || post.created_at).toLocaleDateString()}</span>
-            </div>
-            {post.featured_image && (
-              <LazyImage
-                src={post.featured_image}
-                alt={post.title}
-                className="w-full h-[400px] object-cover rounded-lg mb-8"
-                width={1200}
-                height={400}
-                quality={90}
-              />
-            )}
-            {author && (
-              <div className="flex items-center mb-8">
+          <div className="card-content backdrop-blur-md p-8 rounded-xl">
+            <header className="mb-8">
+              <h1 className="text-4xl font-bold text-white mb-4">{post.title}</h1>
+              <div className="flex items-center text-sm text-gray-300 mb-6">
+                <Calendar className="h-4 w-4 mr-2" />
+                <span>{new Date(post.published_at || post.created_at).toLocaleDateString()}</span>
+              </div>
+              {post.featured_image && (
                 <LazyImage
-                  src={author.avatar_url || "/placeholder.svg"}
-                  alt={author.full_name || "Author"}
-                  className="h-12 w-12 rounded-full mr-4"
-                  width={48}
-                  height={48}
+                  src={post.featured_image}
+                  alt={post.title}
+                  className="w-full h-[400px] object-cover rounded-lg mb-8"
+                  width={1200}
+                  height={400}
                   quality={90}
                 />
-                <div>
-                  <p className="text-sm font-medium text-white">
-                    {author.full_name || "Anonymous"}
-                  </p>
-                  <p className="text-sm text-gray-300">{author.username || "User"}</p>
+              )}
+              {author && (
+                <div className="flex items-center mb-8">
+                  <LazyImage
+                    src={author.avatar_url || "/placeholder.svg"}
+                    alt={author.full_name || "Author"}
+                    className="h-12 w-12 rounded-full mr-4"
+                    width={48}
+                    height={48}
+                    quality={90}
+                  />
+                  <div>
+                    <p className="text-sm font-medium text-white">
+                      {author.full_name || "Anonymous"}
+                    </p>
+                    <p className="text-sm text-gray-300">{author.username || "User"}</p>
+                  </div>
                 </div>
-              </div>
-            )}
-          </header>
-          <div 
-            className="prose prose-invert max-w-none"
-            dangerouslySetInnerHTML={{ __html: post.content }}
-          />
+              )}
+            </header>
+            <div 
+              className="prose prose-invert max-w-none text-white"
+              dangerouslySetInnerHTML={{ __html: post.content }}
+            />
+          </div>
         </article>
       </main>
       <Footer />
