@@ -13,10 +13,14 @@ const Navbar = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div 
-            className="text-white font-bold text-xl cursor-pointer" 
+            className="cursor-pointer" 
             onClick={() => navigate("/")}
           >
-            Your Logo
+            <img 
+              src="/lovable-uploads/7a81c0e6-dcb6-4706-a9cc-9cd1d5ad220e.png" 
+              alt="AIPA Bot Logo" 
+              className="h-8 md:h-10"
+            />
           </div>
           <DesktopMenu />
           <button
