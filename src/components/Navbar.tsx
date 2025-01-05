@@ -17,7 +17,7 @@ const Navbar = () => {
             onClick={() => navigate("/")}
           >
             <img 
-              src="/lovable-uploads/7a81c0e6-dcb6-4706-a9cc-9cd1d5ad220e.png" 
+              src="/lovable-uploads/4d412577-1998-4c40-b39c-68c08fde228a.png" 
               alt="AIPA Bot Logo" 
               className="h-8 md:h-10"
             />
