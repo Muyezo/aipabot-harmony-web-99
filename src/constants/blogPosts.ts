@@ -52,7 +52,7 @@ export const blogPosts: BlogPost[] = [
     featured_image: "/placeholder.svg",
     category: "Tutorials",
     status: "published",
-    author_id: "g7bed21c-5a38-4c44-86c5-3e872ed78a41",
+    author_id: "47bed21c-5a38-4c44-86c5-3e872ed78a41",
     published_at: "2024-03-12T00:00:00Z",
     created_at: "2024-03-12T00:00:00Z",
     updated_at: "2024-03-12T00:00:00Z"
@@ -66,7 +66,7 @@ export const blogPosts: BlogPost[] = [
     featured_image: "/placeholder.svg",
     category: "Best Practices",
     status: "published",
-    author_id: "h7bed21c-5a38-4c44-86c5-3e872ed78a42",
+    author_id: "57bed21c-5a38-4c44-86c5-3e872ed78a42",
     published_at: "2024-03-11T00:00:00Z",
     created_at: "2024-03-11T00:00:00Z",
     updated_at: "2024-03-11T00:00:00Z"
