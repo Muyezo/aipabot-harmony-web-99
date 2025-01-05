@@ -12,15 +12,21 @@ const BlogCard = ({ post }: BlogCardProps) => {
   const { data: author } = useQuery({
     queryKey: ["profile", post.author_id],
     queryFn: async () => {
+      if (!post.author_id) return null;
+      
       const { data, error } = await supabase
         .from("profiles")
         .select("*")
         .eq("id", post.author_id)
         .single();
 
-      if (error) throw error;
+      if (error) {
+        console.error("Error fetching author:", error);
+        return null;
+      }
       return data;
     },
+    enabled: !!post.author_id, // Only run query if we have an author_id
   });
 
   return (
