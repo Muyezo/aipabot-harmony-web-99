@@ -10,7 +10,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 const BlogPost = () => {
   const { slug } = useParams();
 
-  const { data: post, isLoading } = useQuery({
+  const { data: post, isLoading: postLoading } = useQuery({
     queryKey: ["blog-post", slug],
     queryFn: async () => {
       const { data, error } = await supabase
@@ -25,7 +25,7 @@ const BlogPost = () => {
     },
   });
 
-  const { data: author } = useQuery({
+  const { data: author, isLoading: authorLoading } = useQuery({
     queryKey: ["profile", post?.author_id],
     queryFn: async () => {
       if (!post?.author_id) return null;
@@ -44,6 +44,8 @@ const BlogPost = () => {
     },
     enabled: !!post?.author_id,
   });
+
+  const isLoading = postLoading || authorLoading;
 
   if (isLoading) {
     return (
@@ -108,7 +110,7 @@ const BlogPost = () => {
                 />
               )}
               {author && (
-                <div className="flex items-center mb-8">
+                <div className="flex items-center mb-8 bg-white/10 p-4 rounded-lg">
                   <LazyImage
                     src={author.avatar_url || "/placeholder.svg"}
                     alt={author.full_name || "Author"}
@@ -118,10 +120,12 @@ const BlogPost = () => {
                     quality={90}
                   />
                   <div>
-                    <p className="text-sm font-medium text-white">
-                      {author.full_name || "Anonymous"}
+                    <p className="text-lg font-medium text-white">
+                      {author.full_name || author.username || "Anonymous"}
                     </p>
-                    <p className="text-sm text-gray-300">{author.username || "User"}</p>
+                    {author.username && (
+                      <p className="text-sm text-gray-300">@{author.username}</p>
+                    )}
                   </div>
                 </div>
               )}
