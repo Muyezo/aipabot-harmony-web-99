@@ -3,12 +3,15 @@ import { BlogPost } from "../../types/blog";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { LazyImage } from "@/components/ui/lazy-image";
+import { useNavigate } from "react-router-dom";
 
 interface BlogCardProps {
   post: BlogPost;
 }
 
 const BlogCard = ({ post }: BlogCardProps) => {
+  const navigate = useNavigate();
+  
   const { data: author } = useQuery({
     queryKey: ["profile", post.author_id],
     queryFn: async () => {
@@ -26,11 +29,18 @@ const BlogCard = ({ post }: BlogCardProps) => {
       }
       return data;
     },
-    enabled: !!post.author_id, // Only run query if we have an author_id
+    enabled: !!post.author_id,
   });
 
+  const handleClick = () => {
+    navigate(`/blog/${post.slug}`);
+  };
+
   return (
-    <div className="bg-[#1A1F2C] rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+    <div 
+      className="bg-[#1A1F2C] rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer"
+      onClick={handleClick}
+    >
       <LazyImage
         src={post.featured_image || "/placeholder.svg"}
         alt={post.title}
