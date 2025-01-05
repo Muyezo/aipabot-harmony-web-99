@@ -4,15 +4,17 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { useSession } from "@supabase/auth-helpers-react";
 
 interface Profile {
+  id: string;
   username: string;
   full_name: string;
   avatar_url: string;
 }
 
 interface UserProfileProps {
-  profile: Profile | null;
+  profile: Profile;
 }
 
 const UserProfile = ({ profile }: UserProfileProps) => {
@@ -20,14 +22,17 @@ const UserProfile = ({ profile }: UserProfileProps) => {
   const [fullName, setFullName] = useState(profile?.full_name || "");
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+  const session = useSession();
 
   const handleSave = async () => {
+    if (!session?.user?.id) return;
+    
     setIsLoading(true);
     try {
       const { error } = await supabase
         .from("profiles")
         .update({ full_name: fullName })
-        .eq("username", profile?.username);
+        .eq("id", session.user.id);
 
       if (error) throw error;
 
@@ -54,7 +59,7 @@ const UserProfile = ({ profile }: UserProfileProps) => {
         {profile?.avatar_url && (
           <img
             src={profile.avatar_url}
-            alt="Profile"
+            alt={profile?.full_name || "User avatar"}
             className="w-16 h-16 rounded-full"
           />
         )}
