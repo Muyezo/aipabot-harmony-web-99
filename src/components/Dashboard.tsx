@@ -6,6 +6,7 @@ import UserProfile from "./dashboard/UserProfile";
 import AIInteractionsList from "./dashboard/AIInteractionsList";
 
 interface Profile {
+  id: string;
   username: string;
   full_name: string;
   avatar_url: string;
@@ -34,7 +35,7 @@ const Dashboard = () => {
         // Fetch user profile
         const { data: profileData, error: profileError } = await supabase
           .from("profiles")
-          .select("username, full_name, avatar_url")
+          .select("id, username, full_name, avatar_url")
           .eq("id", session.user.id)
           .single();
 
