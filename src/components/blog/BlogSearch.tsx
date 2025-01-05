@@ -5,7 +5,12 @@ import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
 import BlogCard from "./BlogCard";
 
-const BlogSearch = () => {
+interface BlogSearchProps {
+  onSearch?: (query: string, category: string) => void;
+  categories?: string[];
+}
+
+const BlogSearch = ({ onSearch, categories }: BlogSearchProps) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const { data: posts, isLoading } = useQuery({
@@ -25,8 +30,16 @@ const BlogSearch = () => {
       return data;
     },
     staleTime: 5 * 60 * 1000, // Consider data fresh for 5 minutes
-    cacheTime: 30 * 60 * 1000, // Cache data for 30 minutes
+    gcTime: 30 * 60 * 1000, // Cache data for 30 minutes
   });
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+    if (onSearch) {
+      onSearch(value, ''); // Passing empty string as category since it's not implemented in the search component
+    }
+  };
 
   return (
     <div className="space-y-8">
@@ -34,7 +47,7 @@ const BlogSearch = () => {
         type="search"
         placeholder="Search blog posts..."
         value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
+        onChange={handleSearch}
         className="max-w-md mx-auto"
       />
 
