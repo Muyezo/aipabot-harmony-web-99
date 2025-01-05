@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/select";
 
 interface BlogEditorProps {
-  post?: BlogPost | null;
+  post?: BlogPost;
   onSave: () => void;
   onCancel: () => void;
 }
@@ -25,6 +25,7 @@ interface BlogEditorProps {
 const BlogEditor = ({ post, onSave, onCancel }: BlogEditorProps) => {
   const session = useSession();
   const { toast } = useToast();
+  
   const [title, setTitle] = useState(post?.title || "");
   const [content, setContent] = useState(post?.content || "");
   const [excerpt, setExcerpt] = useState(post?.excerpt || "");
@@ -84,10 +85,16 @@ const BlogEditor = ({ post, onSave, onCancel }: BlogEditorProps) => {
       return;
     }
 
-    const slug = title
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/(^-|-$)+/g, "");
+    if (!session?.user?.id) {
+      toast({
+        title: "Error",
+        description: "You must be logged in to save a post",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 
     const postData = {
       title,
@@ -101,41 +108,49 @@ const BlogEditor = ({ post, onSave, onCancel }: BlogEditorProps) => {
       published_at: status === "published" ? new Date().toISOString() : null,
     };
 
-    const { error } = post?.id
-      ? await supabase
-          .from("blog_posts")
+    try {
+      if (post?.id) {
+        const { error } = await supabase
+          .from('blog_posts')
           .update(postData)
-          .eq("id", post.id)
-      : await supabase.from("blog_posts").insert([postData]);
+          .eq('id', post.id);
 
-    if (error) {
+        if (error) throw error;
+      } else {
+        const { error } = await supabase
+          .from('blog_posts')
+          .insert([postData]);
+
+        if (error) throw error;
+      }
+
+      toast({
+        title: "Success",
+        description: "Post saved successfully",
+      });
+      onSave();
+    } catch (error) {
+      console.error('Error saving post:', error);
       toast({
         title: "Error",
         description: "Failed to save post",
         variant: "destructive",
       });
-      return;
     }
-
-    toast({
-      title: "Success",
-      description: "Post saved successfully",
-    });
-    onSave();
   };
 
   return (
-    <div className="space-y-4 bg-card p-6 rounded-lg border">
+    <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h3 className="text-lg font-semibold text-white">
+        <h2 className="text-2xl font-bold text-white">
           {post ? "Edit Post" : "New Post"}
-        </h3>
+        </h2>
         <div className="flex gap-2">
-          <Button onClick={handleSave} className="gap-2">
-            <Save className="h-4 w-4" /> Save
+          <Button onClick={onCancel} variant="outline">
+            <X className="h-4 w-4" />
           </Button>
-          <Button variant="outline" onClick={onCancel} className="gap-2">
-            <X className="h-4 w-4" /> Cancel
+          <Button onClick={handleSave}>
+            <Save className="h-4 w-4" />
           </Button>
         </div>
       </div>
@@ -203,23 +218,22 @@ const BlogEditor = ({ post, onSave, onCancel }: BlogEditorProps) => {
           />
         </div>
 
-        <div className="flex gap-4">
-          <div className="flex-1">
-            <Input
-              placeholder="Category"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-            />
-          </div>
+        <div>
+          <Input
+            placeholder="Category"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          />
+        </div>
 
+        <div>
           <Select value={status} onValueChange={(value: BlogPost['status']) => setStatus(value)}>
-            <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Status" />
+            <SelectTrigger>
+              <SelectValue placeholder="Select status" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="draft">Draft</SelectItem>
               <SelectItem value="published">Published</SelectItem>
-              <SelectItem value="archived">Archived</SelectItem>
             </SelectContent>
           </Select>
         </div>
