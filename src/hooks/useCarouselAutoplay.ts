@@ -17,36 +17,32 @@ export const useCarouselAutoplay = (options: AutoplayOptions = {}) => {
     rootNode: (emblaRoot: any) => emblaRoot.parentElement,
     ...options
   };
+
+  // Initialize autoplay plugin with options
+  const autoplay = Autoplay({
+    delay: autoplayOptions.delay,
+    stopOnInteraction: autoplayOptions.stopOnInteraction,
+    stopOnMouseEnter: autoplayOptions.stopOnMouseEnter,
+    playOnInit: true,
+    rootNode: autoplayOptions.rootNode
+  });
   
-  const autoplayPlugin = useRef(
-    Autoplay({
-      delay: autoplayOptions.delay,
-      stopOnInteraction: autoplayOptions.stopOnInteraction,
-      stopOnMouseEnter: autoplayOptions.stopOnMouseEnter,
-      playOnInit: false, // Changed to false to prevent early autoplay
-      rootNode: autoplayOptions.rootNode
-    })
-  );
+  const autoplayPlugin = useRef(autoplay);
 
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { 
       loop: true,
-      dragFree: false,
       align: "start",
-      slidesToScroll: 1,
     },
     [autoplayPlugin.current]
   );
 
   useEffect(() => {
     if (emblaApi) {
-      // Wait for the next tick to ensure carousel is mounted
-      const timer = setTimeout(() => {
-        autoplayPlugin.current.play();
-      }, 0);
+      // Ensure the carousel is ready before starting autoplay
+      emblaApi.reInit();
       
       return () => {
-        clearTimeout(timer);
         autoplayPlugin.current.stop();
       };
     }
