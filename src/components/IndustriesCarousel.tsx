@@ -12,22 +12,15 @@ import { useCarouselAutoplay } from "@/hooks/useCarouselAutoplay";
 
 const IndustriesCarousel = () => {
   const [isPaused, setIsPaused] = useState(false);
-  const { emblaRef, autoplayPlugin } = useCarouselAutoplay({
+  const { emblaRef } = useCarouselAutoplay({
     delay: 3000,
-    stopOnMouseEnter: false, // Don't stop on mouse enter
-    stopOnInteraction: false // Don't stop on interaction
+    stopOnMouseEnter: false,
+    stopOnInteraction: false
   });
 
   const handleIndustryClick = () => {
-    if (autoplayPlugin.current) {
-      setIsPaused(true);
-      autoplayPlugin.current.stop();
-      
-      setTimeout(() => {
-        setIsPaused(false);
-        autoplayPlugin.current.play();
-      }, 5000);
-    }
+    // Remove the pause/resume logic since we want continuous autoplay
+    console.log("Industry clicked");
   };
 
   return (
