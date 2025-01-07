@@ -90,14 +90,15 @@ const IndustriesCarousel = () => {
 
   useEffect(() => {
     if (emblaApi) {
-      emblaApi.on('init', () => {
-        // Only start autoplay after carousel is initialized
+      const onInit = () => {
         autoplayPlugin.current.play();
-      });
+      };
+
+      emblaApi.on('init', onInit);
 
       return () => {
         autoplayPlugin.current.stop();
-        emblaApi.off('init');
+        emblaApi.off('init', onInit);
       };
     }
   }, [emblaApi]);
