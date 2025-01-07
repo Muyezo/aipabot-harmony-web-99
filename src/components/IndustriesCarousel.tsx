@@ -10,8 +10,8 @@ import { useCarouselAutoplay } from "@/hooks/useCarouselAutoplay";
 const IndustriesCarousel = () => {
   const { emblaRef } = useCarouselAutoplay({
     delay: 3000,
-    speed: 1,
-    stopOnInteraction: true,
+    speed: 2,
+    stopOnInteraction: false,
     startDelay: 1000
   });
 
@@ -45,7 +45,7 @@ const IndustriesCarousel = () => {
             {[...industries, ...industries].map((industry, index) => (
               <CarouselItem 
                 key={index} 
-                className="pl-2 md:pl-4 md:basis-1/3 lg:basis-1/4 shrink-0 embla__slide"
+                className="pl-2 md:pl-4 md:basis-1/3 lg:basis-1/4 shrink-0 embla__slide group"
                 role="listitem"
               >
                 <IndustryCard

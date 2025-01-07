@@ -12,8 +12,8 @@ interface AutoplayOptions {
 export const useCarouselAutoplay = (options: AutoplayOptions = {}) => {
   const autoplayOptions = {
     delay: 3000,
-    speed: 1,
-    stopOnInteraction: true,
+    speed: 2,
+    stopOnInteraction: false,
     startDelay: 1000,
     ...options
   };
@@ -43,15 +43,11 @@ export const useCarouselAutoplay = (options: AutoplayOptions = {}) => {
       };
 
       const onMouseEnter = () => {
-        if (autoplayOptions.stopOnInteraction) {
-          emblaApi.plugins().autoScroll.stop();
-        }
+        emblaApi.plugins().autoScroll.stop();
       };
 
       const onMouseLeave = () => {
-        if (autoplayOptions.stopOnInteraction) {
-          emblaApi.plugins().autoScroll.play();
-        }
+        emblaApi.plugins().autoScroll.play();
       };
 
       emblaApi.on('pointerDown', onPointerDown);
