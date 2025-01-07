@@ -1,44 +1,39 @@
-import { useRef, useEffect } from 'react';
+import { useEffect } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
-import Autoplay from 'embla-carousel-autoplay';
 
 interface AutoplayOptions {
   delay?: number;
-  stopOnInteraction?: boolean;
-  stopOnMouseEnter?: boolean;
-  rootNode?: (emblaRoot: any) => any;
+  speed?: number;
 }
 
 export const useCarouselAutoplay = (options: AutoplayOptions = {}) => {
   const autoplayOptions = {
     delay: 3000,
-    stopOnInteraction: false,
-    stopOnMouseEnter: false,
-    rootNode: (emblaRoot: any) => emblaRoot.parentElement,
+    speed: 0.5,
     ...options
   };
 
-  const autoplay = Autoplay({
-    delay: autoplayOptions.delay,
-    stopOnInteraction: autoplayOptions.stopOnInteraction,
-    stopOnMouseEnter: autoplayOptions.stopOnMouseEnter,
-    playOnInit: true,
-    rootNode: autoplayOptions.rootNode
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+    align: "start",
+    dragFree: true,
+    containScroll: "trimSnaps"
   });
-
-  const [emblaRef, emblaApi] = useEmblaCarousel(
-    { 
-      loop: true,
-      align: "start",
-    },
-    [autoplay]
-  );
 
   useEffect(() => {
     if (emblaApi) {
-      emblaApi.reInit();
+      const animate = () => {
+        if (!emblaApi.canScrollNext()) {
+          emblaApi.scrollTo(0);
+        } else {
+          emblaApi.scrollNext({ duration: autoplayOptions.speed });
+        }
+        setTimeout(animate, autoplayOptions.delay);
+      };
+
+      animate();
     }
-  }, [emblaApi]);
+  }, [emblaApi, autoplayOptions.delay, autoplayOptions.speed]);
 
   return { emblaRef, emblaApi };
 };

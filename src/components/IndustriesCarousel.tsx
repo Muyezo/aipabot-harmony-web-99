@@ -2,8 +2,6 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 import { industries } from "@/constants/industries";
 import IndustryCard from "./industries/IndustryCard";
@@ -11,9 +9,8 @@ import { useCarouselAutoplay } from "@/hooks/useCarouselAutoplay";
 
 const IndustriesCarousel = () => {
   const { emblaRef } = useCarouselAutoplay({
-    delay: 3000,
-    stopOnInteraction: false,
-    stopOnMouseEnter: false
+    delay: 2000,
+    speed: 50
   });
 
   const handleIndustryClick = () => {
@@ -21,7 +18,7 @@ const IndustriesCarousel = () => {
   };
 
   return (
-    <section className="py-24 relative">
+    <section className="py-24 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-[#221F26] via-[#ea384c] to-[#F97316] opacity-30" />
       <div className="absolute inset-0 bg-gradient-to-t from-[#0EA5E9] via-[#6B46C1] to-transparent opacity-30" />
       <div className="absolute inset-0 bg-gradient-to-[40deg] from-[#0EA5E9] via-[#ea384c] to-[#F97316] opacity-30 mix-blend-overlay" />
@@ -34,17 +31,13 @@ const IndustriesCarousel = () => {
 
         <Carousel
           ref={emblaRef}
-          opts={{
-            align: "start",
-            loop: true,
-          }}
           className="w-full max-w-6xl mx-auto"
         >
           <CarouselContent className="-ml-2 md:-ml-4">
-            {industries.map((industry, index) => (
+            {[...industries, ...industries].map((industry, index) => (
               <CarouselItem 
                 key={index} 
-                className="pl-2 md:pl-4 md:basis-1/3 lg:basis-1/4"
+                className="pl-2 md:pl-4 md:basis-1/3 lg:basis-1/4 shrink-0"
               >
                 <IndustryCard
                   icon={industry.icon}
@@ -55,8 +48,6 @@ const IndustriesCarousel = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="hidden md:flex" />
-          <CarouselNext className="hidden md:flex" />
         </Carousel>
       </div>
     </section>
