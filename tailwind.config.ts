@@ -12,6 +12,9 @@ export default {
     extend: {
       colors,
       ...animations,
+      backgroundColor: {
+        card: '#191f2b',
+      },
       typography: {
         DEFAULT: {
           css: {
