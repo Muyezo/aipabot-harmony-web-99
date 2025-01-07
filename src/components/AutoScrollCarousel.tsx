@@ -4,8 +4,10 @@ import CarouselItem from './carousel/CarouselItem';
 import { useCarouselScroll } from '@/hooks/useCarouselScroll';
 
 const AutoScrollCarousel = () => {
-  // Duplicate the industries array three times to ensure smooth looping
-  const items = [...industries, ...industries, ...industries];
+  // Create a seamless loop by duplicating the industries array
+  // We duplicate it twice to ensure smooth transitions
+  const items = [...industries, ...industries];
+  
   const { trackRef, containerRef } = useCarouselScroll({
     itemCount: industries.length,
     itemWidth: 17.5, // 16rem (w-64) + 1.5rem gap
@@ -31,7 +33,7 @@ const AutoScrollCarousel = () => {
           <div 
             ref={trackRef}
             className="flex gap-6 transition-transform duration-[2000ms] ease-linear will-change-transform"
-            style={{ width: `${items.length * 100}%` }}
+            style={{ width: `${items.length * 17.5}%` }}
           >
             {items.map((industry, index) => (
               <CarouselItem
