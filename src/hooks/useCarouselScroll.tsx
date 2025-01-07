@@ -13,20 +13,23 @@ export const useCarouselScroll = ({ itemCount, itemWidth, speed = 0.05 }: UseCar
   const isPausedRef = useRef(false);
   const currentPositionRef = useRef(0);
   const transitionEnabledRef = useRef(true);
+  const isResettingRef = useRef(false);
 
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
     
     const animate = () => {
-      if (!isPausedRef.current && transitionEnabledRef.current) {
+      if (!isPausedRef.current && !isResettingRef.current && transitionEnabledRef.current) {
         currentPositionRef.current -= speed;
         const totalWidth = itemCount * itemWidth;
         
         if (Math.abs(currentPositionRef.current) >= totalWidth) {
+          isResettingRef.current = true;
+          
           // Temporarily disable transition
-          transitionEnabledRef.current = false;
           track.style.transition = 'none';
+          transitionEnabledRef.current = false;
           
           // Move first set of items to the end
           for (let i = 0; i < itemCount; i++) {
@@ -40,10 +43,13 @@ export const useCarouselScroll = ({ itemCount, itemWidth, speed = 0.05 }: UseCar
           currentPositionRef.current = 0;
           track.style.transform = `translateX(${currentPositionRef.current}%)`;
           
-          // Re-enable transition after a brief delay
+          // Re-enable transition after the next frame
           requestAnimationFrame(() => {
-            track.style.transition = 'transform 2000ms linear';
-            transitionEnabledRef.current = true;
+            requestAnimationFrame(() => {
+              track.style.transition = 'transform 2000ms linear';
+              transitionEnabledRef.current = true;
+              isResettingRef.current = false;
+            });
           });
         } else {
           track.style.transform = `translateX(${currentPositionRef.current}%)`;
