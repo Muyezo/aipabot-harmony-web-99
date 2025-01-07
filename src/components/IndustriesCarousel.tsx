@@ -8,6 +8,7 @@ import {
 import { Building2, Briefcase, Hospital, Landmark, ShoppingBag, Warehouse, GraduationCap, Plane } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from 'embla-carousel-autoplay';
 
 const industries = [
   {
@@ -54,36 +55,31 @@ const industries = [
 
 const IndustriesCarousel = () => {
   const [isPaused, setIsPaused] = useState(false);
-  const autoplayInterval = useRef<NodeJS.Timeout | null>(null);
-  const [emblaRef, emblaApi] = useEmblaCarousel({ 
-    loop: true,
-    dragFree: true,
-    align: "start",
-  });
-
-  const startAutoplay = () => {
-    if (autoplayInterval.current) clearInterval(autoplayInterval.current);
-    autoplayInterval.current = setInterval(() => {
-      if (!isPaused && emblaApi) {
-        emblaApi.scrollNext();
-      }
-    }, 500);
+  const autoplayOptions = {
+    delay: 500,
+    stopOnInteraction: false,
+    stopOnMouseEnter: false,
+    rootNode: (emblaRoot: any) => emblaRoot.parentElement,
   };
-
-  useEffect(() => {
-    if (emblaApi) {
-      startAutoplay();
-    }
-    return () => {
-      if (autoplayInterval.current) clearInterval(autoplayInterval.current);
-    };
-  }, [emblaApi, isPaused]);
+  
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { 
+      loop: true,
+      dragFree: true,
+      align: "start",
+    },
+    [Autoplay(autoplayOptions)]
+  );
 
   const handleIndustryClick = () => {
-    setIsPaused(true);
-    setTimeout(() => {
-      setIsPaused(false);
-    }, 5000);
+    if (emblaApi) {
+      setIsPaused(true);
+      emblaApi.plugins().autoplay.stop();
+      setTimeout(() => {
+        setIsPaused(false);
+        emblaApi.plugins().autoplay.play();
+      }, 5000);
+    }
   };
 
   return (
