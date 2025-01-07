@@ -6,6 +6,7 @@ import { useToast } from "@/hooks/use-toast";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import Services from "../components/Services";
+import IndustriesCarousel from "../components/IndustriesCarousel";
 import Testimonials from "../components/Testimonials";
 import CallToAction from "../components/CallToAction";
 import Footer from "../components/Footer";
@@ -41,6 +42,7 @@ const Index = () => {
         <Navbar />
         <Hero />
         <Services />
+        <IndustriesCarousel />
         <Testimonials />
         <CallToAction />
         <Footer />
