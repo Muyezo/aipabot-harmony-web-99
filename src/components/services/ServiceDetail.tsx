@@ -93,7 +93,7 @@ const ServiceDetail = () => {
   if (!service) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen">
-        <h1 className="text-2xl font-bold mb-4 text-white">Service not found</h1>
+        <h1 className="text-2xl font-bold mb-4 text-[#9b87f5]">Service not found</h1>
         <Button onClick={() => window.history.back()}>Go Back</Button>
       </div>
     );
@@ -107,7 +107,7 @@ const ServiceDetail = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background pt-24">
+    <div className="min-h-screen pt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ServiceDetailHeader
           title={service.title}
@@ -120,10 +120,10 @@ const ServiceDetail = () => {
           <ServiceDetailBenefits benefits={service.benefits} />
         </div>
 
-        <div className="text-center mt-12">
+        <div className="text-center mt-12 mb-12">
           <Button
             onClick={handleContactClick}
-            className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full text-lg"
+            className="bg-[#9b87f5] hover:bg-[#7E69AB] text-white px-8 py-3 rounded-full text-lg transition-colors duration-300"
           >
             Contact Us About This Service
           </Button>
