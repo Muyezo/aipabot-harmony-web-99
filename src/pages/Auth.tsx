@@ -88,7 +88,7 @@ const Auth = () => {
                   },
                 },
               }}
-              onAuthError={(error) => {
+              onError={(error) => {
                 console.error('Auth error:', error);
                 toast({
                   title: "Authentication Error",
