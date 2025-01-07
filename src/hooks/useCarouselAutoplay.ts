@@ -26,14 +26,14 @@ export const useCarouselAutoplay = (options: AutoplayOptions = {}) => {
         if (!emblaApi.canScrollNext()) {
           emblaApi.scrollTo(0);
         } else {
-          emblaApi.scrollNext();
+          emblaApi.scrollNext({ duration: autoplayOptions.speed });
         }
         setTimeout(animate, autoplayOptions.delay);
       };
 
       animate();
     }
-  }, [emblaApi, autoplayOptions.delay]);
+  }, [emblaApi, autoplayOptions.delay, autoplayOptions.speed]);
 
   return { emblaRef, emblaApi };
 };
