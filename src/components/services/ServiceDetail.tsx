@@ -6,118 +6,80 @@ import ServiceFeatures from "./ServiceFeatures";
 import ServiceBenefits from "./ServiceBenefits";
 
 const serviceDetails = {
-  "ai-consulting": {
-    title: "AI Consulting",
-    description: "Expert guidance on implementing AI solutions in your business",
-    longDescription: "Our AI consulting services help businesses navigate the complex landscape of artificial intelligence. We provide strategic guidance on AI implementation, helping you identify opportunities, overcome challenges, and maximize ROI.",
+  "ai-appointment-agent": {
+    title: "AI Appointment Voice Agent",
+    description: "Streamline appointment scheduling with AI voice assistance",
+    longDescription: "Our AI Appointment Voice Agent revolutionizes the way businesses handle scheduling. Using advanced natural language processing and voice recognition technology, it provides a seamless experience for booking, rescheduling, and managing appointments. Available 24/7, it reduces scheduling conflicts and improves operational efficiency.",
     features: [
-      "AI readiness assessment",
-      "Implementation strategy",
-      "Technology stack recommendations",
-      "ROI analysis",
-      "Risk assessment",
-      "Change management support"
+      "Natural voice interaction",
+      "24/7 appointment scheduling",
+      "Automatic conflict resolution",
+      "Multi-language support",
+      "Calendar integration",
+      "Automated reminders"
     ],
     benefits: [
-      "Accelerated AI adoption",
-      "Reduced implementation risks",
-      "Optimized resource allocation",
-      "Clear roadmap for success"
+      "Reduced scheduling errors",
+      "Improved customer satisfaction",
+      "Increased operational efficiency",
+      "Lower administrative costs"
     ]
   },
-  "machine-learning": {
-    title: "Machine Learning Solutions",
-    description: "Custom ML models tailored to your specific needs",
-    longDescription: "We develop custom machine learning solutions that address your unique business challenges. From predictive analytics to computer vision, our expertise covers the full spectrum of ML applications.",
+  "ai-receptionist": {
+    title: "AI Receptionist",
+    description: "24/7 intelligent front desk solution",
+    longDescription: "Transform your front desk operations with our AI Receptionist. This intelligent solution handles visitor management, basic inquiries, and administrative tasks with professional efficiency. It provides a welcoming presence while ensuring security and streamlined operations.",
     features: [
-      "Custom model development",
-      "Data preprocessing",
-      "Model training and validation",
-      "Performance optimization",
-      "Deployment support",
-      "Monitoring and maintenance"
+      "Visitor check-in/out",
+      "Directory assistance",
+      "Package handling notifications",
+      "Meeting room management",
+      "Emergency protocols",
+      "Multilingual support"
     ],
     benefits: [
-      "Improved decision making",
-      "Automated processes",
-      "Enhanced efficiency",
-      "Competitive advantage"
-    ]
-  },
-  "data-analytics": {
-    title: "Data Analytics",
-    description: "Transform your data into actionable insights",
-    longDescription: "Our data analytics services help you unlock the value hidden in your data. We combine advanced analytics techniques with business expertise to deliver meaningful insights that drive growth.",
-    features: [
-      "Data strategy development",
-      "Advanced analytics",
-      "Visualization solutions",
-      "Predictive modeling",
-      "Real-time analytics",
-      "Custom dashboards"
-    ],
-    benefits: [
-      "Data-driven decisions",
-      "Improved operational efficiency",
-      "Better customer insights",
-      "Increased revenue"
-    ]
-  },
-  "ai-training": {
-    title: "AI Training",
-    description: "Comprehensive training programs for your team",
-    longDescription: "Empower your team with the knowledge and skills needed to leverage AI effectively. Our training programs are designed to bridge the gap between technical complexity and practical application.",
-    features: [
-      "Customized curriculum",
-      "Hands-on workshops",
-      "Real-world case studies",
-      "Technical deep dives",
-      "Best practices",
-      "Ongoing support"
-    ],
-    benefits: [
-      "Enhanced team capabilities",
-      "Faster adoption",
-      "Reduced dependency",
-      "Innovation culture"
-    ]
-  },
-  "chatbot-development": {
-    title: "Chatbot Development",
-    description: "Intelligent conversational agents for customer service",
-    longDescription: "We create sophisticated chatbots that enhance customer engagement and streamline support operations. Our solutions combine natural language processing with business logic to deliver meaningful interactions.",
-    features: [
-      "Custom chatbot development",
-      "NLP integration",
-      "Multi-platform support",
-      "Analytics dashboard",
-      "Integration services",
-      "24/7 availability"
-    ],
-    benefits: [
-      "Improved customer service",
-      "Reduced support costs",
-      "Increased engagement",
-      "Scalable solutions"
-    ]
-  },
-  "ai-security": {
-    title: "AI Security",
-    description: "Secure and reliable AI implementation strategies",
-    longDescription: "Our AI security services ensure your AI implementations are robust, reliable, and protected against vulnerabilities. We help you build trust in your AI systems through comprehensive security measures.",
-    features: [
-      "Security assessment",
-      "Vulnerability testing",
-      "Privacy protection",
-      "Compliance checking",
-      "Monitoring setup",
-      "Incident response"
-    ],
-    benefits: [
+      "24/7 front desk coverage",
       "Enhanced security",
-      "Regulatory compliance",
-      "Risk mitigation",
-      "Stakeholder trust"
+      "Improved visitor experience",
+      "Reduced operational costs"
+    ]
+  },
+  "intelligent-customer-service": {
+    title: "Intelligent Customer Service Agent",
+    description: "Advanced AI-powered customer support",
+    longDescription: "Our Intelligent Customer Service Agent combines advanced AI with natural language understanding to provide exceptional customer support. It handles complex queries, learns from interactions, and maintains consistent service quality across all channels.",
+    features: [
+      "Context-aware responses",
+      "Multi-channel support",
+      "Sentiment analysis",
+      "Knowledge base integration",
+      "Real-time translation",
+      "Escalation management"
+    ],
+    benefits: [
+      "Faster response times",
+      "Consistent service quality",
+      "Increased customer satisfaction",
+      "Scalable support operations"
+    ]
+  },
+  "ai-sales-agent": {
+    title: "AI Customer Acquisition/Lead Conversion Agent",
+    description: "Convert leads with AI precision",
+    longDescription: "Maximize your sales potential with our AI Sales Agent. Using advanced algorithms and natural language processing, it qualifies leads, nurtures prospects, and drives conversions through personalized engagement strategies.",
+    features: [
+      "Lead qualification",
+      "Personalized outreach",
+      "Follow-up automation",
+      "Sales pipeline integration",
+      "Performance analytics",
+      "A/B testing capabilities"
+    ],
+    benefits: [
+      "Increased conversion rates",
+      "Improved lead quality",
+      "Consistent follow-up",
+      "Data-driven insights"
     ]
   }
 };
