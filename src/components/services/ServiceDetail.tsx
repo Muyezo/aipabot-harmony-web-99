@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
-import ServiceHeader from "./ServiceHeader";
-import ServiceFeatures from "./ServiceFeatures";
-import ServiceBenefits from "./ServiceBenefits";
+import ServiceDetailHeader from "./detail/ServiceDetailHeader";
+import ServiceDetailFeatures from "./detail/ServiceDetailFeatures";
+import ServiceDetailBenefits from "./detail/ServiceDetailBenefits";
 
 const serviceDetails = {
   "ai-appointment-agent": {
@@ -93,7 +93,7 @@ const ServiceDetail = () => {
   if (!service) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen">
-        <h1 className="text-2xl font-bold mb-4">Service not found</h1>
+        <h1 className="text-2xl font-bold mb-4 text-white">Service not found</h1>
         <Button onClick={() => window.history.back()}>Go Back</Button>
       </div>
     );
@@ -107,17 +107,17 @@ const ServiceDetail = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 pt-24">
+    <div className="min-h-screen bg-background pt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <ServiceHeader
+        <ServiceDetailHeader
           title={service.title}
           description={service.description}
           longDescription={service.longDescription}
         />
 
         <div className="grid md:grid-cols-2 gap-8 mt-12">
-          <ServiceFeatures features={service.features} />
-          <ServiceBenefits benefits={service.benefits} />
+          <ServiceDetailFeatures features={service.features} />
+          <ServiceDetailBenefits benefits={service.benefits} />
         </div>
 
         <div className="text-center mt-12">
