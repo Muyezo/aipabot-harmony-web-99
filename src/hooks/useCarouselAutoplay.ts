@@ -30,6 +30,7 @@ export const useCarouselAutoplay = (options: AutoplayOptions = {}) => {
 
   useEffect(() => {
     if (emblaApi) {
+      // Handle pointer interactions
       const onPointerDown = () => {
         if (autoplayOptions.stopOnInteraction) {
           emblaApi.plugins().autoScroll.stop();
@@ -42,6 +43,7 @@ export const useCarouselAutoplay = (options: AutoplayOptions = {}) => {
         }
       };
 
+      // Handle mouse hover
       const onMouseEnter = () => {
         emblaApi.plugins().autoScroll.stop();
       };
@@ -50,11 +52,13 @@ export const useCarouselAutoplay = (options: AutoplayOptions = {}) => {
         emblaApi.plugins().autoScroll.play();
       };
 
+      // Add event listeners
       emblaApi.on('pointerDown', onPointerDown);
       emblaApi.on('pointerUp', onPointerUp);
       emblaApi.rootNode().addEventListener('mouseenter', onMouseEnter);
       emblaApi.rootNode().addEventListener('mouseleave', onMouseLeave);
 
+      // Cleanup
       return () => {
         emblaApi.off('pointerDown', onPointerDown);
         emblaApi.off('pointerUp', onPointerUp);
