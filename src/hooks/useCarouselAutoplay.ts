@@ -6,6 +6,7 @@ interface AutoplayOptions {
   delay?: number;
   speed?: number;
   stopOnInteraction?: boolean;
+  startDelay?: number;
 }
 
 export const useCarouselAutoplay = (options: AutoplayOptions = {}) => {
@@ -13,6 +14,7 @@ export const useCarouselAutoplay = (options: AutoplayOptions = {}) => {
     delay: 3000,
     speed: 1,
     stopOnInteraction: true,
+    startDelay: 1000,
     ...options
   };
 
@@ -40,12 +42,28 @@ export const useCarouselAutoplay = (options: AutoplayOptions = {}) => {
         }
       };
 
+      const onMouseEnter = () => {
+        if (autoplayOptions.stopOnInteraction) {
+          emblaApi.plugins().autoScroll.stop();
+        }
+      };
+
+      const onMouseLeave = () => {
+        if (autoplayOptions.stopOnInteraction) {
+          emblaApi.plugins().autoScroll.play();
+        }
+      };
+
       emblaApi.on('pointerDown', onPointerDown);
       emblaApi.on('pointerUp', onPointerUp);
+      emblaApi.rootNode().addEventListener('mouseenter', onMouseEnter);
+      emblaApi.rootNode().addEventListener('mouseleave', onMouseLeave);
 
       return () => {
         emblaApi.off('pointerDown', onPointerDown);
         emblaApi.off('pointerUp', onPointerUp);
+        emblaApi.rootNode().removeEventListener('mouseenter', onMouseEnter);
+        emblaApi.rootNode().removeEventListener('mouseleave', onMouseLeave);
       };
     }
   }, [emblaApi, autoplayOptions.stopOnInteraction]);

@@ -40,3 +40,28 @@
 .read-the-docs {
   color: #888;
 }
+
+.embla {
+  overflow: hidden;
+  cursor: grab;
+}
+
+.embla:active {
+  cursor: grabbing;
+}
+
+.embla__container {
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+}
+
+.embla__slide {
+  flex: 0 0 auto;
+  min-width: 0;
+  position: relative;
+  transition: transform 0.3s ease-in-out;
+}
+
+.embla__slide:hover {
+  transform: scale(1.02);
+}
