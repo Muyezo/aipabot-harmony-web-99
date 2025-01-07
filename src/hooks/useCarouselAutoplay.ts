@@ -25,45 +25,63 @@ export const useCarouselAutoplay = (options: AutoplayOptions = {}) => {
       dragFree: true,
       containScroll: "trimSnaps"
     },
-    [AutoScroll(autoplayOptions)]
+    [AutoScroll({ ...autoplayOptions })]
   );
 
   useEffect(() => {
     if (emblaApi) {
+      // Initialize AutoScroll plugin
+      const autoScroll = emblaApi.plugins()?.autoScroll;
+      if (!autoScroll) return;
+
       // Handle pointer interactions
       const onPointerDown = () => {
-        if (autoplayOptions.stopOnInteraction) {
-          emblaApi.plugins().autoScroll.stop();
+        if (autoplayOptions.stopOnInteraction && autoScroll) {
+          autoScroll.stop();
         }
       };
 
       const onPointerUp = () => {
-        if (autoplayOptions.stopOnInteraction) {
-          emblaApi.plugins().autoScroll.play();
+        if (autoplayOptions.stopOnInteraction && autoScroll) {
+          autoScroll.play();
         }
       };
 
       // Handle mouse hover
       const onMouseEnter = () => {
-        emblaApi.plugins().autoScroll.stop();
+        if (autoScroll) {
+          autoScroll.stop();
+        }
       };
 
       const onMouseLeave = () => {
-        emblaApi.plugins().autoScroll.play();
+        if (autoScroll) {
+          autoScroll.play();
+        }
       };
 
       // Add event listeners
       emblaApi.on('pointerDown', onPointerDown);
       emblaApi.on('pointerUp', onPointerUp);
-      emblaApi.rootNode().addEventListener('mouseenter', onMouseEnter);
-      emblaApi.rootNode().addEventListener('mouseleave', onMouseLeave);
+      
+      const rootNode = emblaApi.rootNode();
+      if (rootNode) {
+        rootNode.addEventListener('mouseenter', onMouseEnter);
+        rootNode.addEventListener('mouseleave', onMouseLeave);
+      }
 
       // Cleanup
       return () => {
         emblaApi.off('pointerDown', onPointerDown);
         emblaApi.off('pointerUp', onPointerUp);
-        emblaApi.rootNode().removeEventListener('mouseenter', onMouseEnter);
-        emblaApi.rootNode().removeEventListener('mouseleave', onMouseLeave);
+        if (rootNode) {
+          rootNode.removeEventListener('mouseenter', onMouseEnter);
+          rootNode.removeEventListener('mouseleave', onMouseLeave);
+        }
+        // Ensure autoScroll is properly stopped on cleanup
+        if (autoScroll) {
+          autoScroll.stop();
+        }
       };
     }
   }, [emblaApi, autoplayOptions.stopOnInteraction]);
