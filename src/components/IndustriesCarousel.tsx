@@ -5,7 +5,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Building2, Briefcase, Hospital, Bank, ShoppingBag, Warehouse, GraduationCap, Plane } from "lucide-react";
+import { Building2, Briefcase, Hospital, Landmark, ShoppingBag, Warehouse, GraduationCap, Plane } from "lucide-react";
 
 const industries = [
   {
@@ -19,7 +19,7 @@ const industries = [
     description: "Patient care & administrative support"
   },
   {
-    icon: Bank,
+    icon: Landmark,
     name: "Financial Services",
     description: "Banking & investment automation"
   },
