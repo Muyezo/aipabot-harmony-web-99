@@ -19,9 +19,10 @@ export const useCarouselScroll = ({ itemCount, itemWidth, speed = 0.05 }: UseCar
     
     const animate = () => {
       currentPosition -= speed;
-      const totalWidth = (itemCount * itemWidth);
       
-      if (Math.abs(currentPosition) >= totalWidth) {
+      // When we've scrolled past all original items
+      if (Math.abs(currentPosition) >= 100) {
+        // Reset to start position
         currentPosition = 0;
       }
       

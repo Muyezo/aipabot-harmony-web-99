@@ -4,7 +4,8 @@ import CarouselItem from './carousel/CarouselItem';
 import { useCarouselScroll } from '@/hooks/useCarouselScroll';
 
 const AutoScrollCarousel = () => {
-  const items = [...industries, ...industries];
+  // Duplicate the industries array three times to ensure smooth looping
+  const items = [...industries, ...industries, ...industries];
   const { trackRef, containerRef } = useCarouselScroll({
     itemCount: industries.length,
     itemWidth: 17.5, // 16rem (w-64) + 1.5rem gap
