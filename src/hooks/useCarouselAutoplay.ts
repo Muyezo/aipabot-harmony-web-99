@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import useEmblaCarousel from 'embla-carousel-react';
-import AutoScroll from 'embla-carousel-auto-scroll';
+import useEmblaCarousel, { EmblaOptionsType } from 'embla-carousel-react';
+import AutoScroll, { AutoScrollType } from 'embla-carousel-auto-scroll';
 
 interface AutoplayOptions {
   delay?: number;
@@ -10,7 +10,7 @@ interface AutoplayOptions {
 }
 
 export const useCarouselAutoplay = (options: AutoplayOptions = {}) => {
-  const autoplayOptions = {
+  const autoplayOptions: AutoplayOptions = {
     delay: 3000,
     speed: 2,
     stopOnInteraction: false,
@@ -18,46 +18,51 @@ export const useCarouselAutoplay = (options: AutoplayOptions = {}) => {
     ...options
   };
 
+  const emblaOptions: EmblaOptionsType = {
+    loop: true,
+    align: "start",
+    dragFree: true,
+    containScroll: "trimSnaps"
+  };
+
   const [emblaRef, emblaApi] = useEmblaCarousel(
-    { 
-      loop: true,
-      align: "start",
-      dragFree: true,
-      containScroll: "trimSnaps"
-    },
-    [AutoScroll({ ...autoplayOptions })]
+    emblaOptions,
+    [AutoScroll()]
   );
 
   useEffect(() => {
     if (emblaApi) {
-      // Initialize AutoScroll plugin
-      const autoScroll = emblaApi.plugins()?.autoScroll;
-      if (!autoScroll) return;
+      const autoScroll = emblaApi.plugins().autoScroll as AutoScrollType;
+      
+      if (!autoScroll) {
+        console.warn('AutoScroll plugin not initialized');
+        return;
+      }
 
-      // Handle pointer interactions
+      // Configure autoScroll with options
+      autoScroll.options = {
+        ...autoplayOptions,
+        stopOnInteraction: true
+      };
+
       const onPointerDown = () => {
-        if (autoplayOptions.stopOnInteraction && autoScroll) {
+        if (autoplayOptions.stopOnInteraction) {
           autoScroll.stop();
         }
       };
 
       const onPointerUp = () => {
-        if (autoplayOptions.stopOnInteraction && autoScroll) {
+        if (autoplayOptions.stopOnInteraction) {
           autoScroll.play();
         }
       };
 
-      // Handle mouse hover
       const onMouseEnter = () => {
-        if (autoScroll) {
-          autoScroll.stop();
-        }
+        autoScroll.stop();
       };
 
       const onMouseLeave = () => {
-        if (autoScroll) {
-          autoScroll.play();
-        }
+        autoScroll.play();
       };
 
       // Add event listeners
@@ -70,18 +75,20 @@ export const useCarouselAutoplay = (options: AutoplayOptions = {}) => {
         rootNode.addEventListener('mouseleave', onMouseLeave);
       }
 
-      // Cleanup
+      // Start autoScroll
+      autoScroll.play();
+
       return () => {
+        // Cleanup
         emblaApi.off('pointerDown', onPointerDown);
         emblaApi.off('pointerUp', onPointerUp);
+        
         if (rootNode) {
           rootNode.removeEventListener('mouseenter', onMouseEnter);
           rootNode.removeEventListener('mouseleave', onMouseLeave);
         }
-        // Ensure autoScroll is properly stopped on cleanup
-        if (autoScroll) {
-          autoScroll.stop();
-        }
+
+        autoScroll.stop();
       };
     }
   }, [emblaApi, autoplayOptions.stopOnInteraction]);
