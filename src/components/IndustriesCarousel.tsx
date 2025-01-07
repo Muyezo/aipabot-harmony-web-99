@@ -6,6 +6,8 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Building2, Briefcase, Hospital, Landmark, ShoppingBag, Warehouse, GraduationCap, Plane } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import useEmblaCarousel from "embla-carousel-react";
 
 const industries = [
   {
@@ -51,6 +53,35 @@ const industries = [
 ];
 
 const IndustriesCarousel = () => {
+  const [isPaused, setIsPaused] = useState(false);
+  const autoplayInterval = useRef<NodeJS.Timeout | null>(null);
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+
+  const startAutoplay = () => {
+    if (autoplayInterval.current) clearInterval(autoplayInterval.current);
+    autoplayInterval.current = setInterval(() => {
+      if (!isPaused && emblaApi) {
+        emblaApi.scrollNext();
+      }
+    }, 3000); // Scroll every 3 seconds
+  };
+
+  useEffect(() => {
+    if (emblaApi) {
+      startAutoplay();
+    }
+    return () => {
+      if (autoplayInterval.current) clearInterval(autoplayInterval.current);
+    };
+  }, [emblaApi, isPaused]);
+
+  const handleIndustryClick = () => {
+    setIsPaused(true);
+    setTimeout(() => {
+      setIsPaused(false);
+    }, 5000); // Resume after 5 seconds
+  };
+
   return (
     <section className="py-24 bg-gradient-to-b from-background to-background/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -61,6 +92,7 @@ const IndustriesCarousel = () => {
         </div>
 
         <Carousel
+          ref={emblaRef}
           opts={{
             align: "start",
             loop: true,
@@ -69,9 +101,13 @@ const IndustriesCarousel = () => {
         >
           <CarouselContent className="-ml-2 md:-ml-4">
             {industries.map((industry, index) => (
-              <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/3 lg:basis-1/4">
+              <CarouselItem 
+                key={index} 
+                className="pl-2 md:pl-4 md:basis-1/3 lg:basis-1/4"
+                onClick={handleIndustryClick}
+              >
                 <div 
-                  className="bg-card rounded-xl p-6 h-full flex flex-col items-center text-center group hover:scale-105 transition-transform duration-300"
+                  className="bg-card rounded-xl p-6 h-full flex flex-col items-center text-center group hover:scale-105 transition-transform duration-300 cursor-pointer"
                 >
                   <div className="mb-4 p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
                     <industry.icon className="w-8 h-8 text-primary" />
