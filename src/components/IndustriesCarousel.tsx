@@ -55,15 +55,21 @@ const industries = [
 const IndustriesCarousel = () => {
   const [isPaused, setIsPaused] = useState(false);
   const autoplayInterval = useRef<NodeJS.Timeout | null>(null);
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+    loop: true,
+    dragFree: true,
+    skipSnaps: true,
+    align: "start",
+    slidesToScroll: 1
+  });
 
   const startAutoplay = () => {
     if (autoplayInterval.current) clearInterval(autoplayInterval.current);
     autoplayInterval.current = setInterval(() => {
       if (!isPaused && emblaApi) {
-        emblaApi.scrollNext();
+        emblaApi.scrollNext({ duration: 250 }); // Add smooth scrolling duration
       }
-    }, 500); // Changed from 3000 to 500 for 0.5 second interval
+    }, 500); // Scroll every 0.5 seconds
   };
 
   useEffect(() => {
