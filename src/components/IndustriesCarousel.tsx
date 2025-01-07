@@ -58,18 +58,16 @@ const IndustriesCarousel = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ 
     loop: true,
     dragFree: true,
-    skipSnaps: true,
     align: "start",
-    slidesToScroll: 1
   });
 
   const startAutoplay = () => {
     if (autoplayInterval.current) clearInterval(autoplayInterval.current);
     autoplayInterval.current = setInterval(() => {
       if (!isPaused && emblaApi) {
-        emblaApi.scrollNext({ duration: 250 }); // Add smooth scrolling duration
+        emblaApi.scrollNext();
       }
-    }, 500); // Scroll every 0.5 seconds
+    }, 500);
   };
 
   useEffect(() => {
@@ -85,7 +83,7 @@ const IndustriesCarousel = () => {
     setIsPaused(true);
     setTimeout(() => {
       setIsPaused(false);
-    }, 5000); // Resume after 5 seconds
+    }, 5000);
   };
 
   return (
