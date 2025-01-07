@@ -19,8 +19,12 @@ const AutoScrollCarousel = () => {
     const animate = () => {
       currentPosition -= 0.5; // Adjust speed here
       
+      // Calculate the total width of all items (each item is 16rem + 1.5rem gap)
+      const itemWidth = 17.5; // 16rem (w-64) + 1.5rem gap
+      const totalWidth = (industries.length * itemWidth); // Only count original items
+      
       // Reset position when all items have scrolled
-      if (currentPosition <= -50) { // Adjust based on item width
+      if (Math.abs(currentPosition) >= totalWidth) {
         currentPosition = 0;
       }
       
@@ -68,7 +72,8 @@ const AutoScrollCarousel = () => {
         >
           <div 
             ref={trackRef}
-            className="flex gap-6 transition-transform will-change-transform"
+            className="flex gap-6 transition-transform duration-300 ease-linear will-change-transform"
+            style={{ width: `${items.length * 100}%` }}
           >
             {items.map((industry, index) => {
               const Icon = industry.icon;
