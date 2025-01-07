@@ -11,7 +11,7 @@ import IndustryCard from "./industries/IndustryCard";
 import { useCarouselAutoplay } from "@/hooks/useCarouselAutoplay";
 
 const IndustriesCarousel = () => {
-  const [isPaused, setIsPaused] = useState(false);
+  const [isPaused] = useState(false);
   const { emblaRef } = useCarouselAutoplay({
     delay: 3000,
     stopOnMouseEnter: false,
@@ -19,7 +19,6 @@ const IndustriesCarousel = () => {
   });
 
   const handleIndustryClick = () => {
-    // Remove the pause/resume logic since we want continuous autoplay
     console.log("Industry clicked");
   };
 

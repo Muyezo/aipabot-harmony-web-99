@@ -21,9 +21,9 @@ export const useCarouselAutoplay = (options: AutoplayOptions = {}) => {
   const autoplayPlugin = useRef(
     Autoplay({
       delay: autoplayOptions.delay,
-      stopOnInteraction: false,
-      stopOnMouseEnter: false,
-      playOnInit: true,
+      stopOnInteraction: autoplayOptions.stopOnInteraction,
+      stopOnMouseEnter: autoplayOptions.stopOnMouseEnter,
+      playOnInit: false, // Changed to false to prevent early autoplay
       rootNode: autoplayOptions.rootNode
     })
   );
@@ -40,9 +40,13 @@ export const useCarouselAutoplay = (options: AutoplayOptions = {}) => {
 
   useEffect(() => {
     if (emblaApi) {
-      autoplayPlugin.current.play();
+      // Wait for the next tick to ensure carousel is mounted
+      const timer = setTimeout(() => {
+        autoplayPlugin.current.play();
+      }, 0);
       
       return () => {
+        clearTimeout(timer);
         autoplayPlugin.current.stop();
       };
     }
