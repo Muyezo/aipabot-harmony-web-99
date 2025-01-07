@@ -21,14 +21,15 @@ export const useCarouselAutoplay = (options: AutoplayOptions = {}) => {
   const autoplayPlugin = useRef(
     Autoplay({
       ...autoplayOptions,
-      playOnInit: true
+      playOnInit: true,
+      stopOnInteraction: false // Force autoplay to continue
     })
   );
 
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { 
       loop: true,
-      dragFree: true,
+      dragFree: false, // Changed to false for smoother transitions
       align: "start",
       slidesToScroll: 1,
     },
@@ -37,18 +38,11 @@ export const useCarouselAutoplay = (options: AutoplayOptions = {}) => {
 
   useEffect(() => {
     if (emblaApi) {
-      const onInit = () => {
-        // Ensure autoplay starts immediately
-        autoplayPlugin.current.play();
-      };
-
-      emblaApi.on('init', onInit);
-      // Start autoplay when component mounts
+      // Force start autoplay when component mounts
       autoplayPlugin.current.play();
 
       return () => {
         autoplayPlugin.current.stop();
-        emblaApi.off('init', onInit);
       };
     }
   }, [emblaApi]);

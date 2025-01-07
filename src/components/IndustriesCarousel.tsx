@@ -14,7 +14,8 @@ const IndustriesCarousel = () => {
   const [isPaused, setIsPaused] = useState(false);
   const { emblaRef, autoplayPlugin } = useCarouselAutoplay({
     delay: 3000,
-    stopOnMouseEnter: true
+    stopOnMouseEnter: false, // Don't stop on mouse enter
+    stopOnInteraction: false // Don't stop on interaction
   });
 
   const handleIndustryClick = () => {
