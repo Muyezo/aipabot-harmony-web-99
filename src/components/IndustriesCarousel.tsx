@@ -5,79 +5,17 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Building2, Briefcase, Hospital, Landmark, ShoppingBag, Warehouse, GraduationCap, Plane } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
-import useEmblaCarousel from "embla-carousel-react";
-import Autoplay from 'embla-carousel-autoplay';
-
-const industries = [
-  {
-    icon: Building2,
-    name: "Real Estate",
-    description: "Property management & sales automation"
-  },
-  {
-    icon: Hospital,
-    name: "Healthcare",
-    description: "Patient care & administrative support"
-  },
-  {
-    icon: Landmark,
-    name: "Financial Services",
-    description: "Banking & investment automation"
-  },
-  {
-    icon: ShoppingBag,
-    name: "Retail",
-    description: "Customer service & inventory management"
-  },
-  {
-    icon: Warehouse,
-    name: "Manufacturing",
-    description: "Production & quality control"
-  },
-  {
-    icon: GraduationCap,
-    name: "Education",
-    description: "Student support & administrative tasks"
-  },
-  {
-    icon: Briefcase,
-    name: "Professional Services",
-    description: "Consulting & client management"
-  },
-  {
-    icon: Plane,
-    name: "Travel & Hospitality",
-    description: "Booking & customer experience"
-  }
-];
+import { useState } from "react";
+import { industries } from "@/constants/industries";
+import IndustryCard from "./industries/IndustryCard";
+import { useCarouselAutoplay } from "@/hooks/useCarouselAutoplay";
 
 const IndustriesCarousel = () => {
   const [isPaused, setIsPaused] = useState(false);
-  const autoplayOptions = {
-    delay: 2000,
-    stopOnInteraction: true,
-    stopOnMouseEnter: false,
-    rootNode: (emblaRoot: any) => emblaRoot.parentElement,
-  };
-  
-  const autoplayPlugin = useRef(
-    Autoplay(autoplayOptions)
-  );
-
-  const [emblaRef, emblaApi] = useEmblaCarousel(
-    { 
-      loop: true,
-      dragFree: true,
-      align: "start",
-      slidesToScroll: 1,
-    },
-    [autoplayPlugin.current]
-  );
+  const { emblaRef, autoplayPlugin } = useCarouselAutoplay();
 
   const handleIndustryClick = () => {
-    if (emblaApi) {
+    if (autoplayPlugin.current) {
       setIsPaused(true);
       autoplayPlugin.current.stop();
       
@@ -87,21 +25,6 @@ const IndustriesCarousel = () => {
       }, 5000);
     }
   };
-
-  useEffect(() => {
-    if (emblaApi) {
-      const onInit = () => {
-        autoplayPlugin.current.play();
-      };
-
-      emblaApi.on('init', onInit);
-
-      return () => {
-        autoplayPlugin.current.stop();
-        emblaApi.off('init', onInit);
-      };
-    }
-  }, [emblaApi]);
 
   return (
     <section className="py-24 bg-gradient-to-b from-background to-background/80">
@@ -125,17 +48,13 @@ const IndustriesCarousel = () => {
               <CarouselItem 
                 key={index} 
                 className="pl-2 md:pl-4 md:basis-1/3 lg:basis-1/4"
-                onClick={handleIndustryClick}
               >
-                <div 
-                  className="bg-card rounded-xl p-6 h-full flex flex-col items-center text-center group hover:scale-105 transition-transform duration-300 cursor-pointer"
-                >
-                  <div className="mb-4 p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                    <industry.icon className="w-8 h-8 text-primary" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-white mb-2">{industry.name}</h3>
-                  <p className="text-gray-400 text-sm">{industry.description}</p>
-                </div>
+                <IndustryCard
+                  icon={industry.icon}
+                  name={industry.name}
+                  description={industry.description}
+                  onClick={handleIndustryClick}
+                />
               </CarouselItem>
             ))}
           </CarouselContent>
