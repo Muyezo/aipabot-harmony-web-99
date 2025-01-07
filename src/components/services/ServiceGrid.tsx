@@ -1,50 +1,38 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Brain, Cpu, BarChart3, Users, Bot, Lock } from "lucide-react";
+import { Calendar, PhoneCall, HeadphonesIcon, Users } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
 const services = [
   {
-    icon: Brain,
-    title: "AI Consulting",
-    description: "Expert guidance on implementing AI solutions in your business",
-    path: "/services/ai-consulting"
+    icon: Calendar,
+    title: "AI Appointment Voice Agent",
+    description: "Streamline appointment scheduling with AI voice assistance",
+    path: "/services/ai-appointment-agent"
   },
   {
-    icon: Cpu,
-    title: "Machine Learning Solutions",
-    description: "Custom ML models tailored to your specific needs",
-    path: "/services/machine-learning"
+    icon: PhoneCall,
+    title: "AI Receptionist",
+    description: "24/7 intelligent front desk solution",
+    path: "/services/ai-receptionist"
   },
   {
-    icon: BarChart3,
-    title: "Data Analytics",
-    description: "Transform your data into actionable insights",
-    path: "/services/data-analytics"
+    icon: HeadphonesIcon,
+    title: "Intelligent Customer Service Agent",
+    description: "Advanced AI-powered customer support",
+    path: "/services/intelligent-customer-service"
   },
   {
     icon: Users,
-    title: "AI Training",
-    description: "Comprehensive training programs for your team",
-    path: "/services/ai-training"
-  },
-  {
-    icon: Bot,
-    title: "Chatbot Development",
-    description: "Intelligent conversational agents for customer service",
-    path: "/services/chatbot-development"
-  },
-  {
-    icon: Lock,
-    title: "AI Security",
-    description: "Secure and reliable AI implementation strategies",
-    path: "/services/ai-security"
+    title: "AI Customer Acquisition/Lead Conversion Agent",
+    description: "Convert leads with AI precision",
+    path: "/services/ai-sales-agent"
   }
 ];
 
 const ServiceGrid = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
       {services.map((service, index) => (
         <motion.div
           key={service.title}
