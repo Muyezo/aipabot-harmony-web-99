@@ -23,8 +23,8 @@ export const useCarouselScroll = ({ itemCount, itemWidth, speed = 0.05 }: UseCar
       
       // When we've scrolled past one complete set of items
       if (Math.abs(currentPosition) >= totalWidth) {
-        // Reset to start position smoothly
-        currentPosition = 0;
+        // Instead of resetting to 0, subtract the total width to maintain continuous flow
+        currentPosition += totalWidth;
       }
       
       track.style.transform = `translateX(${currentPosition}%)`;
