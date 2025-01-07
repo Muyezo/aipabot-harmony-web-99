@@ -55,8 +55,17 @@ const industries = [
 
 const IndustriesCarousel = () => {
   const [isPaused, setIsPaused] = useState(false);
+  const autoplayOptions = {
+    delay: 2000,
+    stopOnInteraction: true,
+    stopOnMouseEnter: false,
+    rootNode: (emblaRoot: any) => emblaRoot.parentElement,
+  };
   
-  // Initialize autoplay plugin with options
+  const autoplayPlugin = useRef(
+    Autoplay(autoplayOptions)
+  );
+
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { 
       loop: true,
@@ -64,35 +73,31 @@ const IndustriesCarousel = () => {
       align: "start",
       slidesToScroll: 1,
     },
-    [
-      Autoplay({
-        delay: 2000,
-        stopOnInteraction: true,
-        stopOnMouseEnter: false,
-      })
-    ]
+    [autoplayPlugin.current]
   );
 
   const handleIndustryClick = () => {
     if (emblaApi) {
       setIsPaused(true);
-      emblaApi.plugins().autoplay?.stop();
+      autoplayPlugin.current.stop();
       
       setTimeout(() => {
         setIsPaused(false);
-        emblaApi.plugins().autoplay?.play();
+        autoplayPlugin.current.play();
       }, 5000);
     }
   };
 
   useEffect(() => {
     if (emblaApi) {
-      // Start autoplay when the carousel is ready
-      const autoplay = emblaApi.plugins().autoplay;
-      autoplay?.play();
+      emblaApi.on('init', () => {
+        // Only start autoplay after carousel is initialized
+        autoplayPlugin.current.play();
+      });
 
       return () => {
-        autoplay?.stop();
+        autoplayPlugin.current.stop();
+        emblaApi.off('init');
       };
     }
   }, [emblaApi]);
