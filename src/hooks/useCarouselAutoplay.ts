@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import useEmblaCarousel, { EmblaOptionsType } from 'embla-carousel-react';
+import useEmblaCarousel from 'embla-carousel-react';
 import AutoScroll, { AutoScrollType } from 'embla-carousel-auto-scroll';
 
 interface AutoplayOptions {
@@ -8,6 +8,13 @@ interface AutoplayOptions {
   stopOnInteraction?: boolean;
   startDelay?: number;
 }
+
+type EmblaOptionsType = {
+  loop?: boolean;
+  align?: 'start' | 'center' | 'end';
+  dragFree?: boolean;
+  containScroll?: 'trimSnaps' | 'keepSnaps';
+};
 
 export const useCarouselAutoplay = (options: AutoplayOptions = {}) => {
   const autoplayOptions: AutoplayOptions = {
@@ -27,23 +34,18 @@ export const useCarouselAutoplay = (options: AutoplayOptions = {}) => {
 
   const [emblaRef, emblaApi] = useEmblaCarousel(
     emblaOptions,
-    [AutoScroll()]
+    [AutoScroll(autoplayOptions)]
   );
 
   useEffect(() => {
     if (emblaApi) {
-      const autoScroll = emblaApi.plugins().autoScroll as AutoScrollType;
+      const plugins = emblaApi.plugins();
+      const autoScroll = plugins.autoScroll as AutoScrollType | undefined;
       
       if (!autoScroll) {
         console.warn('AutoScroll plugin not initialized');
         return;
       }
-
-      // Configure autoScroll with options
-      autoScroll.options = {
-        ...autoplayOptions,
-        stopOnInteraction: true
-      };
 
       const onPointerDown = () => {
         if (autoplayOptions.stopOnInteraction) {
@@ -65,7 +67,6 @@ export const useCarouselAutoplay = (options: AutoplayOptions = {}) => {
         autoScroll.play();
       };
 
-      // Add event listeners
       emblaApi.on('pointerDown', onPointerDown);
       emblaApi.on('pointerUp', onPointerUp);
       
