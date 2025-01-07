@@ -6,7 +6,7 @@ interface UseCarouselScrollProps {
   speed?: number;
 }
 
-export const useCarouselScroll = ({ itemCount, itemWidth, speed = 0.5 }: UseCarouselScrollProps) => {
+export const useCarouselScroll = ({ itemCount, itemWidth, speed = 0.1 }: UseCarouselScrollProps) => {
   const trackRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
