@@ -11,25 +11,29 @@ export const useCarouselScroll = ({ itemCount, itemWidth, speed = 0.05 }: UseCar
   const containerRef = useRef<HTMLDivElement>(null);
   const animationFrameRef = useRef<number>();
   const isPausedRef = useRef(false);
+  const currentPositionRef = useRef(0);
 
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
-
-    let currentPosition = 0;
     
     const animate = () => {
       if (!isPausedRef.current) {
-        currentPosition -= speed;
+        currentPositionRef.current -= speed;
         const totalWidth = itemCount * itemWidth;
         
-        // When we've scrolled past one complete set of items
-        if (Math.abs(currentPosition) >= totalWidth) {
-          // Instead of resetting to 0, subtract the total width to maintain continuous flow
-          currentPosition += totalWidth;
+        // When we've scrolled past half of the items
+        if (Math.abs(currentPositionRef.current) >= totalWidth) {
+          // Move first set of items to the end
+          const firstItem = track.firstElementChild;
+          if (firstItem) {
+            track.appendChild(firstItem);
+            // Reset position but maintain visual continuity
+            currentPositionRef.current += itemWidth;
+          }
         }
         
-        track.style.transform = `translateX(${currentPosition}%)`;
+        track.style.transform = `translateX(${currentPositionRef.current}%)`;
       }
       animationFrameRef.current = requestAnimationFrame(animate);
     };
