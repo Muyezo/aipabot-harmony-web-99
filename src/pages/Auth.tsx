@@ -23,21 +23,18 @@ const Auth = () => {
     }
   }, [session, navigate]);
 
-  // Listen for auth errors
+  // Listen for auth state changes and errors
   useEffect(() => {
-    const handleAuthError = (event: MessageEvent) => {
-      if (event.data?.error_description === "User already registered") {
-        toast({
-          title: "Account already exists",
-          description: "Please sign in instead.",
-          variant: "destructive",
-        });
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === 'SIGNED_IN') {
+        navigate('/');
       }
-    };
+    });
 
-    window.addEventListener("message", handleAuthError);
-    return () => window.removeEventListener("message", handleAuthError);
-  }, [toast]);
+    return () => subscription.unsubscribe();
+  }, [navigate]);
 
   return (
     <div className="min-h-screen bg-[#1A1F2C]">
@@ -79,8 +76,25 @@ const Auth = () => {
               }}
               providers={[]}
               view="sign_in"
-              additionalData={{
-                full_name: true,
+              localization={{
+                variables: {
+                  sign_in: {
+                    email_label: 'Email',
+                    password_label: 'Password',
+                    email_input_placeholder: 'Your email',
+                    password_input_placeholder: 'Your password',
+                    button_label: 'Sign in',
+                    loading_button_label: 'Signing in ...',
+                  },
+                },
+              }}
+              onError={(error) => {
+                console.error('Auth error:', error);
+                toast({
+                  title: "Authentication Error",
+                  description: "Please check your credentials and try again.",
+                  variant: "destructive",
+                });
               }}
             />
           </Card>
