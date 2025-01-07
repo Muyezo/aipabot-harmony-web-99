@@ -1,39 +1,54 @@
 import { useEffect } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
+import AutoScroll from 'embla-carousel-auto-scroll';
 
 interface AutoplayOptions {
   delay?: number;
   speed?: number;
+  stopOnInteraction?: boolean;
 }
 
 export const useCarouselAutoplay = (options: AutoplayOptions = {}) => {
   const autoplayOptions = {
     delay: 3000,
-    speed: 0.5,
+    speed: 1,
+    stopOnInteraction: true,
     ...options
   };
 
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    loop: true,
-    align: "start",
-    dragFree: true,
-    containScroll: "trimSnaps"
-  });
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { 
+      loop: true,
+      align: "start",
+      dragFree: true,
+      containScroll: "trimSnaps"
+    },
+    [AutoScroll(autoplayOptions)]
+  );
 
   useEffect(() => {
     if (emblaApi) {
-      const animate = () => {
-        if (!emblaApi.canScrollNext()) {
-          emblaApi.scrollTo(0);
-        } else {
-          emblaApi.scrollNext({ duration: autoplayOptions.speed });
+      const onPointerDown = () => {
+        if (autoplayOptions.stopOnInteraction) {
+          emblaApi.plugins().autoScroll.stop();
         }
-        setTimeout(animate, autoplayOptions.delay);
       };
 
-      animate();
+      const onPointerUp = () => {
+        if (autoplayOptions.stopOnInteraction) {
+          emblaApi.plugins().autoScroll.play();
+        }
+      };
+
+      emblaApi.on('pointerDown', onPointerDown);
+      emblaApi.on('pointerUp', onPointerUp);
+
+      return () => {
+        emblaApi.off('pointerDown', onPointerDown);
+        emblaApi.off('pointerUp', onPointerUp);
+      };
     }
-  }, [emblaApi, autoplayOptions.delay, autoplayOptions.speed]);
+  }, [emblaApi, autoplayOptions.stopOnInteraction]);
 
   return { emblaRef, emblaApi };
 };

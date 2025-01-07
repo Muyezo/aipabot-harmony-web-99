@@ -9,8 +9,9 @@ import { useCarouselAutoplay } from "@/hooks/useCarouselAutoplay";
 
 const IndustriesCarousel = () => {
   const { emblaRef } = useCarouselAutoplay({
-    delay: 2000,
-    speed: 50
+    delay: 3000,
+    speed: 1,
+    stopOnInteraction: true
   });
 
   const handleIndustryClick = () => {
@@ -32,6 +33,12 @@ const IndustriesCarousel = () => {
         <Carousel
           ref={emblaRef}
           className="w-full max-w-6xl mx-auto"
+          opts={{
+            align: "start",
+            loop: true,
+            dragFree: true,
+            containScroll: "trimSnaps"
+          }}
         >
           <CarouselContent className="-ml-2 md:-ml-4">
             {[...industries, ...industries].map((industry, index) => (
