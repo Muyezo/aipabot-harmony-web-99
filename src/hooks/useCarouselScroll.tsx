@@ -22,14 +22,18 @@ export const useCarouselScroll = ({ itemCount, itemWidth, speed = 0.05 }: UseCar
         currentPositionRef.current -= speed;
         const totalWidth = itemCount * itemWidth;
         
-        // When we've scrolled past half of the items
+        // When we've scrolled past the total width
         if (Math.abs(currentPositionRef.current) >= totalWidth) {
-          // Move first set of items to the end
-          const firstItem = track.firstElementChild;
-          if (firstItem) {
-            track.appendChild(firstItem);
-            // Reset position but maintain visual continuity
-            currentPositionRef.current += itemWidth;
+          // Reset position to maintain visual continuity
+          currentPositionRef.current = 0;
+          
+          // Move all items that have scrolled past to the end
+          const itemsToMove = Math.floor(Math.abs(currentPositionRef.current) / itemWidth);
+          for (let i = 0; i < itemsToMove; i++) {
+            const firstItem = track.firstElementChild;
+            if (firstItem) {
+              track.appendChild(firstItem);
+            }
           }
         }
         
