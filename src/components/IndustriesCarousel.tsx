@@ -55,32 +55,42 @@ const industries = [
 
 const IndustriesCarousel = () => {
   const [isPaused, setIsPaused] = useState(false);
-  const autoplayOptions = {
-    delay: 500,
-    stopOnInteraction: false,
-    stopOnMouseEnter: false,
-    rootNode: (emblaRoot: any) => emblaRoot.parentElement,
-  };
   
+  // Create autoplay plugin instance outside of options
+  const autoplay = Autoplay({
+    delay: 2000,
+    stopOnInteraction: true,
+    stopOnMouseEnter: false,
+    rootNode: (emblaRoot) => emblaRoot,
+  });
+
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { 
       loop: true,
       dragFree: true,
       align: "start",
+      slidesToScroll: 1,
     },
-    [Autoplay(autoplayOptions)]
+    [autoplay]
   );
 
   const handleIndustryClick = () => {
     if (emblaApi) {
       setIsPaused(true);
-      emblaApi.plugins().autoplay.stop();
+      autoplay.stop();
       setTimeout(() => {
         setIsPaused(false);
-        emblaApi.plugins().autoplay.play();
+        autoplay.play();
       }, 5000);
     }
   };
+
+  // Ensure autoplay starts when component mounts
+  useEffect(() => {
+    if (emblaApi) {
+      autoplay.play();
+    }
+  }, [emblaApi]);
 
   return (
     <section className="py-24 bg-gradient-to-b from-background to-background/80">
