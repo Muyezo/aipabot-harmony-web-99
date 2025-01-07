@@ -12,7 +12,10 @@ import { useCarouselAutoplay } from "@/hooks/useCarouselAutoplay";
 
 const IndustriesCarousel = () => {
   const [isPaused, setIsPaused] = useState(false);
-  const { emblaRef, autoplayPlugin } = useCarouselAutoplay();
+  const { emblaRef, autoplayPlugin } = useCarouselAutoplay({
+    delay: 3000,
+    stopOnMouseEnter: true
+  });
 
   const handleIndustryClick = () => {
     if (autoplayPlugin.current) {

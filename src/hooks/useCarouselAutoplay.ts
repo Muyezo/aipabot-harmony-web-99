@@ -11,15 +11,18 @@ interface AutoplayOptions {
 
 export const useCarouselAutoplay = (options: AutoplayOptions = {}) => {
   const autoplayOptions = {
-    delay: 2000,
+    delay: 3000,
     stopOnInteraction: true,
-    stopOnMouseEnter: false,
+    stopOnMouseEnter: true,
     rootNode: (emblaRoot: any) => emblaRoot.parentElement,
     ...options
   };
   
   const autoplayPlugin = useRef(
-    Autoplay(autoplayOptions)
+    Autoplay({
+      ...autoplayOptions,
+      playOnInit: true
+    })
   );
 
   const [emblaRef, emblaApi] = useEmblaCarousel(
@@ -35,10 +38,13 @@ export const useCarouselAutoplay = (options: AutoplayOptions = {}) => {
   useEffect(() => {
     if (emblaApi) {
       const onInit = () => {
+        // Ensure autoplay starts immediately
         autoplayPlugin.current.play();
       };
 
       emblaApi.on('init', onInit);
+      // Start autoplay when component mounts
+      autoplayPlugin.current.play();
 
       return () => {
         autoplayPlugin.current.stop();
