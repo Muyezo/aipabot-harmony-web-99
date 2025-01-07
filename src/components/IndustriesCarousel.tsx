@@ -63,7 +63,7 @@ const IndustriesCarousel = () => {
       if (!isPaused && emblaApi) {
         emblaApi.scrollNext();
       }
-    }, 3000); // Scroll every 3 seconds
+    }, 500); // Changed from 3000 to 500 for 0.5 second interval
   };
 
   useEffect(() => {
