@@ -9,7 +9,7 @@ import { DesktopMenu } from "@/components/navbar/DesktopMenu";
 import { MobileMenu } from "@/components/navbar/MobileMenu";
 import { Menu } from "lucide-react";
 import { useState } from "react";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 
 const Auth = () => {
   const session = useSession();
@@ -88,7 +88,7 @@ const Auth = () => {
                   },
                 },
               }}
-              onError={(error) => {
+              onAuthError={(error) => {
                 console.error('Auth error:', error);
                 toast({
                   title: "Authentication Error",
