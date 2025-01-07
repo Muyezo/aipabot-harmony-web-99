@@ -23,7 +23,6 @@ const Auth = () => {
     }
   }, [session, navigate]);
 
-  // Listen for auth state changes and errors
   useEffect(() => {
     const {
       data: { subscription },
@@ -86,15 +85,15 @@ const Auth = () => {
                     button_label: 'Sign in',
                     loading_button_label: 'Signing in ...',
                   },
+                  sign_up: {
+                    email_label: 'Email',
+                    password_label: 'Password',
+                    email_input_placeholder: 'Your email',
+                    password_input_placeholder: 'Your password',
+                    button_label: 'Sign up',
+                    loading_button_label: 'Signing up ...',
+                  },
                 },
-              }}
-              onError={(error) => {
-                console.error('Auth error:', error);
-                toast({
-                  title: "Authentication Error",
-                  description: "Please check your credentials and try again.",
-                  variant: "destructive",
-                });
               }}
             />
           </Card>
