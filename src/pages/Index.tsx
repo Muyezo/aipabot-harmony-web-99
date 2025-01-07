@@ -8,6 +8,7 @@ import Hero from "../components/Hero";
 import Services from "../components/Services";
 import Testimonials from "../components/Testimonials";
 import CallToAction from "../components/CallToAction";
+import Footer from "../components/Footer";
 import LoadingSpinner from "../components/ui/loading-spinner";
 import { Skeleton } from "../components/ui/skeleton";
 
@@ -42,6 +43,7 @@ const Index = () => {
         <Services />
         <Testimonials />
         <CallToAction />
+        <Footer />
       </div>
     );
   }
@@ -103,6 +105,7 @@ const Index = () => {
           <AIChat />
         </Suspense>
       </div>
+      <Footer />
     </div>
   );
 };
