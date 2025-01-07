@@ -16,15 +16,12 @@ const IndustriesCarousel = () => {
       align: "start",
       containScroll: "trimSnaps"
     },
-    [
-      AutoScroll({ 
-        playOnInit: true,
-        stopOnInteraction: false,
-        stopOnMouseEnter: true,
-        delay: 0,
-        speed: 1
-      })
-    ]
+    [AutoScroll({ 
+      playOnInit: true,
+      stopOnInteraction: false,
+      stopOnMouseEnter: true,
+      speed: 1
+    })]
   );
 
   const handleIndustryClick = () => {
