@@ -7,21 +7,15 @@ import { industries } from "@/constants/industries";
 import IndustryCard from "./industries/IndustryCard";
 import useEmblaCarousel from "embla-carousel-react";
 import AutoScroll from "embla-carousel-auto-scroll";
-import { useEffect, useRef } from "react";
 
 const IndustriesCarousel = () => {
-  const [emblaRef, emblaApi] = useEmblaCarousel(
+  const [emblaRef] = useEmblaCarousel(
     { 
       loop: true,
       align: "start",
       containScroll: "trimSnaps"
     },
-    [AutoScroll({ 
-      playOnInit: true,
-      stopOnInteraction: false,
-      stopOnMouseEnter: true,
-      speed: 1
-    })]
+    [AutoScroll()]
   );
 
   const handleIndustryClick = () => {

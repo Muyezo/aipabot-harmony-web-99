@@ -1,17 +1,18 @@
 import React from 'react';
 import { industries } from '@/constants/industries';
 import CarouselItem from './carousel/CarouselItem';
-import { useCarouselScroll } from '@/hooks/useCarouselScroll';
+import useEmblaCarousel from 'embla-carousel-react';
+import AutoScroll from 'embla-carousel-auto-scroll';
 
 const AutoScrollCarousel = () => {
-  // Create a seamless loop by duplicating the industries array
-  // We duplicate it twice to ensure smooth transitions
-  const items = [...industries, ...industries];
-  
-  const { trackRef, containerRef } = useCarouselScroll({
-    itemCount: industries.length,
-    itemWidth: 17.5, // 16rem (w-64) + 1.5rem gap
-  });
+  const [emblaRef] = useEmblaCarousel(
+    { 
+      loop: true,
+      dragFree: true,
+      containScroll: "trimSnaps" 
+    },
+    [AutoScroll()]
+  );
   
   return (
     <section className="py-24 relative overflow-hidden">
@@ -27,15 +28,11 @@ const AutoScrollCarousel = () => {
         </div>
 
         <div 
-          ref={containerRef}
-          className="w-full overflow-hidden"
+          ref={emblaRef}
+          className="overflow-hidden"
         >
-          <div 
-            ref={trackRef}
-            className="flex gap-6 transition-transform duration-[2000ms] ease-linear will-change-transform"
-            style={{ width: `${items.length * 17.5}%` }}
-          >
-            {items.map((industry, index) => (
+          <div className="flex gap-6">
+            {[...industries, ...industries].map((industry, index) => (
               <CarouselItem
                 key={`${industry.name}-${index}`}
                 icon={industry.icon}
