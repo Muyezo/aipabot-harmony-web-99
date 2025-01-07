@@ -22,7 +22,8 @@ export const useCarouselScroll = ({ itemCount, itemWidth, speed = 0.05 }: UseCar
     const animate = () => {
       if (!isPausedRef.current && !isResettingRef.current && transitionEnabledRef.current) {
         currentPositionRef.current -= speed;
-        const totalWidth = itemCount * itemWidth;
+        // Adjust totalWidth to account for the extra duplicated first item
+        const totalWidth = (itemCount + 1) * itemWidth;
         
         if (Math.abs(currentPositionRef.current) >= totalWidth) {
           isResettingRef.current = true;
@@ -31,8 +32,8 @@ export const useCarouselScroll = ({ itemCount, itemWidth, speed = 0.05 }: UseCar
           track.style.transition = 'none';
           transitionEnabledRef.current = false;
           
-          // Move first set of items to the end
-          for (let i = 0; i < itemCount; i++) {
+          // Move items to maintain the sequence, including the duplicated first item
+          for (let i = 0; i <= itemCount; i++) {
             const firstItem = track.firstElementChild;
             if (firstItem) {
               track.appendChild(firstItem);
@@ -40,7 +41,7 @@ export const useCarouselScroll = ({ itemCount, itemWidth, speed = 0.05 }: UseCar
           }
           
           // Reset position while maintaining visual continuity
-          currentPositionRef.current = 0;
+          currentPositionRef.current = -itemWidth; // Start from the second item position
           track.style.transform = `translateX(${currentPositionRef.current}%)`;
           
           // Re-enable transition after the next frame
