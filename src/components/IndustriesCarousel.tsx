@@ -5,13 +5,11 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { useState } from "react";
 import { industries } from "@/constants/industries";
 import IndustryCard from "./industries/IndustryCard";
 import { useCarouselAutoplay } from "@/hooks/useCarouselAutoplay";
 
 const IndustriesCarousel = () => {
-  const [isPaused] = useState(false);
   const { emblaRef } = useCarouselAutoplay({
     delay: 3000,
     stopOnInteraction: false,

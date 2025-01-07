@@ -12,13 +12,12 @@ interface AutoplayOptions {
 export const useCarouselAutoplay = (options: AutoplayOptions = {}) => {
   const autoplayOptions = {
     delay: 3000,
-    stopOnInteraction: true,
-    stopOnMouseEnter: true,
+    stopOnInteraction: false,
+    stopOnMouseEnter: false,
     rootNode: (emblaRoot: any) => emblaRoot.parentElement,
     ...options
   };
 
-  // Initialize autoplay plugin with options
   const autoplay = Autoplay({
     delay: autoplayOptions.delay,
     stopOnInteraction: autoplayOptions.stopOnInteraction,
@@ -26,31 +25,20 @@ export const useCarouselAutoplay = (options: AutoplayOptions = {}) => {
     playOnInit: true,
     rootNode: autoplayOptions.rootNode
   });
-  
-  const autoplayPlugin = useRef(autoplay);
 
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { 
       loop: true,
       align: "start",
     },
-    [autoplayPlugin.current]
+    [autoplay]
   );
 
   useEffect(() => {
     if (emblaApi) {
-      // Ensure the carousel is ready before starting autoplay
       emblaApi.reInit();
-      
-      return () => {
-        autoplayPlugin.current.stop();
-      };
     }
   }, [emblaApi]);
 
-  return {
-    emblaRef,
-    emblaApi,
-    autoplayPlugin,
-  };
+  return { emblaRef, emblaApi };
 };
