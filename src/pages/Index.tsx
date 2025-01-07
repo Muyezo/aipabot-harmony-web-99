@@ -1,18 +1,19 @@
 import { useSession } from "@supabase/auth-helpers-react";
+import { useNavigate } from "react-router-dom";
 import { Suspense, lazy } from "react";
-import { useNavigate } from "react-router-dom"; // Add this import
 import { useAdmin } from "../hooks/useAdmin";
 import { useToast } from "@/hooks/use-toast";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import Services from "../components/Services";
-import AutoScrollCarousel from "../components/AutoScrollCarousel";
+import IndustriesCarousel from "../components/IndustriesCarousel";
 import Testimonials from "../components/Testimonials";
 import CallToAction from "../components/CallToAction";
 import Footer from "../components/Footer";
 import LoadingSpinner from "../components/ui/loading-spinner";
 import { Skeleton } from "../components/ui/skeleton";
 
+// Lazy load heavier components
 const Dashboard = lazy(() => import("../components/Dashboard"));
 const AIChat = lazy(() => import("../components/AIChat"));
 const BlogManagement = lazy(() => import("../components/blog/BlogManagement"));
@@ -41,7 +42,7 @@ const Index = () => {
         <Navbar />
         <Hero />
         <Services />
-        <AutoScrollCarousel />
+        <IndustriesCarousel />
         <Testimonials />
         <CallToAction />
         <Footer />

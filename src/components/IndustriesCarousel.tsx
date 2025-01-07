@@ -5,24 +5,13 @@ import {
 } from "@/components/ui/carousel";
 import { industries } from "@/constants/industries";
 import IndustryCard from "./industries/IndustryCard";
-import useEmblaCarousel from "embla-carousel-react";
-import AutoScroll from "embla-carousel-auto-scroll";
-import { useEffect, useRef } from "react";
+import { useCarouselAutoplay } from "@/hooks/useCarouselAutoplay";
 
 const IndustriesCarousel = () => {
-  const [emblaRef, emblaApi] = useEmblaCarousel(
-    { 
-      loop: true,
-      align: "start",
-      containScroll: "trimSnaps"
-    },
-    [AutoScroll({ 
-      playOnInit: true,
-      stopOnInteraction: false,
-      stopOnMouseEnter: true,
-      speed: 1
-    })]
-  );
+  const { emblaRef } = useCarouselAutoplay({
+    delay: 2000,
+    speed: 50
+  });
 
   const handleIndustryClick = () => {
     console.log("Industry clicked");
@@ -43,14 +32,9 @@ const IndustriesCarousel = () => {
         <Carousel
           ref={emblaRef}
           className="w-full max-w-6xl mx-auto"
-          opts={{
-            align: "start",
-            loop: true,
-            containScroll: "trimSnaps"
-          }}
         >
           <CarouselContent className="-ml-2 md:-ml-4">
-            {[...industries, ...industries, ...industries].map((industry, index) => (
+            {[...industries, ...industries].map((industry, index) => (
               <CarouselItem 
                 key={index} 
                 className="pl-2 md:pl-4 md:basis-1/3 lg:basis-1/4 shrink-0"
