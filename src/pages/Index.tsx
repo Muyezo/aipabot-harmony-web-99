@@ -1,5 +1,6 @@
 import { useSession } from "@supabase/auth-helpers-react";
 import { Suspense, lazy } from "react";
+import { useNavigate } from "react-router-dom"; // Add this import
 import { useAdmin } from "../hooks/useAdmin";
 import { useToast } from "@/hooks/use-toast";
 import Navbar from "../components/Navbar";
