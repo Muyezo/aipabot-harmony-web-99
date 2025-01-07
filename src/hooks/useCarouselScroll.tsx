@@ -9,35 +9,41 @@ interface UseCarouselScrollProps {
 export const useCarouselScroll = ({ itemCount, itemWidth, speed = 0.05 }: UseCarouselScrollProps) => {
   const trackRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const animationFrameRef = useRef<number>();
+  const isPausedRef = useRef(false);
 
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
 
     let currentPosition = 0;
-    let animationFrameId: number;
     
     const animate = () => {
-      currentPosition -= speed;
-      const totalWidth = itemCount * itemWidth;
-      
-      // When we've scrolled past one complete set of items
-      if (Math.abs(currentPosition) >= totalWidth) {
-        // Instead of resetting to 0, subtract the total width to maintain continuous flow
-        currentPosition += totalWidth;
+      if (!isPausedRef.current) {
+        currentPosition -= speed;
+        const totalWidth = itemCount * itemWidth;
+        
+        // When we've scrolled past one complete set of items
+        if (Math.abs(currentPosition) >= totalWidth) {
+          // Instead of resetting to 0, subtract the total width to maintain continuous flow
+          currentPosition += totalWidth;
+        }
+        
+        track.style.transform = `translateX(${currentPosition}%)`;
       }
-      
-      track.style.transform = `translateX(${currentPosition}%)`;
-      animationFrameId = requestAnimationFrame(animate);
+      animationFrameRef.current = requestAnimationFrame(animate);
     };
 
-    animationFrameId = requestAnimationFrame(animate);
+    animationFrameRef.current = requestAnimationFrame(animate);
 
     const container = containerRef.current;
     if (container) {
-      const pauseAnimation = () => cancelAnimationFrame(animationFrameId);
+      const pauseAnimation = () => {
+        isPausedRef.current = true;
+      };
+      
       const resumeAnimation = () => {
-        animationFrameId = requestAnimationFrame(animate);
+        isPausedRef.current = false;
       };
 
       container.addEventListener('mouseenter', pauseAnimation);
@@ -46,7 +52,9 @@ export const useCarouselScroll = ({ itemCount, itemWidth, speed = 0.05 }: UseCar
       return () => {
         container.removeEventListener('mouseenter', pauseAnimation);
         container.removeEventListener('mouseleave', resumeAnimation);
-        cancelAnimationFrame(animationFrameId);
+        if (animationFrameRef.current) {
+          cancelAnimationFrame(animationFrameRef.current);
+        }
       };
     }
   }, [itemCount, itemWidth, speed]);
