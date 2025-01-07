@@ -28,7 +28,7 @@ const ServiceDetailHeader = ({ title, description, longDescription }: ServiceDet
         <p className="text-xl text-gray-200">{description}</p>
       </motion.div>
 
-      <div className="bg-black/20 backdrop-blur-lg rounded-xl shadow-lg p-8 mt-8 border border-white/10">
+      <div className="bg-card rounded-xl shadow-lg p-8 mt-8 border border-white/10">
         <h2 className="text-2xl font-semibold mb-4 text-white">Overview</h2>
         <p className="text-gray-200">{longDescription}</p>
       </div>

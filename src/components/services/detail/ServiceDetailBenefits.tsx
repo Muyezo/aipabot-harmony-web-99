@@ -10,7 +10,7 @@ const ServiceDetailBenefits = ({ benefits }: ServiceDetailBenefitsProps) => {
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5, delay: 0.4 }}
-      className="bg-black/20 backdrop-blur-lg rounded-xl shadow-lg p-8 border border-white/10"
+      className="bg-card rounded-xl shadow-lg p-8 border border-white/10"
     >
       <h2 className="text-2xl font-semibold mb-4 text-white">Benefits</h2>
       <ul className="space-y-3">
