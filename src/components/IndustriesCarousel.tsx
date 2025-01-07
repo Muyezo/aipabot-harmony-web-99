@@ -55,15 +55,14 @@ const industries = [
 
 const IndustriesCarousel = () => {
   const [isPaused, setIsPaused] = useState(false);
+  const autoplayRef = useRef(
+    Autoplay({
+      delay: 2000,
+      stopOnInteraction: true,
+      stopOnMouseEnter: false,
+    })
+  );
   
-  // Create autoplay plugin instance outside of options
-  const autoplay = Autoplay({
-    delay: 2000,
-    stopOnInteraction: true,
-    stopOnMouseEnter: false,
-    rootNode: (emblaRoot) => emblaRoot,
-  });
-
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { 
       loop: true,
@@ -71,24 +70,29 @@ const IndustriesCarousel = () => {
       align: "start",
       slidesToScroll: 1,
     },
-    [autoplay]
+    [autoplayRef.current]
   );
 
   const handleIndustryClick = () => {
-    if (emblaApi) {
+    if (emblaApi && autoplayRef.current) {
       setIsPaused(true);
-      autoplay.stop();
+      autoplayRef.current.stop();
       setTimeout(() => {
         setIsPaused(false);
-        autoplay.play();
+        autoplayRef.current.play();
       }, 5000);
     }
   };
 
-  // Ensure autoplay starts when component mounts
   useEffect(() => {
     if (emblaApi) {
-      autoplay.play();
+      // Initialize autoplay
+      autoplayRef.current.play();
+      
+      // Cleanup on unmount
+      return () => {
+        autoplayRef.current.stop();
+      };
     }
   }, [emblaApi]);
 
