@@ -8,7 +8,7 @@ const Services = () => {
       title: "AI Appointment Voice Agent",
       shortDesc: "Streamline appointment scheduling with AI voice assistance",
       longDesc: "Transform your appointment booking process with our intelligent voice agent. Handle scheduling, rescheduling, and cancellations effortlessly while providing a natural conversational experience.",
-      image: "/placeholder.svg"
+      image: "/lovable-uploads/530543e9-690f-4d5e-8dd3-c625b395a604.png"
     },
     {
       id: "ai-receptionist",
