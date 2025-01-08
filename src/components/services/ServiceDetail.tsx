@@ -94,7 +94,10 @@ const ServiceDetail = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-background/80">
+    <div className="min-h-screen bg-[#1A1F2C] relative">
+      <div className="absolute inset-0 bg-gradient-to-b from-background to-background/80 -z-10" />
+      <div className="absolute inset-0 opacity-30 -z-10 bg-[linear-gradient(to_right,#221F26,#ea384c,#F97316),linear-gradient(to_top,#0EA5E9,#6B46C1,transparent),linear-gradient(40deg,#0EA5E9,#ea384c,#F97316)] bg-blend-overlay" />
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
       <Navbar />
       <div className="container mx-auto px-4 pt-24 pb-12">
         <ServiceDetailHeader
