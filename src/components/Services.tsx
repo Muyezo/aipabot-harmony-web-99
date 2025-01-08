@@ -29,7 +29,7 @@ const Services = () => {
       title: "AI Customer Acquisition/Lead Conversion Agent",
       shortDesc: "Convert leads with AI precision",
       longDesc: "Boost your sales performance with AI agents that qualify leads, nurture prospects, and drive conversions through intelligent conversations and personalized engagement.",
-      image: "/placeholder.svg"
+      image: "/lovable-uploads/62dd238e-2306-4508-9517-70a16c0d22eb.png"
     }
   ];
 
