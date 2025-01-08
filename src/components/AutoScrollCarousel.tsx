@@ -9,7 +9,9 @@ const AutoScrollCarousel = () => {
     { 
       loop: true,
       dragFree: true,
-      containScroll: "trimSnaps" 
+      containScroll: "trimSnaps",
+      align: "start",
+      spacing: 24 // This ensures consistent 1.5rem (24px) gaps
     },
     [AutoScroll()]
   );
@@ -31,14 +33,15 @@ const AutoScrollCarousel = () => {
           ref={emblaRef}
           className="overflow-hidden"
         >
-          <div className="flex gap-6">
+          <div className="flex">
             {[...industries, ...industries].map((industry, index) => (
-              <CarouselItem
-                key={`${industry.name}-${index}`}
-                icon={industry.icon}
-                name={industry.name}
-                description={industry.description}
-              />
+              <div key={`${industry.name}-${index}`} className="flex-[0_0_auto] min-w-0 pl-6 first:pl-0">
+                <CarouselItem
+                  icon={industry.icon}
+                  name={industry.name}
+                  description={industry.description}
+                />
+              </div>
             ))}
           </div>
         </div>

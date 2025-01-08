@@ -13,7 +13,8 @@ const IndustriesCarousel = () => {
     { 
       loop: true,
       align: "start",
-      containScroll: "trimSnaps"
+      containScroll: "trimSnaps",
+      spacing: 24 // This ensures consistent 1.5rem (24px) gaps
     },
     [AutoScroll()]
   );
@@ -40,14 +41,15 @@ const IndustriesCarousel = () => {
           opts={{
             align: "start",
             loop: true,
-            containScroll: "trimSnaps"
+            containScroll: "trimSnaps",
+            spacing: 24
           }}
         >
-          <CarouselContent className="-ml-2 md:-ml-4">
+          <CarouselContent className="-ml-6">
             {[...industries, ...industries, ...industries].map((industry, index) => (
               <CarouselItem 
                 key={index} 
-                className="pl-2 md:pl-4 md:basis-1/3 lg:basis-1/4 shrink-0"
+                className="pl-6 md:basis-1/3 lg:basis-1/4"
               >
                 <IndustryCard
                   icon={industry.icon}
