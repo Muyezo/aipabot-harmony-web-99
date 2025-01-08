@@ -26,7 +26,7 @@ const ServiceItem = ({ service, index }: ServiceItemProps) => {
               alt={service.title}
               className={`w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110 ${
                 service.id === 'ai-receptionist' 
-                  ? 'object-[50%_35%] sm:object-[50%_40%]' 
+                  ? 'object-[50%_25%] sm:object-[50%_28%]' 
                   : 'object-center'
               }`}
             />
