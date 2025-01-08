@@ -11,7 +11,7 @@ const AutoScrollCarousel = () => {
       dragFree: true,
       containScroll: "trimSnaps",
       align: "start",
-      spacing: 24 // This ensures consistent 1.5rem (24px) gaps
+      gap: 24 // Changed from spacing to gap
     },
     [AutoScroll()]
   );

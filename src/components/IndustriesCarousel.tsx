@@ -14,7 +14,7 @@ const IndustriesCarousel = () => {
       loop: true,
       align: "start",
       containScroll: "trimSnaps",
-      spacing: 24 // This ensures consistent 1.5rem (24px) gaps
+      gap: 24 // Changed from spacing to gap
     },
     [AutoScroll()]
   );
@@ -42,7 +42,7 @@ const IndustriesCarousel = () => {
             align: "start",
             loop: true,
             containScroll: "trimSnaps",
-            spacing: 24
+            gap: 24 // Changed from spacing to gap
           }}
         >
           <CarouselContent className="-ml-6">
