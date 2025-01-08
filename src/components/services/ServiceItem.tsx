@@ -20,7 +20,7 @@ const ServiceItem = ({ service, index }: ServiceItemProps) => {
     >
       <div className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12`}>
         <div className="w-full lg:w-1/2 transform transition-transform duration-500 group-hover:scale-105">
-          <div className="relative aspect-square w-100 mx-auto overflow-hidden rounded-full shadow-2xl">
+          <div className="relative aspect-square w-96 mx-auto overflow-hidden rounded-full shadow-2xl">
             <img
               src={service.image}
               alt={service.title}
