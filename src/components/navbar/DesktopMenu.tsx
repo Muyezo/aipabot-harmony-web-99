@@ -13,11 +13,6 @@ export const DesktopMenu = () => {
   };
 
   const handleNavigation = (path: string) => {
-    // If trying to access home page and not authenticated, stay on the current page
-    if (path === "/" && !session) {
-      navigate("/auth");
-      return;
-    }
     navigate(path);
   };
 
