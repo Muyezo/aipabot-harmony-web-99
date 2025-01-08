@@ -94,10 +94,19 @@ const ServiceDetail = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#1A1F2C] relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-background to-background/80 -z-10" />
-      <div className="absolute inset-0 opacity-30 -z-10 bg-[linear-gradient(to_right,#221F26,#ea384c,#F97316),linear-gradient(to_top,#0EA5E9,#6B46C1,transparent),linear-gradient(40deg,#0EA5E9,#ea384c,#F97316)] bg-blend-overlay" />
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
+    <div className="min-h-screen relative">
+      {/* Dynamic gradient background with glossy glow */}
+      <div className="absolute inset-0 bg-[#1A1F2C]">
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute inset-0 bg-gradient-to-r from-[#221F26] via-[#9b87f5] to-[#F97316] animate-gradient-x"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0EA5E9] via-[#8B5CF6] to-transparent animate-gradient-y"></div>
+          <div className="absolute inset-0 bg-[linear-gradient(40deg,#0EA5E9,#D946EF,#F97316)] opacity-40 animate-aurora"></div>
+          {/* Glossy glow effects */}
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/30 rounded-full filter blur-[64px] animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/30 rounded-full filter blur-[64px] animate-pulse delay-700"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-orange-500/30 rounded-full filter blur-[64px] animate-pulse delay-1000"></div>
+        </div>
+      </div>
       <Navbar />
       <div className="container mx-auto px-4 pt-24 pb-12">
         <ServiceDetailHeader
@@ -110,6 +119,7 @@ const ServiceDetail = () => {
           <ServiceDetailBenefits benefits={service.benefits} />
         </div>
       </div>
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#1A1F2C] to-transparent"></div>
     </div>
   );
 };
