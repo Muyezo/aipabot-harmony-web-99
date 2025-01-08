@@ -15,7 +15,7 @@ const Services = () => {
       title: "AI Receptionist",
       shortDesc: "24/7 intelligent front desk solution",
       longDesc: "Provide round-the-clock reception services with our AI receptionist. Handle visitor management, inquiries, and basic administrative tasks with professional efficiency.",
-      image: "/placeholder.svg"
+      image: "/lovable-uploads/62dd238e-2306-4508-9517-70a16c0d22eb.png"
     },
     {
       id: "intelligent-customer-service",
@@ -76,7 +76,7 @@ const Services = () => {
                   <img
                     src={service.image}
                     alt={service.title}
-                    className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110"
+                    className={`w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110 ${service.id === 'ai-receptionist' ? 'object-top' : 'object-center'}`}
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </div>
