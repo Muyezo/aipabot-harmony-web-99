@@ -72,11 +72,15 @@ const Services = () => {
           >
             <div className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12`}>
               <div className="w-full lg:w-1/2 transform transition-transform duration-500 group-hover:scale-105">
-                <div className="relative aspect-video overflow-hidden rounded-xl shadow-2xl">
+                <div className="relative aspect-[4/3] sm:aspect-[16/9] overflow-hidden rounded-xl shadow-2xl">
                   <img
                     src={service.image}
                     alt={service.title}
-                    className={`w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110 ${service.id === 'ai-receptionist' ? 'object-top' : 'object-center'}`}
+                    className={`w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110 ${
+                      service.id === 'ai-receptionist' 
+                        ? 'object-[50%_35%] sm:object-[50%_40%]' 
+                        : 'object-center'
+                    }`}
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </div>
