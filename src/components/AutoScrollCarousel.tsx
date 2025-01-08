@@ -33,9 +33,12 @@ const AutoScrollCarousel = () => {
           ref={emblaRef}
           className="overflow-hidden"
         >
-          <div className="flex space-x-6">
+          <div className="flex">
             {[...industries, ...industries].map((industry, index) => (
-              <div key={`${industry.name}-${index}`} className="flex-[0_0_auto] min-w-0">
+              <div 
+                key={`${industry.name}-${index}`} 
+                className="flex-[0_0_auto] min-w-0 pl-6"
+              >
                 <CarouselItem
                   icon={industry.icon}
                   name={industry.name}
