@@ -50,6 +50,7 @@ const IndustriesCarousel = () => {
               <CarouselItem 
                 key={index} 
                 className="pl-6 md:basis-1/3 lg:basis-1/4"
+                style={{ minWidth: 'calc(25% + 24px)' }}
               >
                 <IndustryCard
                   icon={industry.icon}
