@@ -94,23 +94,28 @@ const ServiceDetail = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#1A1F2C] relative">
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute inset-0 bg-gradient-to-r from-[#221F26] via-[#9b87f5] to-[#F97316]"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0EA5E9] via-[#8B5CF6] to-transparent"></div>
-      </div>
+    <div className="min-h-screen flex flex-col relative">
+      <div className="glow-orb glow-orb-1" />
+      <div className="glow-orb glow-orb-2" />
+      <div className="glow-orb glow-orb-3" />
+      <div className="grid-overlay" />
+      
       <Navbar />
-      <div className="container mx-auto px-4 pt-24 pb-12 relative">
-        <ServiceDetailHeader
-          title={service.title}
-          description={service.description}
-          longDescription={service.longDescription}
-        />
-        <div className="grid md:grid-cols-2 gap-8 mt-12">
-          <ServiceDetailFeatures features={service.features} />
-          <ServiceDetailBenefits benefits={service.benefits} />
+      <main className="flex-grow pt-20">
+        <div className="relative">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+            <ServiceDetailHeader
+              title={service.title}
+              description={service.description}
+              longDescription={service.longDescription}
+            />
+            <div className="grid md:grid-cols-2 gap-8 mt-12">
+              <ServiceDetailFeatures features={service.features} />
+              <ServiceDetailBenefits benefits={service.benefits} />
+            </div>
+          </div>
         </div>
-      </div>
+      </main>
     </div>
   );
 };
