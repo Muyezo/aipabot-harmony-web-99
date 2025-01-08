@@ -19,10 +19,6 @@ export const DesktopMenu = () => {
     return location.pathname === path;
   };
 
-  const handleNavigation = (path: string) => {
-    navigate(path);
-  };
-
   return (
     <div className="hidden md:flex items-center space-x-8">
       {navItems.map((item) => (
@@ -41,7 +37,7 @@ export const DesktopMenu = () => {
                 <DropdownMenuItem
                   key={subItem.name}
                   className="hover:bg-white/10 cursor-pointer"
-                  onClick={() => handleNavigation(subItem.path)}
+                  onClick={() => navigate(subItem.path)}
                 >
                   {subItem.name}
                 </DropdownMenuItem>
@@ -51,7 +47,7 @@ export const DesktopMenu = () => {
         ) : (
           <button
             key={item.name}
-            onClick={() => handleNavigation(item.path)}
+            onClick={() => navigate(item.path)}
             className={`transition-all duration-200 ${
               isCurrentPath(item.path)
                 ? "text-white relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-white after:shadow-[0_0_10px_#ffffff] after:rounded-full"
