@@ -22,7 +22,7 @@ const Services = () => {
       title: "Intelligent Customer Service Agent",
       shortDesc: "Advanced AI-powered customer support",
       longDesc: "Deliver exceptional customer service with our AI agents that understand context, handle complex queries, and provide personalized assistance across multiple channels.",
-      image: "/placeholder.svg"
+      image: "/lovable-uploads/641fdacf-caaf-4f59-8ff7-24f766dca13f.png"
     },
     {
       id: "ai-sales-agent",
