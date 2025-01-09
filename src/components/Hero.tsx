@@ -31,13 +31,7 @@ const Hero = () => {
             Empowering businesses with AI-powered automation for streamlined
             operations, cost reduction and exponential growth.
           </p>
-          <div className="flex justify-center gap-4">
-            <button className="group relative px-8 py-3 bg-[#3f80f6] text-white rounded-full overflow-hidden hover:bg-[#3f80f6]/90 transition-all duration-300">
-              <div className="absolute inset-0 w-3 bg-white/20 skew-x-[20deg] group-hover:animate-[shimmer_1s_infinite] hidden group-hover:block"></div>
-              <span className="relative flex items-center gap-2">
-                Get Started <ArrowRight size={20} />
-              </span>
-            </button>
+          <div className="flex justify-center">
             <button className="px-8 py-3 border-2 border-[#3f80f6] text-white rounded-full hover:bg-[#3f80f6] hover:text-white transition-colors duration-200 bg-white/10 backdrop-blur-sm">
               Watch Demo
             </button>
