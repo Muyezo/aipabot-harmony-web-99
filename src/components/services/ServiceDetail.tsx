@@ -3,6 +3,8 @@ import Navbar from "../Navbar";
 import ServiceDetailHeader from "./detail/ServiceDetailHeader";
 import ServiceDetailFeatures from "./detail/ServiceDetailFeatures";
 import ServiceDetailBenefits from "./detail/ServiceDetailBenefits";
+import { LazyImage } from "../ui/lazy-image";
+import { motion } from "framer-motion";
 
 const ServiceDetail = () => {
   const { serviceId } = useParams();
@@ -26,7 +28,8 @@ const ServiceDetail = () => {
         "Improve customer satisfaction",
         "Increase booking efficiency",
         "Lower operational costs"
-      ]
+      ],
+      image: "/lovable-uploads/db06efde-8d38-4519-be10-ab6f5c233726.png"
     },
     "ai-receptionist": {
       title: "AI Receptionist",
@@ -109,6 +112,25 @@ const ServiceDetail = () => {
               description={service.description}
               longDescription={service.longDescription}
             />
+            
+            {serviceId === 'ai-appointment-agent' && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="mt-12 mb-12 relative"
+              >
+                <div className="relative rounded-xl overflow-hidden shadow-2xl border border-white/10 aspect-video max-w-4xl mx-auto">
+                  <LazyImage
+                    src={service.image}
+                    alt="AI Appointment Voice Agent Integration"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                </div>
+              </motion.div>
+            )}
+
             <div className="grid md:grid-cols-2 gap-8 mt-12">
               <ServiceDetailFeatures features={service.features} />
               <ServiceDetailBenefits benefits={service.benefits} />
