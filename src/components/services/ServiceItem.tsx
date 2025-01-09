@@ -20,22 +20,30 @@ const ServiceItem = ({ service, index }: ServiceItemProps) => {
     >
       <div className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12`}>
         <div className="w-full lg:w-1/2 transform transition-transform duration-500 group-hover:scale-105">
-          <div className="relative w-96 mx-auto overflow-hidden shadow-2xl rounded-full" style={{
-            aspectRatio: '1/1'
-          }}>
+          {service.id === 'ai-sales-agent' ? (
             <img
-              src={service.id === 'ai-appointment-agent' 
-                ? '/lovable-uploads/e6b9125f-3f21-4be5-9a18-01b4306a7a44.png'
-                : service.image}
+              src={service.image}
               alt={service.title}
-              className={`w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110 ${
-                service.id === 'ai-receptionist' 
-                  ? 'object-center' 
-                  : 'object-center'
-              }`}
+              className="w-96 h-96 mx-auto object-cover transform transition-transform duration-700 group-hover:scale-110"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-          </div>
+          ) : (
+            <div className="relative w-96 mx-auto overflow-hidden shadow-2xl rounded-full" style={{
+              aspectRatio: '1/1'
+            }}>
+              <img
+                src={service.id === 'ai-appointment-agent' 
+                  ? '/lovable-uploads/e6b9125f-3f21-4be5-9a18-01b4306a7a44.png'
+                  : service.image}
+                alt={service.title}
+                className={`w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110 ${
+                  service.id === 'ai-receptionist' 
+                    ? 'object-center' 
+                    : 'object-center'
+                }`}
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            </div>
+          )}
         </div>
         <div className="w-full lg:w-1/2 space-y-6 transform transition-all duration-500 group-hover:translate-x-4 bg-[#1A1F2C] backdrop-blur-lg p-8 rounded-xl">
           <h3 className="text-3xl font-bold text-white group-hover:text-primary transition-colors duration-300">
