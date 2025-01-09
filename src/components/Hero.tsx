@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -32,9 +33,11 @@ const Hero = () => {
             operations, cost reduction and exponential growth.
           </p>
           <div className="flex justify-center">
-            <button className="px-8 py-3 border-2 border-[#3f80f6] text-white rounded-full hover:bg-[#3f80f6] hover:text-white transition-colors duration-200 bg-white/10 backdrop-blur-sm">
-              Watch Demo
-            </button>
+            <Link to="/request-demo">
+              <button className="px-8 py-3 border-2 border-[#3f80f6] text-white rounded-full hover:bg-[#3f80f6] hover:text-white transition-colors duration-200 bg-white/10 backdrop-blur-sm">
+                Watch Demo
+              </button>
+            </Link>
           </div>
         </div>
       </div>

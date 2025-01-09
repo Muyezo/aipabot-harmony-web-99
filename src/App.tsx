@@ -17,6 +17,7 @@ import Contact from "./pages/Contact";
 import CommunityHub from "./pages/CommunityHub";
 import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
+import RequestDemo from "./pages/RequestDemo";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +31,7 @@ const App = () => (
           <Routes>
             <Route path="/auth" element={<Auth />} />
             <Route path="/" element={<Index />} />
+            <Route path="/request-demo" element={<RequestDemo />} />
             <Route 
               path="/dashboard" 
               element={
