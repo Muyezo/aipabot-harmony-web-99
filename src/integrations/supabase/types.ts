@@ -103,6 +103,45 @@ export type Database = {
           },
         ]
       }
+      demo_requests: {
+        Row: {
+          company: string
+          country: string
+          created_at: string
+          email: string
+          full_name: string
+          id: string
+          job_title: string
+          message: string | null
+          phone: string | null
+          status: Database["public"]["Enums"]["demo_request_status"] | null
+        }
+        Insert: {
+          company: string
+          country: string
+          created_at?: string
+          email: string
+          full_name: string
+          id?: string
+          job_title: string
+          message?: string | null
+          phone?: string | null
+          status?: Database["public"]["Enums"]["demo_request_status"] | null
+        }
+        Update: {
+          company?: string
+          country?: string
+          created_at?: string
+          email?: string
+          full_name?: string
+          id?: string
+          job_title?: string
+          message?: string | null
+          phone?: string | null
+          status?: Database["public"]["Enums"]["demo_request_status"] | null
+        }
+        Relationships: []
+      }
       event_bookings: {
         Row: {
           created_at: string | null
@@ -235,6 +274,7 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "user"
+      demo_request_status: "pending" | "contacted" | "completed" | "cancelled"
       event_status: "upcoming" | "ongoing" | "completed" | "cancelled"
     }
     CompositeTypes: {
