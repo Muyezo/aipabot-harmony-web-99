@@ -25,7 +25,9 @@ const ServiceItem = ({ service, index }: ServiceItemProps) => {
             aspectRatio: '1/1'
           }}>
             <img
-              src={service.image}
+              src={service.id === 'ai-appointment-agent' 
+                ? '/lovable-uploads/e6b9125f-3f21-4be5-9a18-01b4306a7a44.png'
+                : service.image}
               alt={service.title}
               className={`w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110 ${
                 service.id === 'ai-receptionist' 
