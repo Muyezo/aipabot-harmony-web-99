@@ -6,11 +6,20 @@ import ServiceDetailBenefits from "./detail/ServiceDetailBenefits";
 import { LazyImage } from "../ui/lazy-image";
 import { motion } from "framer-motion";
 
+interface Service {
+  title: string;
+  description: string;
+  longDescription: string;
+  features: string[];
+  benefits: string[];
+  image?: string;
+}
+
 const ServiceDetail = () => {
   const { serviceId } = useParams();
 
   // Service data mapping
-  const services = {
+  const services: Record<string, Service> = {
     "ai-appointment-agent": {
       title: "AI Appointment Voice Agent",
       description: "Streamline appointment scheduling with AI voice assistance",
