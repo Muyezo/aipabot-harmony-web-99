@@ -23,7 +23,7 @@ const testimonials: TestimonialType[] = [
     company: "TechCorp Solutions",
     content: "The AI appointment system has revolutionized our scheduling process. We've seen a 40% increase in booking efficiency.",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&h=200",
+    image: "/photo-1519389950473-47ba0277781c",
   },
   {
     name: "Michael Chen",
@@ -31,7 +31,7 @@ const testimonials: TestimonialType[] = [
     company: "InnovateNow",
     content: "Their AI lead conversion system has transformed our sales pipeline. Conversion rates are up by 60%.",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&h=200",
+    image: "/photo-1605810230434-7631ac76ec81",
   },
   {
     name: "Emily Rodriguez",
@@ -39,7 +39,7 @@ const testimonials: TestimonialType[] = [
     company: "Global Retail Inc",
     content: "The AI receptionist has significantly improved our customer response times. It's like having a 24/7 support team.",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=200&h=200",
+    image: "/photo-1518770660439-4636190af475",
   },
 ];
 
