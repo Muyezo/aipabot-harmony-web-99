@@ -57,7 +57,8 @@ const ServiceDetail = () => {
         "Reduced wait times",
         "Consistent service quality",
         "Cost-effective staffing solution"
-      ]
+      ],
+      image: "/lovable-uploads/cff2b406-c7ad-4664-b494-7cb6283529d7.png"
     },
     "intelligent-customer-service": {
       title: "Intelligent Customer Service Agent",
@@ -76,7 +77,8 @@ const ServiceDetail = () => {
         "Reduced support costs",
         "24/7 availability",
         "Scalable support operations"
-      ]
+      ],
+      image: "/lovable-uploads/641fdacf-caaf-4f59-8ff7-24f766dca13f.png"
     },
     "ai-sales-agent": {
       title: "AI Customer Acquisition/Lead Conversion Agent",
@@ -95,7 +97,8 @@ const ServiceDetail = () => {
         "Reduced sales cycle time",
         "Consistent follow-up",
         "Data-driven insights"
-      ]
+      ],
+      image: "/lovable-uploads/365b6173-0871-435e-b189-b529ec695527.png"
     }
   };
 
@@ -122,7 +125,7 @@ const ServiceDetail = () => {
               longDescription={service.longDescription}
             />
             
-            {serviceId === 'ai-appointment-agent' && (
+            {service.image && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -132,7 +135,7 @@ const ServiceDetail = () => {
                 <div className="relative rounded-xl overflow-hidden shadow-2xl border border-white/10 aspect-video max-w-4xl mx-auto">
                   <LazyImage
                     src={service.image}
-                    alt="AI Appointment Voice Agent Integration"
+                    alt={`${service.title} Integration`}
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
