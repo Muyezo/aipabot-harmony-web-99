@@ -127,7 +127,7 @@ const DemoRequestForm = ({ onSubmit, isSubmitting }: DemoRequestFormProps) => {
 
       <div className="flex justify-center">
         <ReCAPTCHA
-          sitekey="6LdAFLMqAAAAAHFoq00Fpb3BeT7_HMAedAOTAua1"
+          sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
           onChange={handleRecaptchaChange}
           theme="dark"
         />
