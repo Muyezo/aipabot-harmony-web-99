@@ -1,4 +1,4 @@
-import { Building2, Briefcase, Hospital, CarFront, ShoppingBag, GraduationCap, Plane } from "lucide-react";
+import { Building2, Briefcase, Flower2, CarFront, ShoppingBag, GraduationCap, Plane } from "lucide-react";
 
 export const industries = [
   {
@@ -7,9 +7,9 @@ export const industries = [
     description: "Property management & sales automation"
   },
   {
-    icon: Hospital,
-    name: "Healthcare",
-    description: "Patient care & administrative support"
+    icon: Flower2,
+    name: "Beauty & Wellness",
+    description: "Spa & salon appointment scheduling"
   },
   {
     icon: CarFront,
