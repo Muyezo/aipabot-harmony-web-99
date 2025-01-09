@@ -22,9 +22,9 @@ export const industries = [
     description: "Customer service & inventory management"
   },
   {
-    icon: Warehouse,
-    name: "Manufacturing",
-    description: "Production & quality control"
+    icon: Building2,
+    name: "Home Services",
+    description: "Scheduling & customer communication"
   },
   {
     icon: GraduationCap,
