@@ -36,7 +36,16 @@ const ServiceDetail = () => {
               <ServiceImage image={service.image} title={service.title} />
             )}
 
-            <div className="grid md:grid-cols-2 gap-8 mt-12">
+            <div className="text-center mt-16 mb-16">
+              <h2 className="text-4xl font-bold text-white mb-4">
+                Transform Your Customer Experience Today
+              </h2>
+              <p className="text-xl text-gray-200 max-w-4xl mx-auto">
+                Elevate your customer service to new heights. Our AI-powered solutions ensure every interaction builds loyalty, delivering the seamless, responsive experience your customers expect in today's digital world.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
               <ServiceDetailFeatures features={service.features} />
               <ServiceDetailBenefits benefits={service.benefits} />
             </div>
