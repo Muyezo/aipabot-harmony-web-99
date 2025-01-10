@@ -16,8 +16,8 @@ const BlogGrid = () => {
       if (error) throw error;
       return data;
     },
-    staleTime: 5 * 60 * 1000, // Consider data fresh for 5 minutes
-    gcTime: 30 * 60 * 1000, // Cache data for 30 minutes
+    staleTime: 5 * 60 * 1000,
+    gcTime: 30 * 60 * 1000,
   });
 
   if (isLoading) {
