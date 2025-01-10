@@ -3,105 +3,11 @@ import Navbar from "../Navbar";
 import ServiceDetailHeader from "./detail/ServiceDetailHeader";
 import ServiceDetailFeatures from "./detail/ServiceDetailFeatures";
 import ServiceDetailBenefits from "./detail/ServiceDetailBenefits";
-import { LazyImage } from "../ui/lazy-image";
-import { motion } from "framer-motion";
-
-interface Service {
-  title: string;
-  description: string;
-  longDescription: string;
-  features: string[];
-  benefits: string[];
-  image?: string;
-}
+import ServiceImage from "./detail/ServiceImage";
+import { services } from "@/data/services";
 
 const ServiceDetail = () => {
   const { serviceId } = useParams();
-
-  // Service data mapping
-  const services: Record<string, Service> = {
-    "ai-appointment-agent": {
-      title: "AI Appointment Voice Agent",
-      description: "Streamline appointment scheduling with AI voice assistance",
-      longDescription: "Transform your appointment booking process with our intelligent voice agent. Handle scheduling, rescheduling, and cancellations effortlessly while providing a natural conversational experience.",
-      features: [
-        "Natural language processing for human-like interactions",
-        "24/7 appointment scheduling availability",
-        "Seamless integration with existing calendar systems",
-        "Multi-language support",
-        "Automated confirmation and reminder notifications"
-      ],
-      benefits: [
-        "Reduce administrative workload",
-        "Minimize scheduling errors",
-        "Improve customer satisfaction",
-        "Increase booking efficiency",
-        "Lower operational costs"
-      ],
-      image: "/lovable-uploads/db06efde-8d38-4519-be10-ab6f5c233726.png"
-    },
-    "ai-receptionist": {
-      title: "AI Receptionist",
-      description: "24/7 intelligent front desk solution",
-      longDescription: "Provide round-the-clock reception services with our AI receptionist. Handle visitor management, inquiries, and basic administrative tasks with professional efficiency.",
-      features: [
-        "Visitor check-in and management",
-        "Real-time language translation",
-        "Smart routing of inquiries",
-        "Document processing capabilities",
-        "Integration with security systems"
-      ],
-      benefits: [
-        "Enhanced security and visitor tracking",
-        "Improved first impression",
-        "Reduced wait times",
-        "Consistent service quality",
-        "Cost-effective staffing solution"
-      ],
-      image: "/lovable-uploads/cff2b406-c7ad-4664-b494-7cb6283529d7.png"
-    },
-    "intelligent-customer-service": {
-      title: "Intelligent Customer Service Agent",
-      description: "Advanced AI-powered customer support",
-      longDescription: "Deliver exceptional customer service with our AI agents that understand context, handle complex queries, and provide personalized assistance across multiple channels.",
-      features: [
-        "Context-aware responses",
-        "Multi-channel support integration",
-        "Sentiment analysis",
-        "Automated ticket management",
-        "Knowledge base integration"
-      ],
-      benefits: [
-        "Faster response times",
-        "Improved customer satisfaction",
-        "Reduced support costs",
-        "24/7 availability",
-        "Scalable support operations"
-      ],
-      image: "/lovable-uploads/641fdacf-caaf-4f59-8ff7-24f766dca13f.png"
-    },
-    "ai-sales-agent": {
-      title: "AI Customer Acquisition/Lead Conversion Agent",
-      description: "Convert leads with AI precision",
-      longDescription: "Boost your sales performance with AI agents that qualify leads, nurture prospects, and drive conversions through intelligent conversations and personalized engagement.",
-      features: [
-        "Lead qualification automation",
-        "Personalized engagement scripts",
-        "Sales pipeline integration",
-        "Performance analytics",
-        "Multi-channel outreach capabilities"
-      ],
-      benefits: [
-        "Increased conversion rates",
-        "Improved lead quality",
-        "Reduced sales cycle time",
-        "Consistent follow-up",
-        "Data-driven insights"
-      ],
-      image: "/lovable-uploads/365b6173-0871-435e-b189-b529ec695527.png"
-    }
-  };
-
   const service = services[serviceId as keyof typeof services];
 
   if (!service) {
@@ -126,21 +32,7 @@ const ServiceDetail = () => {
             />
             
             {service.image && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="mt-12 mb-12 relative"
-              >
-                <div className="relative rounded-xl overflow-hidden shadow-2xl border border-white/10 aspect-video max-w-4xl mx-auto">
-                  <LazyImage
-                    src={service.image}
-                    alt={`${service.title} Integration`}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-                </div>
-              </motion.div>
+              <ServiceImage image={service.image} title={service.title} />
             )}
 
             <div className="grid md:grid-cols-2 gap-8 mt-12">
