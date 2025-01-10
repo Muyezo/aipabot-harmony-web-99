@@ -29,6 +29,9 @@ const ServiceDetail = () => {
     if (serviceId === 'intelligent-customer-service') {
       return "Don't let your customers walk away... Empower your contact center with AI Agents that deliver lightning-fast, personalized, and unforgettable service they'll love and stay for!";
     }
+    if (serviceId === 'ai-appointment-agent') {
+      return "Seize every opportunity with AI Appointment Voice Agents. that engage customers instantly, book appointments seamlessly, and ensure your calendar stays busy... keeps your clients coming back for more.!";
+    }
     return "Elevate your customer service to new heights. Our AI-powered solutions ensure every interaction builds loyalty, delivering the seamless, responsive experience your customers expect in today's digital world.";
   };
 
