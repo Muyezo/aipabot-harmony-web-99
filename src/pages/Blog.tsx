@@ -7,16 +7,28 @@ import BlogSearch from "../components/blog/BlogSearch";
 import RelatedPosts from "../components/blog/RelatedPosts";
 import { blogPosts } from "../constants/blogPosts";
 import { useToast } from "@/hooks/use-toast";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 
 const Blog = () => {
   const { toast } = useToast();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
 
-  const categories = useMemo(() => {
-    const uniqueCategories = new Set(blogPosts.map(post => post.category));
-    return Array.from(uniqueCategories);
-  }, []);
+  const { data: categories } = useQuery({
+    queryKey: ['blog-categories'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('blog_posts')
+        .select('category')
+        .eq('status', 'published');
+      
+      if (error) throw error;
+      
+      const uniqueCategories = new Set(data.map(post => post.category));
+      return Array.from(uniqueCategories).sort();
+    },
+  });
 
   const filteredPosts = useMemo(() => {
     return blogPosts.filter(post => {
@@ -68,7 +80,10 @@ const Blog = () => {
               </p>
             </motion.div>
             <div className="space-y-12">
-              <BlogSearch onSearch={handleSearch} categories={categories} />
+              <BlogSearch 
+                onSearch={handleSearch} 
+                categories={categories || []} 
+              />
               <BlogGrid />
               <RelatedPosts currentPost={currentPost} posts={blogPosts} />
             </div>
