@@ -35,7 +35,7 @@ const Hero = () => {
           <div className="flex justify-center">
             <Link to="/request-demo">
               <button className="px-8 py-3 border-2 border-[#3f80f6] text-white rounded-full hover:bg-[#3f80f6] hover:text-white transition-colors duration-200 bg-white/10 backdrop-blur-sm">
-                Watch Demo
+                Request A Demo
               </button>
             </Link>
           </div>
