@@ -9,7 +9,6 @@ export const navItems = [
       { name: "AI Customer Acquisition Agent", path: "/services/ai-sales-agent" }
     ]
   },
-  { name: "Pricing", path: "/pricing" },
   { name: "Blog", path: "/blog" },
   { name: "About", path: "/about" },
   { name: "Contact", path: "/contact" },
