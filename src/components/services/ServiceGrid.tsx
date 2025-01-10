@@ -24,7 +24,7 @@ const services = [
   },
   {
     icon: Users,
-    title: "AI Customer Acquisition/Lead Conversion Agent",
+    title: "AI Customer Acquisition Agent",
     description: "Convert leads with AI precision",
     path: "/services/ai-sales-agent"
   }

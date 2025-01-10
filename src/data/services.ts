@@ -62,7 +62,7 @@ export const services: ServiceData = {
     image: "/lovable-uploads/641fdacf-caaf-4f59-8ff7-24f766dca13f.png"
   },
   "ai-sales-agent": {
-    title: "AI Customer Acquisition/Lead Conversion Agent",
+    title: "AI Customer Acquisition Agent",
     description: "Convert leads with AI precision",
     longDescription: "Boost your sales performance with AI agents that qualify leads, nurture prospects, and drive conversions through intelligent conversations and personalized engagement.",
     features: [
