@@ -22,6 +22,13 @@ const ServiceDetail = () => {
     return "Transform Your Customer Experience Today";
   };
 
+  const getServiceSubtext = () => {
+    if (serviceId === 'intelligent-customer-service') {
+      return "Don't let your customers walk away—empower your contact center with AI Agents that deliver lightning-fast, personalized, and unforgettable service they'll love and stay for!";
+    }
+    return "Elevate your customer service to new heights. Our AI-powered solutions ensure every interaction builds loyalty, delivering the seamless, responsive experience your customers expect in today's digital world.";
+  };
+
   return (
     <div className="min-h-screen flex flex-col relative">
       <div className="glow-orb glow-orb-1" />
@@ -48,7 +55,7 @@ const ServiceDetail = () => {
                 {getServiceTitle()}
               </h2>
               <p className="text-xl text-gray-200 max-w-4xl mx-auto">
-                Elevate your customer service to new heights. Our AI-powered solutions ensure every interaction builds loyalty, delivering the seamless, responsive experience your customers expect in today's digital world.
+                {getServiceSubtext()}
               </p>
             </div>
 
