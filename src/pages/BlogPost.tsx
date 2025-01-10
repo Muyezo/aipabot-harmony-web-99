@@ -6,6 +6,7 @@ import { Calendar } from "lucide-react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Skeleton } from "@/components/ui/skeleton";
+import RelatedPosts from "../components/blog/RelatedPosts";
 
 const BlogPost = () => {
   const { slug } = useParams();
@@ -23,6 +24,25 @@ const BlogPost = () => {
       if (error) throw error;
       return data;
     },
+  });
+
+  const { data: relatedPosts } = useQuery({
+    queryKey: ["related-posts", post?.category],
+    queryFn: async () => {
+      if (!post?.category) return [];
+      
+      const { data, error } = await supabase
+        .from("blog_posts")
+        .select("*")
+        .eq("status", "published")
+        .eq("category", post.category)
+        .neq("id", post.id)
+        .limit(3);
+
+      if (error) throw error;
+      return data;
+    },
+    enabled: !!post?.category,
   });
 
   const { data: author, isLoading: authorLoading } = useQuery({
@@ -148,6 +168,12 @@ const BlogPost = () => {
               dangerouslySetInnerHTML={{ __html: post.content }}
             />
           </div>
+          
+          {relatedPosts && relatedPosts.length > 0 && (
+            <div className="mt-12">
+              <RelatedPosts currentPost={post} posts={relatedPosts} />
+            </div>
+          )}
         </article>
       </main>
       <Footer />

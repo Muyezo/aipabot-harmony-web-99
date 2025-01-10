@@ -8,17 +8,13 @@ interface RelatedPostsProps {
 }
 
 const RelatedPosts = ({ currentPost, posts }: RelatedPostsProps) => {
-  const relatedPosts = posts
-    .filter((post) => post.id !== currentPost.id && post.category === currentPost.category)
-    .slice(0, 3);
-
-  if (relatedPosts.length === 0) return null;
+  if (posts.length === 0) return null;
 
   return (
     <div className="mt-12">
-      <h2 className="text-2xl font-semibold text-gray-900 mb-6">Related Posts</h2>
+      <h2 className="text-2xl font-semibold text-white mb-6">Related Posts</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {relatedPosts.map((post, index) => (
+        {posts.map((post, index) => (
           <motion.div
             key={post.id}
             initial={{ opacity: 0, y: 20 }}

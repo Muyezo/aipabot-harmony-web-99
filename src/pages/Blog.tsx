@@ -4,8 +4,6 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import BlogGrid from "../components/blog/BlogGrid";
 import BlogSearch from "../components/blog/BlogSearch";
-import RelatedPosts from "../components/blog/RelatedPosts";
-import { blogPosts } from "../constants/blogPosts";
 import { useToast } from "@/hooks/use-toast";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -30,20 +28,6 @@ const Blog = () => {
     },
   });
 
-  const filteredPosts = useMemo(() => {
-    return blogPosts.filter(post => {
-      const matchesSearch = searchQuery === "" || 
-        post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        post.content.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        post.excerpt?.toLowerCase().includes(searchQuery.toLowerCase());
-      
-      const matchesCategory = selectedCategory === "" || 
-        post.category === selectedCategory;
-
-      return matchesSearch && matchesCategory;
-    });
-  }, [searchQuery, selectedCategory]);
-
   const handleSearch = (query: string, category: string) => {
     setSearchQuery(query);
     setSelectedCategory(category);
@@ -52,8 +36,6 @@ const Blog = () => {
       description: `Found ${filteredPosts.length} matching posts`,
     });
   };
-
-  const currentPost = blogPosts[0];
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -85,7 +67,6 @@ const Blog = () => {
                 categories={categories || []} 
               />
               <BlogGrid />
-              <RelatedPosts currentPost={currentPost} posts={blogPosts} />
             </div>
           </div>
         </div>
