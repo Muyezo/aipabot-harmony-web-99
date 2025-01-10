@@ -15,6 +15,13 @@ const ServiceDetail = () => {
     return <div>Service not found</div>;
   }
 
+  const getServiceTitle = () => {
+    if (serviceId === 'intelligent-customer-service') {
+      return "Win Every Customer with Outstanding Service";
+    }
+    return "Transform Your Customer Experience Today";
+  };
+
   return (
     <div className="min-h-screen flex flex-col relative">
       <div className="glow-orb glow-orb-1" />
@@ -38,7 +45,7 @@ const ServiceDetail = () => {
 
             <div className="text-center mt-16 mb-16">
               <h2 className="text-4xl font-bold text-white mb-4">
-                Transform Your Customer Experience Today
+                {getServiceTitle()}
               </h2>
               <p className="text-xl text-gray-200 max-w-4xl mx-auto">
                 Elevate your customer service to new heights. Our AI-powered solutions ensure every interaction builds loyalty, delivering the seamless, responsive experience your customers expect in today's digital world.
