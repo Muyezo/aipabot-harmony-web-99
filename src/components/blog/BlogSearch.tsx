@@ -56,13 +56,13 @@ const BlogSearch = ({ onSearch, categories = [] }: BlogSearchProps) => {
 
   return (
     <div className="space-y-8">
-      <div className="space-y-4">
+      <div className="flex items-center gap-4 max-w-3xl mx-auto">
         <Input
           type="search"
           placeholder="Search blog posts..."
           value={searchTerm}
           onChange={handleSearch}
-          className="max-w-md mx-auto"
+          className="flex-1"
         />
         <BlogCategories
           categories={categories}

@@ -15,7 +15,7 @@ interface BlogCategoriesProps {
 
 const BlogCategories = ({ categories, selectedCategory, onCategoryChange }: BlogCategoriesProps) => {
   return (
-    <div className="flex items-center gap-2 max-w-md mx-auto mb-4">
+    <div className="flex items-center gap-2">
       <Filter className="h-4 w-4 text-gray-400" />
       <Select value={selectedCategory} onValueChange={onCategoryChange}>
         <SelectTrigger className="w-[180px] bg-background">
