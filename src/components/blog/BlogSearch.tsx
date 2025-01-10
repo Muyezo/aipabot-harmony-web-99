@@ -13,7 +13,7 @@ interface BlogSearchProps {
 
 const BlogSearch = ({ onSearch, categories = [] }: BlogSearchProps) => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
 
   const { data: posts, isLoading } = useQuery({
     queryKey: ['blog-posts', searchTerm, selectedCategory],
@@ -27,7 +27,7 @@ const BlogSearch = ({ onSearch, categories = [] }: BlogSearchProps) => {
         query = query.or(`title.ilike.%${searchTerm}%,content.ilike.%${searchTerm}%`);
       }
 
-      if (selectedCategory) {
+      if (selectedCategory && selectedCategory !== 'all') {
         query = query.eq('category', selectedCategory);
       }
 
