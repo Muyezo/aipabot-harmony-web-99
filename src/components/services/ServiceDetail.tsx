@@ -24,7 +24,7 @@ const ServiceDetail = () => {
 
   const getServiceSubtext = () => {
     if (serviceId === 'intelligent-customer-service') {
-      return "Don't let your customers walk away—empower your contact center with AI Agents that deliver lightning-fast, personalized, and unforgettable service they'll love and stay for!";
+      return "Don't let your customers walk away... Empower your contact center with AI Agents that deliver lightning-fast, personalized, and unforgettable service they'll love and stay for!";
     }
     return "Elevate your customer service to new heights. Our AI-powered solutions ensure every interaction builds loyalty, delivering the seamless, responsive experience your customers expect in today's digital world.";
   };
