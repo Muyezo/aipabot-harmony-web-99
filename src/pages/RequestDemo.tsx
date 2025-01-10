@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import DemoRequestForm from "@/components/demo/DemoRequestForm";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const RequestDemo = () => {
   const { toast } = useToast();
@@ -67,22 +69,26 @@ const RequestDemo = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#1A1F2C] text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Experience AI That Works for You
-          </h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Schedule a personalized demo to see how our AI solutions can transform
-            your business operations and drive growth.
-          </p>
-        </div>
-        <div className="max-w-2xl mx-auto">
-          <DemoRequestForm onSubmit={handleSubmit} isSubmitting={isSubmitting} />
+    <>
+      <Navbar />
+      <div className="min-h-screen bg-[#1A1F2C] text-white pt-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <div className="text-center mb-12">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+              Experience AI That Works for You
+            </h1>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Schedule a personalized demo to see how our AI solutions can transform
+              your business operations and drive growth.
+            </p>
+          </div>
+          <div className="max-w-2xl mx-auto">
+            <DemoRequestForm onSubmit={handleSubmit} isSubmitting={isSubmitting} />
+          </div>
         </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 
