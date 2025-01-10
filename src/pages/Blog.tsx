@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import BlogGrid from "../components/blog/BlogGrid";
@@ -33,7 +33,7 @@ const Blog = () => {
     setSelectedCategory(category);
     toast({
       title: "Search updated",
-      description: `Found ${filteredPosts.length} matching posts`,
+      description: "Search filters have been updated",
     });
   };
 
