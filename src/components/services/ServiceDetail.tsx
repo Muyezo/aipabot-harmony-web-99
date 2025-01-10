@@ -35,6 +35,9 @@ const ServiceDetail = () => {
     if (serviceId === 'ai-appointment-agent') {
       return "Seize every opportunity with AI Appointment Voice Agents. that engage customers instantly, book appointments seamlessly, and ensure your calendar stays busy... keeps your clients coming back for more.!";
     }
+    if (serviceId === 'ai-sales-agent') {
+      return "Unlock more sales with AI Customer Acquisition Agents that work around the clock, nurturing leads and closing deals with precision and speed.";
+    }
     return "Elevate your customer service to new heights. Our AI-powered solutions ensure every interaction builds loyalty, delivering the seamless, responsive experience your customers expect in today's digital world.";
   };
 
