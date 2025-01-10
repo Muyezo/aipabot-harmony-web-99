@@ -22,6 +22,9 @@ const ServiceDetail = () => {
     if (serviceId === 'ai-appointment-agent') {
       return "Turn Missed Calls Into Booked Appointments";
     }
+    if (serviceId === 'ai-sales-agent') {
+      return "Turn Leads Into Loyal Customers, Effortlessly";
+    }
     return "Transform Your Customer Experience Today";
   };
 
