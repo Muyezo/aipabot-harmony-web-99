@@ -1,5 +1,6 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Navbar from "../Navbar";
+import Footer from "../Footer";
 import ServiceDetailHeader from "./detail/ServiceDetailHeader";
 import ServiceDetailFeatures from "./detail/ServiceDetailFeatures";
 import ServiceDetailBenefits from "./detail/ServiceDetailBenefits";
@@ -39,9 +40,18 @@ const ServiceDetail = () => {
               <ServiceDetailFeatures features={service.features} />
               <ServiceDetailBenefits benefits={service.benefits} />
             </div>
+
+            <div className="mt-16 text-center">
+              <Link to="/request-demo">
+                <button className="px-8 py-3 border-2 border-[#3f80f6] text-white rounded-full hover:bg-[#3f80f6] hover:text-white transition-colors duration-200 bg-white/10 backdrop-blur-sm">
+                  Request A Demo
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       </main>
+      <Footer />
     </div>
   );
 };
