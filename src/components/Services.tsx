@@ -11,13 +11,6 @@ const Services = () => {
       image: "/lovable-uploads/530543e9-690f-4d5e-8dd3-c625b395a604.png"
     },
     {
-      id: "ai-receptionist",
-      title: "AI Receptionist",
-      shortDesc: "24/7 intelligent front desk solution",
-      longDesc: "Provide round-the-clock reception services with our AI receptionist. Handle visitor management, inquiries, and basic administrative tasks with professional efficiency.",
-      image: "/lovable-uploads/cff2b406-c7ad-4664-b494-7cb6283529d7.png"
-    },
-    {
       id: "intelligent-customer-service",
       title: "Intelligent Customer Service Agent",
       shortDesc: "Advanced AI-powered customer support",

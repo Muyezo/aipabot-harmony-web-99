@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Calendar, PhoneCall, HeadphonesIcon, Users } from "lucide-react";
+import { Calendar, HeadphonesIcon, Users } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
 const services = [
@@ -9,12 +9,6 @@ const services = [
     title: "AI Appointment Voice Agent",
     description: "Streamline appointment scheduling with AI voice assistance",
     path: "/services/ai-appointment-agent"
-  },
-  {
-    icon: PhoneCall,
-    title: "AI Receptionist",
-    description: "24/7 intelligent front desk solution",
-    path: "/services/ai-receptionist"
   },
   {
     icon: HeadphonesIcon,
