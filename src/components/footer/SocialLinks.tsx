@@ -7,7 +7,7 @@ const SocialLinks = () => {
       <div className="flex space-x-4">
         <a href="https://tiktok.com" className="hover:text-primary transition-colors">
           <img 
-            src="/lovable-uploads/7882f5c6-e63c-46b4-b1bc-28b7fb9c89ee.png" 
+            src="/lovable-uploads/81f09327-b5e5-431b-8589-7db1f113c6c4.png" 
             alt="TikTok"
             className="w-6 h-6"
           />
