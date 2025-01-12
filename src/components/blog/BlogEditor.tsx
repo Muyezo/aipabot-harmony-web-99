@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSession } from "@supabase/auth-helpers-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -16,6 +16,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Command, CommandGroup, CommandItem, CommandList } from "@/components/ui/command";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
 interface BlogEditorProps {
   post?: BlogPost;
@@ -33,6 +35,27 @@ const BlogEditor = ({ post, onSave, onCancel }: BlogEditorProps) => {
   const [category, setCategory] = useState(post?.category || "");
   const [status, setStatus] = useState<BlogPost['status']>(post?.status || "draft");
   const [featuredImage, setFeaturedImage] = useState(post?.featured_image || "");
+  const [categories, setCategories] = useState<string[]>([]);
+  const [isNewCategory, setIsNewCategory] = useState(false);
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
+  const fetchCategories = async () => {
+    const { data, error } = await supabase
+      .from('blog_posts')
+      .select('category')
+      .not('category', 'is', null);
+
+    if (error) {
+      console.error('Error fetching categories:', error);
+      return;
+    }
+
+    const uniqueCategories = Array.from(new Set(data.map(post => post.category)));
+    setCategories(uniqueCategories);
+  };
 
   const handleSave = async () => {
     if (!title || !content || !category) {
@@ -145,11 +168,57 @@ const BlogEditor = ({ post, onSave, onCancel }: BlogEditorProps) => {
         </div>
 
         <div>
-          <Input
-            placeholder="Category"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-          />
+          <Popover open={isNewCategory} onOpenChange={setIsNewCategory}>
+            <PopoverTrigger asChild>
+              <Button
+                variant="outline"
+                role="combobox"
+                className="w-full justify-between"
+              >
+                {category || "Select category..."}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-full p-0">
+              <Command>
+                <CommandList>
+                  <CommandGroup>
+                    {categories.map((cat) => (
+                      <CommandItem
+                        key={cat}
+                        onSelect={() => {
+                          setCategory(cat);
+                          setIsNewCategory(false);
+                        }}
+                      >
+                        {cat}
+                      </CommandItem>
+                    ))}
+                    <CommandItem
+                      onSelect={() => {
+                        setIsNewCategory(true);
+                      }}
+                    >
+                      + Add new category
+                    </CommandItem>
+                  </CommandGroup>
+                </CommandList>
+              </Command>
+              {isNewCategory && (
+                <div className="p-2">
+                  <Input
+                    placeholder="Enter new category"
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        setIsNewCategory(false);
+                      }
+                    }}
+                  />
+                </div>
+              )}
+            </PopoverContent>
+          </Popover>
         </div>
 
         <div>
