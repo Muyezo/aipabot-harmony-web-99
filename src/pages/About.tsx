@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import CompanyMission from "../components/about/CompanyMission";
 import CompanyValues from "../components/about/CompanyValues";
 import CompanyTimeline from "../components/about/CompanyTimeline";
+import MeetAipaBot from "../components/about/MeetAipaBot";
 
 const About = () => {
   return (
@@ -31,6 +32,7 @@ const About = () => {
 
             <div className="space-y-24">
               <CompanyMission />
+              <MeetAipaBot />
               <CompanyValues />
               <CompanyTimeline />
             </div>
