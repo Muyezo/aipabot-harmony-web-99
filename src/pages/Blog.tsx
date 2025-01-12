@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import BlogGrid from "../components/blog/BlogGrid";
 import BlogSearch from "../components/blog/BlogSearch";
 import { useToast } from "@/hooks/use-toast";
 import { useQuery } from "@tanstack/react-query";
@@ -61,13 +60,10 @@ const Blog = () => {
                 Discover insights, tutorials, and updates from our team
               </p>
             </motion.div>
-            <div className="space-y-12">
-              <BlogSearch 
-                onSearch={handleSearch} 
-                categories={categories || []} 
-              />
-              <BlogGrid />
-            </div>
+            <BlogSearch 
+              onSearch={handleSearch} 
+              categories={categories || []} 
+            />
           </div>
         </div>
       </main>
