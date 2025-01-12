@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ContactForm from "../components/contact/ContactForm";
-import OfficeLocations from "../components/contact/OfficeLocations";
 import SupportChannels from "../components/contact/SupportChannels";
 
 const Contact = () => {
@@ -29,26 +28,15 @@ const Contact = () => {
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="content-wrapper"
-              >
-                <h2 className="text-2xl font-semibold mb-6 text-white">Send us a Message</h2>
-                <ContactForm />
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="content-wrapper"
-              >
-                <h2 className="text-2xl font-semibold mb-6 text-white">Our Offices</h2>
-                <OfficeLocations />
-              </motion.div>
-            </div>
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="max-w-xl mx-auto mb-16"
+            >
+              <h2 className="text-2xl font-semibold mb-6 text-white text-center">Send us a Message</h2>
+              <ContactForm />
+            </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
