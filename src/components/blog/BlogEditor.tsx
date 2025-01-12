@@ -1,23 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSession } from "@supabase/auth-helpers-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Save, X } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { BlogPost } from "@/types/blog";
-import RichTextEditor from "./RichTextEditor";
-import ImageUploader from "./ImageUploader";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Command, CommandGroup, CommandItem, CommandList } from "@/components/ui/command";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import BlogToolbar from "./BlogToolbar";
+import BlogForm from "./BlogForm";
 
 interface BlogEditorProps {
   post?: BlogPost;
@@ -35,27 +22,6 @@ const BlogEditor = ({ post, onSave, onCancel }: BlogEditorProps) => {
   const [category, setCategory] = useState(post?.category || "");
   const [status, setStatus] = useState<BlogPost['status']>(post?.status || "draft");
   const [featuredImage, setFeaturedImage] = useState(post?.featured_image || "");
-  const [categories, setCategories] = useState<string[]>([]);
-  const [isNewCategory, setIsNewCategory] = useState(false);
-
-  useEffect(() => {
-    fetchCategories();
-  }, []);
-
-  const fetchCategories = async () => {
-    const { data, error } = await supabase
-      .from('blog_posts')
-      .select('category')
-      .not('category', 'is', null);
-
-    if (error) {
-      console.error('Error fetching categories:', error);
-      return;
-    }
-
-    const uniqueCategories = Array.from(new Set(data.map(post => post.category)));
-    setCategories(uniqueCategories);
-  };
 
   const handleSave = async () => {
     if (!title || !content || !category) {
@@ -123,116 +89,26 @@ const BlogEditor = ({ post, onSave, onCancel }: BlogEditorProps) => {
 
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold text-white">
-          {post ? "Edit Post" : "New Post"}
-        </h2>
-        <div className="flex gap-2">
-          <Button onClick={onCancel} variant="outline">
-            <X className="h-4 w-4" />
-          </Button>
-          <Button onClick={handleSave}>
-            <Save className="h-4 w-4" />
-          </Button>
-        </div>
-      </div>
+      <BlogToolbar
+        onSave={handleSave}
+        onCancel={onCancel}
+        isNew={!post}
+      />
 
-      <div className="space-y-4">
-        <div>
-          <Input
-            placeholder="Post title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-        </div>
-
-        <ImageUploader
-          featuredImage={featuredImage}
-          onImageUpload={setFeaturedImage}
-        />
-
-        <div>
-          <RichTextEditor
-            value={content}
-            onChange={setContent}
-            className="min-h-[400px] mb-4"
-          />
-        </div>
-
-        <div>
-          <Textarea
-            placeholder="Post excerpt (optional)"
-            value={excerpt}
-            onChange={(e) => setExcerpt(e.target.value)}
-          />
-        </div>
-
-        <div>
-          <Popover open={isNewCategory} onOpenChange={setIsNewCategory}>
-            <PopoverTrigger asChild>
-              <Button
-                variant="outline"
-                role="combobox"
-                className="w-full justify-between"
-              >
-                {category || "Select category..."}
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-full p-0">
-              <Command>
-                <CommandList>
-                  <CommandGroup>
-                    {categories.map((cat) => (
-                      <CommandItem
-                        key={cat}
-                        onSelect={() => {
-                          setCategory(cat);
-                          setIsNewCategory(false);
-                        }}
-                      >
-                        {cat}
-                      </CommandItem>
-                    ))}
-                    <CommandItem
-                      onSelect={() => {
-                        setIsNewCategory(true);
-                      }}
-                    >
-                      + Add new category
-                    </CommandItem>
-                  </CommandGroup>
-                </CommandList>
-              </Command>
-              {isNewCategory && (
-                <div className="p-2">
-                  <Input
-                    placeholder="Enter new category"
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
-                        setIsNewCategory(false);
-                      }
-                    }}
-                  />
-                </div>
-              )}
-            </PopoverContent>
-          </Popover>
-        </div>
-
-        <div>
-          <Select value={status} onValueChange={(value: BlogPost['status']) => setStatus(value)}>
-            <SelectTrigger>
-              <SelectValue placeholder="Select status" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="draft">Draft</SelectItem>
-              <SelectItem value="published">Published</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-      </div>
+      <BlogForm
+        title={title}
+        content={content}
+        excerpt={excerpt}
+        category={category}
+        status={status}
+        featuredImage={featuredImage}
+        onTitleChange={setTitle}
+        onContentChange={setContent}
+        onExcerptChange={setExcerpt}
+        onCategoryChange={setCategory}
+        onStatusChange={setStatus}
+        onImageUpload={setFeaturedImage}
+      />
     </div>
   );
 };
