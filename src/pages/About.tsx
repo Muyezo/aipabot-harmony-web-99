@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import CompanyMission from "../components/about/CompanyMission";
-import TeamProfiles from "../components/about/TeamProfiles";
 import CompanyValues from "../components/about/CompanyValues";
 import CompanyTimeline from "../components/about/CompanyTimeline";
 
@@ -32,7 +31,6 @@ const About = () => {
 
             <div className="space-y-24">
               <CompanyMission />
-              <TeamProfiles />
               <CompanyValues />
               <CompanyTimeline />
             </div>
