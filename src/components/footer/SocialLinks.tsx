@@ -1,4 +1,4 @@
-import { Tiktok, X, Instagram, Linkedin } from "lucide-react";
+import { TiktokIcon, X, Instagram, Linkedin } from "lucide-react";
 
 const SocialLinks = () => {
   return (
@@ -6,7 +6,7 @@ const SocialLinks = () => {
       <h3 className="text-lg font-semibold text-white">Connect With Us</h3>
       <div className="flex space-x-4">
         <a href="https://tiktok.com" className="hover:text-primary transition-colors">
-          <Tiktok className="w-6 h-6" />
+          <TiktokIcon className="w-6 h-6" />
         </a>
         <a href="https://x.com" className="hover:text-primary transition-colors">
           <X className="w-6 h-6" />
