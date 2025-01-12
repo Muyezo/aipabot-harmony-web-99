@@ -3,7 +3,6 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import CompanyMission from "../components/about/CompanyMission";
 import CompanyValues from "../components/about/CompanyValues";
-import CompanyTimeline from "../components/about/CompanyTimeline";
 import MeetAipaBot from "../components/about/MeetAipaBot";
 
 const About = () => {
@@ -34,7 +33,6 @@ const About = () => {
               <CompanyMission />
               <MeetAipaBot />
               <CompanyValues />
-              <CompanyTimeline />
             </div>
           </div>
         </div>
