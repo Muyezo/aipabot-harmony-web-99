@@ -11,6 +11,7 @@ import RequestDemo from "./pages/RequestDemo";
 import CommunityHub from "./pages/CommunityHub";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
+import FAQ from "./pages/FAQ";
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
         <Route path="/community" element={<CommunityHub />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/terms" element={<Terms />} />
+        <Route path="/faq" element={<FAQ />} />
       </Routes>
     </Router>
   );
