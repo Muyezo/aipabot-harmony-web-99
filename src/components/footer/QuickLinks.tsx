@@ -1,27 +1,29 @@
+import { Link } from "react-router-dom";
+
 const QuickLinks = () => {
   return (
     <div className="space-y-4">
       <h3 className="text-lg font-semibold text-white">Quick Links</h3>
       <ul className="space-y-2">
         <li>
-          <a href="/privacy" className="hover:text-primary transition-colors">
+          <Link to="/privacy" className="hover:text-primary transition-colors">
             Privacy Policy
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="/terms" className="hover:text-primary transition-colors">
+          <Link to="/terms" className="hover:text-primary transition-colors">
             Terms of Service
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="/faq" className="hover:text-primary transition-colors">
+          <Link to="/faq" className="hover:text-primary transition-colors">
             FAQ
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="/contact" className="hover:text-primary transition-colors">
+          <Link to="/contact" className="hover:text-primary transition-colors">
             Contact Us
-          </a>
+          </Link>
         </li>
       </ul>
     </div>
