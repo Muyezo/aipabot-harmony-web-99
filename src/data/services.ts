@@ -19,7 +19,7 @@ export const services: ServiceData = {
       "Increase booking efficiency",
       "Lower operational costs"
     ],
-    image: "/lovable-uploads/3308edc0-9f5f-46df-8268-12bd034b20a1.png"
+    image: "/lovable-uploads/f22b40af-aba1-44c3-ba51-dad01107e61c.png"
   },
   "intelligent-customer-service": {
     title: "Intelligent Customer Service Agent",
