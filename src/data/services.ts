@@ -59,6 +59,6 @@ export const services: ServiceData = {
       "Consistent follow-up",
       "Data-driven insights"
     ],
-    image: "/lovable-uploads/365b6173-0871-435e-b189-b529ec695527.png"
+    image: "/lovable-uploads/5d3e65c2-7fae-48c1-a635-0428be493d72.png"
   }
 };
