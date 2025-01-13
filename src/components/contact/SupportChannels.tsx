@@ -4,6 +4,7 @@ import {
   BookOpen,
   Video,
 } from "lucide-react";
+import ChatBot from "../chat/ChatBot";
 
 const channels = [
   {
@@ -30,18 +31,23 @@ const channels = [
 
 const SupportChannels = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      {channels.map((channel) => (
-        <div
-          key={channel.title}
-          className="bg-[#1A1F2C] p-6 rounded-lg shadow hover:shadow-lg transition-shadow"
-        >
-          <channel.icon className="h-8 w-8 text-primary mb-4" />
-          <h3 className="text-lg font-semibold mb-2 text-white">{channel.title}</h3>
-          <p className="text-gray-300">{channel.description}</p>
-        </div>
-      ))}
-    </div>
+    <>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {channels.map((channel) => (
+          <div
+            key={channel.title}
+            className="bg-[#1A1F2C] p-6 rounded-lg shadow hover:shadow-lg transition-shadow"
+          >
+            <channel.icon className="h-8 w-8 text-primary mb-4" />
+            <h3 className="text-lg font-semibold mb-2 text-white">
+              {channel.title}
+            </h3>
+            <p className="text-gray-300">{channel.description}</p>
+          </div>
+        ))}
+      </div>
+      <ChatBot />
+    </>
   );
 };
 
