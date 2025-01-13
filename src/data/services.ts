@@ -39,7 +39,7 @@ export const services: ServiceData = {
       "24/7 availability",
       "Scalable support operations"
     ],
-    image: "/lovable-uploads/641fdacf-caaf-4f59-8ff7-24f766dca13f.png"
+    image: "/lovable-uploads/12aa4b8b-b7ca-4524-95e4-f838a21ea16c.png"
   },
   "ai-sales-agent": {
     title: "AI Customer Acquisition Agent",
