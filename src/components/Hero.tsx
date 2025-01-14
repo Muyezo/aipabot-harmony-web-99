@@ -1,3 +1,4 @@
+import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Hero = () => {
@@ -16,9 +17,9 @@ const Hero = () => {
         </div>
       </div>
       
-      <div className="relative w-full mx-auto px-4 sm:px-6 lg:px-8 pt-20 max-w-[100vw] md:max-w-7xl">
+      <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
         <div className="text-center space-y-8">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold text-white animate-fade-in backdrop-blur-sm px-2 sm:px-4">
+          <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold text-white animate-fade-in backdrop-blur-sm px-4">
             AI That Works for{" "}
             <span className="text-white animate-glow relative">
               You!
@@ -27,13 +28,13 @@ const Hero = () => {
             <br className="hidden sm:block" />
             <span className="block mt-2 sm:mt-0">Seamlessly Automating Your Operations</span>
           </h1>
-          <p className="max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-gray-200 backdrop-blur-sm px-2 sm:px-4">
+          <p className="max-w-2xl mx-auto text-lg md:text-xl text-gray-200 backdrop-blur-sm px-4">
             Empowering businesses with AI-powered automation for streamlined
             operations, cost reduction and exponential growth.
           </p>
-          <div className="flex justify-center px-2 sm:px-4">
+          <div className="flex justify-center px-4">
             <Link to="/request-demo">
-              <button className="w-full sm:w-auto px-6 sm:px-8 py-3 border-2 border-[#3f80f6] text-white rounded-full hover:bg-[#3f80f6] hover:text-white transition-colors duration-200 bg-white/10 backdrop-blur-sm">
+              <button className="w-full sm:w-auto px-8 py-3 border-2 border-[#3f80f6] text-white rounded-full hover:bg-[#3f80f6] hover:text-white transition-colors duration-200 bg-white/10 backdrop-blur-sm">
                 Request A Demo
               </button>
             </Link>
