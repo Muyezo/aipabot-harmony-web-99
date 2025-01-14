@@ -8,7 +8,7 @@ const DemoRecaptcha = ({ onChange }: DemoRecaptchaProps) => {
   return (
     <div className="flex justify-center">
       <ReCAPTCHA
-        sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+        sitekey="6LdAFLMqAAAAAHFoq00Fpb3BeT7_HMAedAOTAua1"
         onChange={onChange}
         theme="dark"
       />
