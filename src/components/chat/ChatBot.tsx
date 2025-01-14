@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { MessageCircle } from "lucide-react";
@@ -9,7 +9,12 @@ import ChatInput from "./ChatInput";
 import { generateBotResponse } from "./botResponses";
 import type { Message, CustomerInfo } from "./types";
 
-const ChatBot = () => {
+interface ChatBotProps {
+  externalOpen?: boolean;
+  onClose?: () => void;
+}
+
+const ChatBot = ({ externalOpen, onClose }: ChatBotProps) => {
   const { toast } = useToast();
   const [isOpen, setIsOpen] = useState(false);
   const [step, setStep] = useState<"initial" | "chat">("initial");
@@ -20,6 +25,15 @@ const ChatBot = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [currentMessage, setCurrentMessage] = useState("");
   const [conversationId, setConversationId] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (externalOpen !== undefined) {
+      setIsOpen(externalOpen);
+      if (!externalOpen && onClose) {
+        onClose();
+      }
+    }
+  }, [externalOpen, onClose]);
 
   const handleInfoChange = (field: "name" | "email", value: string) => {
     setCustomerInfo((prev) => ({
@@ -115,23 +129,31 @@ const ChatBot = () => {
     }
   };
 
+  const handleClose = () => {
+    setIsOpen(false);
+    if (onClose) {
+      onClose();
+    }
+  };
+
   return (
     <div className="fixed bottom-4 right-4 z-50">
-      {!isOpen ? (
+      {!isOpen && (
         <Button
           onClick={() => setIsOpen(true)}
           className="rounded-full w-16 h-16 shadow-lg"
         >
           <MessageCircle className="w-8 h-8" />
         </Button>
-      ) : (
+      )}
+      {isOpen && (
         <div className="bg-background border rounded-lg shadow-lg w-96">
           <div className="p-4 border-b bg-primary text-primary-foreground flex justify-between items-center">
             <h3 className="font-semibold">Chat Support</h3>
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => setIsOpen(false)}
+              onClick={handleClose}
               className="text-primary-foreground"
             >
               ×
