@@ -16,18 +16,18 @@ const ServiceItem = ({ service, index }: ServiceItemProps) => {
   return (
     <div
       id={`service-${service.id}`}
-      className="group mb-32 last:mb-0 scroll-mt-24"
+      className="group mb-16 last:mb-0 scroll-mt-24 px-4 sm:px-0"
     >
-      <div className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12`}>
+      <div className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-8 lg:gap-12`}>
         <div className="w-full lg:w-1/2 transform transition-transform duration-500 group-hover:scale-105">
           {service.id === 'ai-sales-agent' ? (
             <img
               src={service.image}
               alt={service.title}
-              className="w-96 h-96 mx-auto object-cover transform transition-transform duration-700 group-hover:scale-110"
+              className="w-full max-w-[24rem] h-auto mx-auto object-cover transform transition-transform duration-700 group-hover:scale-110"
             />
           ) : (
-            <div className="relative w-96 mx-auto overflow-hidden shadow-2xl rounded-full" style={{
+            <div className="relative w-full max-w-[24rem] mx-auto overflow-hidden shadow-2xl rounded-full" style={{
               aspectRatio: '1/1'
             }}>
               <img
@@ -45,11 +45,11 @@ const ServiceItem = ({ service, index }: ServiceItemProps) => {
             </div>
           )}
         </div>
-        <div className="w-full lg:w-1/2 space-y-6 transform transition-all duration-500 group-hover:translate-x-4 bg-[#1A1F2C] backdrop-blur-lg p-8 rounded-xl">
-          <h3 className="text-3xl font-bold text-white group-hover:text-primary transition-colors duration-300">
+        <div className="w-full lg:w-1/2 space-y-6 transform transition-all duration-500 group-hover:translate-x-4 bg-[#1A1F2C] backdrop-blur-lg p-6 sm:p-8 rounded-xl">
+          <h3 className="text-2xl sm:text-3xl font-bold text-white group-hover:text-primary transition-colors duration-300">
             {service.title}
           </h3>
-          <p className="text-xl text-white">{service.shortDesc}</p>
+          <p className="text-lg sm:text-xl text-white">{service.shortDesc}</p>
           <p className="text-gray-200">{service.longDesc}</p>
           <Link 
             to={`/services/${service.id}`}
