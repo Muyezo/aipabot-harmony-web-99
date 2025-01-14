@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   HeadphonesIcon,
   MessageCircle,
@@ -23,6 +24,7 @@ const channels = [
     title: "Knowledge Base",
     description: "Find answers in our documentation",
     icon: BookOpen,
+    action: "faq",
   },
   {
     title: "Video Tutorials",
@@ -32,11 +34,14 @@ const channels = [
 ];
 
 const SupportChannels = () => {
+  const navigate = useNavigate();
   const [isChatOpen, setIsChatOpen] = useState(false);
 
   const handleChannelClick = (action?: string) => {
     if (action === "openChat") {
       setIsChatOpen(true);
+    } else if (action === "faq") {
+      navigate("/faq");
     }
   };
 
