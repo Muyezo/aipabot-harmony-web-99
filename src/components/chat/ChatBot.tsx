@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { MessageCircle } from "lucide-react";
@@ -9,9 +9,14 @@ import ChatInput from "./ChatInput";
 import { generateBotResponse } from "./botResponses";
 import type { Message, CustomerInfo } from "./types";
 
-const ChatBot = () => {
+interface ChatBotProps {
+  initiallyOpen?: boolean;
+  onClose?: () => void;
+}
+
+const ChatBot = ({ initiallyOpen = false, onClose }: ChatBotProps) => {
   const { toast } = useToast();
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(initiallyOpen);
   const [step, setStep] = useState<"initial" | "chat">("initial");
   const [customerInfo, setCustomerInfo] = useState<CustomerInfo>({
     name: "",
@@ -20,6 +25,15 @@ const ChatBot = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [currentMessage, setCurrentMessage] = useState("");
   const [conversationId, setConversationId] = useState<string | null>(null);
+
+  useEffect(() => {
+    setIsOpen(initiallyOpen);
+  }, [initiallyOpen]);
+
+  const handleClose = () => {
+    setIsOpen(false);
+    onClose?.();
+  };
 
   const handleInfoChange = (field: "name" | "email", value: string) => {
     setCustomerInfo((prev) => ({
@@ -131,7 +145,7 @@ const ChatBot = () => {
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => setIsOpen(false)}
+              onClick={handleClose}
               className="text-primary-foreground"
             >
               ×
