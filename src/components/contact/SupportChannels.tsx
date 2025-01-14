@@ -9,7 +9,7 @@ import ChatBot from "../chat/ChatBot";
 const channels = [
   {
     title: "24/7 Support",
-    description: "Get help anytime via our support hotline",
+    description: "Get help anytime via our support hotline +1 (719) 886-8868",
     icon: HeadphonesIcon,
   },
   {
