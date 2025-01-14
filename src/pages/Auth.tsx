@@ -73,6 +73,8 @@ const Auth = () => {
             )}
             <SupabaseAuth
               supabaseClient={supabase}
+              view="sign_in"
+              showLinks={false}
               appearance={{
                 theme: ThemeSupa,
                 variables: {
