@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { MessageCircle } from "lucide-react";
@@ -9,14 +9,9 @@ import ChatInput from "./ChatInput";
 import { generateBotResponse } from "./botResponses";
 import type { Message, CustomerInfo } from "./types";
 
-interface ChatBotProps {
-  initiallyOpen?: boolean;
-  onClose?: () => void;
-}
-
-const ChatBot = ({ initiallyOpen = false, onClose }: ChatBotProps) => {
+const ChatBot = () => {
   const { toast } = useToast();
-  const [isOpen, setIsOpen] = useState(initiallyOpen);
+  const [isOpen, setIsOpen] = useState(false);
   const [step, setStep] = useState<"initial" | "chat">("initial");
   const [customerInfo, setCustomerInfo] = useState<CustomerInfo>({
     name: "",
@@ -25,15 +20,6 @@ const ChatBot = ({ initiallyOpen = false, onClose }: ChatBotProps) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [currentMessage, setCurrentMessage] = useState("");
   const [conversationId, setConversationId] = useState<string | null>(null);
-
-  useEffect(() => {
-    setIsOpen(initiallyOpen);
-  }, [initiallyOpen]);
-
-  const handleClose = () => {
-    setIsOpen(false);
-    onClose?.();
-  };
 
   const handleInfoChange = (field: "name" | "email", value: string) => {
     setCustomerInfo((prev) => ({
@@ -131,22 +117,21 @@ const ChatBot = ({ initiallyOpen = false, onClose }: ChatBotProps) => {
 
   return (
     <div className="fixed bottom-4 right-4 z-50">
-      {!isOpen && (
+      {!isOpen ? (
         <Button
           onClick={() => setIsOpen(true)}
           className="rounded-full w-16 h-16 shadow-lg"
         >
           <MessageCircle className="w-8 h-8" />
         </Button>
-      )}
-      {isOpen && (
+      ) : (
         <div className="bg-background border rounded-lg shadow-lg w-96">
           <div className="p-4 border-b bg-primary text-primary-foreground flex justify-between items-center">
             <h3 className="font-semibold">Chat Support</h3>
             <Button
               variant="ghost"
               size="sm"
-              onClick={handleClose}
+              onClick={() => setIsOpen(false)}
               className="text-primary-foreground"
             >
               ×
