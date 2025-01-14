@@ -6,6 +6,7 @@ import ServiceDetailFeatures from "./detail/ServiceDetailFeatures";
 import ServiceDetailBenefits from "./detail/ServiceDetailBenefits";
 import ServiceImage from "./detail/ServiceImage";
 import { services } from "@/data/services";
+import { motion } from "framer-motion";
 
 const ServiceDetail = () => {
   const { serviceId } = useParams();
@@ -42,14 +43,25 @@ const ServiceDetail = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col relative">
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+      className="min-h-screen flex flex-col relative"
+    >
       <div className="glow-orb glow-orb-1" />
       <div className="glow-orb glow-orb-2" />
       <div className="glow-orb glow-orb-3" />
       <div className="grid-overlay" />
       
       <Navbar />
-      <main className="flex-grow pt-20">
+      <motion.main 
+        initial={{ y: 20 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        className="flex-grow pt-20"
+      >
         <div className="relative">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
             <ServiceDetailHeader
@@ -62,32 +74,42 @@ const ServiceDetail = () => {
               <ServiceImage image={service.image} title={service.title} />
             )}
 
-            <div className="text-center mt-16 mb-16">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="text-center mt-16 mb-16"
+            >
               <h2 className="text-4xl font-bold text-white mb-4">
                 {getServiceTitle()}
               </h2>
               <p className="text-xl text-gray-200 max-w-4xl mx-auto">
                 {getServiceSubtext()}
               </p>
-            </div>
+            </motion.div>
 
             <div className="grid md:grid-cols-2 gap-8">
               <ServiceDetailFeatures features={service.features} />
               <ServiceDetailBenefits benefits={service.benefits} />
             </div>
 
-            <div className="mt-16 text-center">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="mt-16 text-center"
+            >
               <Link to="/request-demo">
                 <button className="px-8 py-3 border-2 border-[#3f80f6] text-white rounded-full hover:bg-[#3f80f6] hover:text-white transition-colors duration-200 bg-white/10 backdrop-blur-sm">
                   Request A Demo
                 </button>
               </Link>
-            </div>
+            </motion.div>
           </div>
         </div>
-      </main>
+      </motion.main>
       <Footer />
-    </div>
+    </motion.div>
   );
 };
 
