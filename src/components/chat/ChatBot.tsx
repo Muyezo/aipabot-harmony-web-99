@@ -131,14 +131,15 @@ const ChatBot = ({ initiallyOpen = false, onClose }: ChatBotProps) => {
 
   return (
     <div className="fixed bottom-4 right-4 z-50">
-      {!isOpen ? (
+      {!isOpen && (
         <Button
           onClick={() => setIsOpen(true)}
           className="rounded-full w-16 h-16 shadow-lg"
         >
           <MessageCircle className="w-8 h-8" />
         </Button>
-      ) : (
+      )}
+      {isOpen && (
         <div className="bg-background border rounded-lg shadow-lg w-96">
           <div className="p-4 border-b bg-primary text-primary-foreground flex justify-between items-center">
             <h3 className="font-semibold">Chat Support</h3>
