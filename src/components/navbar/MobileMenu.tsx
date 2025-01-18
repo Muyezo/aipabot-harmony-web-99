@@ -31,16 +31,16 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
 
   return (
     <div 
-      className={`md:hidden fixed top-[72px] left-0 right-0 bg-black/95 backdrop-blur-lg border-b border-white/10 transition-all duration-300 ease-in-out ${
+      className={`md:hidden fixed top-[72px] left-0 right-0 bg-black/95 backdrop-blur-lg border-b border-white/10 transition-all duration-300 ease-in-out overflow-x-hidden ${
         isOpen 
           ? "opacity-100 translate-y-0" 
           : "opacity-0 -translate-y-2 pointer-events-none"
       }`}
     >
-      <div className="py-4 space-y-1 max-h-[calc(100vh-72px)] overflow-y-auto">
+      <div className="py-4 space-y-1 max-h-[calc(100vh-72px)] overflow-y-auto overflow-x-hidden">
         {navItems.map((item) => (
           item.subItems ? (
-            <div key={item.name} className="px-4 py-2">
+            <div key={item.name} className="px-4 py-2 w-full">
               <DropdownMenu>
                 <DropdownMenuTrigger className={`flex items-center gap-1 transition-all duration-200 w-full ${
                   isCurrentPath(item.path)
@@ -56,7 +56,7 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
                   {item.subItems.map((subItem) => (
                     <DropdownMenuItem
                       key={subItem.name}
-                      className="hover:bg-white/10 cursor-pointer"
+                      className="hover:bg-white/10 cursor-pointer whitespace-normal break-words"
                       onClick={() => handleNavigation(subItem.path)}
                     >
                       {subItem.name}

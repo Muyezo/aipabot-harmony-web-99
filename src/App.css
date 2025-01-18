@@ -8,6 +8,7 @@
 /* Mobile-first padding for fixed navbar */
 body {
   padding-top: 4rem;
+  overflow-x: hidden; /* Prevent horizontal scrolling on the entire page */
 }
 
 /* Adjust padding for larger screens */
