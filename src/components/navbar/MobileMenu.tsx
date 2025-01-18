@@ -46,7 +46,15 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
                   {item.name}
                   <ChevronDown className="h-4 w-4 ml-auto" />
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="bg-card border border-white/10 text-white w-[calc(100vw-2rem)] mx-4">
+                <DropdownMenuContent 
+                  className="bg-card border border-white/10 text-white w-[calc(100vw-2rem)] mx-4"
+                  style={{
+                    '@media (min-width: 768px)': {
+                      width: 'auto',
+                      margin: '0'
+                    }
+                  }}
+                >
                   {item.subItems.map((subItem) => (
                     <DropdownMenuItem
                       key={subItem.name}
