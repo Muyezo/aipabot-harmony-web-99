@@ -5,24 +5,26 @@
   overflow-x: hidden;
 }
 
-/* Add padding to account for fixed navbar */
+/* Mobile-first padding for fixed navbar */
 body {
   padding-top: 4rem;
 }
 
+/* Adjust padding for larger screens */
 @media (min-width: 768px) {
   body {
     padding-top: 5rem;
   }
 }
 
-/* Mobile-first styles */
+/* Mobile-first container styles */
 .container {
   width: 100%;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 }
 
+/* Tablet and up container styles */
 @media (min-width: 640px) {
   .container {
     padding-left: 1rem;
@@ -30,6 +32,7 @@ body {
   }
 }
 
+/* Desktop container styles */
 @media (min-width: 768px) {
   .container {
     padding-left: 1.5rem;
