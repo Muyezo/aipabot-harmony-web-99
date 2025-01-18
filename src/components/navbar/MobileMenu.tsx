@@ -29,10 +29,14 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
     onClose();
   };
 
-  if (!isOpen) return null;
-
   return (
-    <div className="md:hidden fixed top-[72px] left-0 right-0 bg-black/95 backdrop-blur-lg border-b border-white/10">
+    <div 
+      className={`md:hidden fixed top-[72px] left-0 right-0 bg-black/95 backdrop-blur-lg border-b border-white/10 transition-all duration-300 ease-in-out ${
+        isOpen 
+          ? "opacity-100 translate-y-0" 
+          : "opacity-0 -translate-y-2 pointer-events-none"
+      }`}
+    >
       <div className="py-4 space-y-1 max-h-[calc(100vh-72px)] overflow-y-auto">
         {navItems.map((item) => (
           item.subItems ? (

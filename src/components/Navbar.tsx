@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Menu } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { DesktopMenu } from "./navbar/DesktopMenu";
 import { MobileMenu } from "./navbar/MobileMenu";
 
@@ -28,7 +28,11 @@ const Navbar = () => {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
-            <Menu className="w-6 h-6" />
+            {isMobileMenuOpen ? (
+              <X className="w-6 h-6 transition-transform duration-200" />
+            ) : (
+              <Menu className="w-6 h-6 transition-transform duration-200" />
+            )}
           </button>
         </div>
         <MobileMenu isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
