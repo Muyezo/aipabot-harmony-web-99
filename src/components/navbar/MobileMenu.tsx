@@ -32,8 +32,8 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
   if (!isOpen) return null;
 
   return (
-    <div className="md:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-lg border-b border-white/10 mt-[1px]">
-      <div className="py-4 space-y-1 max-h-[calc(100vh-4rem)] overflow-y-auto">
+    <div className="md:hidden fixed top-[72px] left-0 right-0 bg-black/95 backdrop-blur-lg border-b border-white/10">
+      <div className="py-4 space-y-1 max-h-[calc(100vh-72px)] overflow-y-auto">
         {navItems.map((item) => (
           item.subItems ? (
             <div key={item.name} className="px-4 py-2">
@@ -46,7 +46,7 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
                   {item.name}
                   <ChevronDown className="h-4 w-4 ml-auto" />
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="bg-card border border-white/10 text-white w-full">
+                <DropdownMenuContent className="bg-card border border-white/10 text-white w-[calc(100vw-2rem)] mx-4">
                   {item.subItems.map((subItem) => (
                     <DropdownMenuItem
                       key={subItem.name}
