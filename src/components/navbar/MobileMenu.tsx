@@ -11,9 +11,10 @@ import { navItems } from "@/config/navigation";
 
 interface MobileMenuProps {
   isOpen: boolean;
+  onClose: () => void;
 }
 
-const MobileMenu = ({ isOpen }: MobileMenuProps) => {
+const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
@@ -23,10 +24,10 @@ const MobileMenu = ({ isOpen }: MobileMenuProps) => {
   };
 
   const handleNavigation = (path: string) => {
-    // Ensure the path starts with a forward slash and remove any trailing colons
     const cleanPath = path.startsWith('/') ? path : `/${path}`;
     navigate(cleanPath);
     setOpenDropdown(null);
+    onClose(); // Close the mobile menu after navigation
   };
 
   return (
