@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { DesktopMenu } from "./navbar/DesktopMenu";
-import { MobileMenu } from "./navbar/MobileMenu";
+import MobileMenu from "./navbar/MobileMenu";
 
 const Navbar = () => {
   const navigate = useNavigate();
