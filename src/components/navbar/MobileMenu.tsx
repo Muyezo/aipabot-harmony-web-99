@@ -1,32 +1,32 @@
-import { useLocation, useNavigate } from "react-router-dom";
-import { useSession } from "@supabase/auth-helpers-react";
-import { ChevronDown } from "lucide-react";
-import { navItems } from "@/config/navigation";
-import { AuthButton } from "./AuthButton";
+import { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { ChevronDown } from "lucide-react";
+import { navItems } from "@/config/navigation";
 
 interface MobileMenuProps {
   isOpen: boolean;
-  onClose: () => void;
 }
 
-export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
-  const location = useLocation();
-  const session = useSession();
+const MobileMenu = ({ isOpen }: MobileMenuProps) => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   const isCurrentPath = (path: string) => {
     return location.pathname === path;
   };
 
   const handleNavigation = (path: string) => {
-    navigate(path);
-    onClose();
+    // Ensure the path starts with a forward slash and remove any trailing colons
+    const cleanPath = path.startsWith('/') ? path : `/${path}`;
+    navigate(cleanPath);
+    setOpenDropdown(null);
   };
 
   return (
@@ -41,18 +41,19 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
         {navItems.map((item) => (
           item.subItems ? (
             <div key={item.name} className="px-4 py-2 w-full">
-              <DropdownMenu>
+              <DropdownMenu
+                open={openDropdown === item.name}
+                onOpenChange={(isOpen) => setOpenDropdown(isOpen ? item.name : null)}
+              >
                 <DropdownMenuTrigger className={`flex items-center gap-1 transition-all duration-200 w-full ${
                   isCurrentPath(item.path)
                     ? "text-white"
-                    : "text-gray-300 hover:text-white"
+                    : "text-white/60 hover:text-white"
                 }`}>
                   {item.name}
-                  <ChevronDown className="h-4 w-4 ml-auto" />
+                  <ChevronDown className="h-4 w-4" />
                 </DropdownMenuTrigger>
-                <DropdownMenuContent 
-                  className="bg-card border border-white/10 text-white w-[calc(100vw-2rem)] mx-4 md:w-auto md:mx-0"
-                >
+                <DropdownMenuContent className="w-full min-w-[200px] bg-black/95 backdrop-blur-lg border-white/10">
                   {item.subItems.map((subItem) => (
                     <DropdownMenuItem
                       key={subItem.name}
@@ -69,20 +70,19 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
             <button
               key={item.name}
               onClick={() => handleNavigation(item.path)}
-              className={`block w-full text-left px-4 py-2 transition-all duration-200 ${
+              className={`block w-full px-4 py-2 text-left transition-all duration-200 ${
                 isCurrentPath(item.path)
-                  ? "text-white bg-white/10"
-                  : "text-gray-300 hover:text-white hover:bg-white/5"
+                  ? "text-white"
+                  : "text-white/60 hover:text-white"
               }`}
             >
               {item.name}
             </button>
           )
         ))}
-        <div className="px-4 py-2">
-          <AuthButton />
-        </div>
       </div>
     </div>
   );
 };
+
+export default MobileMenu;
