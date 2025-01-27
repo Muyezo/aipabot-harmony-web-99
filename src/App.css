@@ -1,5 +1,5 @@
 #root {
-  max-width: 100%;
+  width: 100%;
   margin: 0 auto;
   text-align: center;
   overflow-x: hidden;
@@ -9,7 +9,7 @@
 body {
   padding-top: 3.5rem;
   overflow-x: hidden;
-  width: 100vw;
+  width: 100%;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -34,6 +34,8 @@ body {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
   box-sizing: border-box;
+  margin: 0 auto;
+  max-width: 100%;
 }
 
 /* Tablet and up container styles */
