@@ -7,11 +7,17 @@
 
 /* Mobile-first padding for fixed navbar */
 body {
-  padding-top: 4rem;
-  overflow-x: hidden; /* Prevent horizontal scrolling on the entire page */
+  padding-top: 3.5rem;
+  overflow-x: hidden;
 }
 
 /* Adjust padding for larger screens */
+@media (min-width: 640px) {
+  body {
+    padding-top: 4rem;
+  }
+}
+
 @media (min-width: 768px) {
   body {
     padding-top: 5rem;
@@ -21,8 +27,8 @@ body {
 /* Mobile-first container styles */
 .container {
   width: 100%;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 
 /* Tablet and up container styles */
