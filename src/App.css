@@ -7,24 +7,18 @@
 
 /* Mobile-first padding for fixed navbar */
 body {
-  padding-top: 3.25rem;
+  padding-top: 3.5rem;
   overflow-x: hidden;
 }
 
 /* Adjust padding for larger screens */
 @media (min-width: 640px) {
   body {
-    padding-top: 3.75rem;
+    padding-top: 4rem;
   }
 }
 
 @media (min-width: 768px) {
-  body {
-    padding-top: 4.25rem;
-  }
-}
-
-@media (min-width: 1024px) {
   body {
     padding-top: 5rem;
   }
@@ -33,31 +27,23 @@ body {
 /* Mobile-first container styles */
 .container {
   width: 100%;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 
 /* Tablet and up container styles */
 @media (min-width: 640px) {
   .container {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
 
 /* Desktop container styles */
 @media (min-width: 768px) {
   .container {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-}
-
-/* Large desktop container styles */
-@media (min-width: 1024px) {
-  .container {
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 }
 
@@ -92,19 +78,7 @@ body {
 }
 
 .card {
-  padding: 1rem;
-}
-
-@media (min-width: 640px) {
-  .card {
-    padding: 1.5rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .card {
-    padding: 2rem;
-  }
+  padding: 2em;
 }
 
 .read-the-docs {
