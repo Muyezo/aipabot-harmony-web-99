@@ -10,6 +10,12 @@
   overflow-x: hidden;
 }
 
+#root > div.min-h-screen.flex.flex-col > main.flex-grow,
+#root > div.min-h-screen.flex.flex-col > footer.bg-gray-900.text-gray-300 {
+  width: 100%;
+  min-width: 0; /* Override min-width: auto */
+}
+
 /* Mobile-first padding for fixed navbar */
 body {
   padding-top: 3.5rem;
