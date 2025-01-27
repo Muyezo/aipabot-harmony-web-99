@@ -32,7 +32,7 @@ const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
 
   return (
     <div 
-      className={`md:hidden fixed top-[3.5rem] sm:top-[4rem] left-0 w-screen box-border transition-all duration-300 ease-in-out ${
+      className={`md:hidden fixed top-[3.5rem] sm:top-[4rem] left-0 w-screen transition-all duration-300 ease-in-out ${
         isOpen 
           ? "opacity-100 translate-y-0" 
           : "opacity-0 -translate-y-2 pointer-events-none"
@@ -40,9 +40,10 @@ const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
       style={{ 
         margin: 0,
         padding: 0,
+        boxSizing: 'border-box',
       }}
     >
-      <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6">
+      <div className="w-full px-4 sm:px-6">
         <div className="bg-black/95 backdrop-blur-lg border border-white/10 rounded-lg shadow-xl">
           <div className="py-3 space-y-1 max-h-[calc(100vh-5rem)] overflow-y-auto">
             {navItems.map((item) => (
@@ -64,7 +65,7 @@ const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
                     </DropdownMenuTrigger>
                     <DropdownMenuContent 
                       className="w-full bg-black/95 backdrop-blur-lg border-white/10 shadow-xl"
-                      style={{ width: 'calc(100vw - 32px)' }}
+                      style={{ width: 'calc(100vw - 2rem)' }}
                     >
                       {item.subItems.map((subItem) => (
                         <DropdownMenuItem
