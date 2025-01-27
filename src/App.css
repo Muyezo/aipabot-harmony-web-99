@@ -5,6 +5,11 @@
   overflow-x: hidden;
 }
 
+#root > div.min-h-screen.flex.flex-col {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 /* Mobile-first padding for fixed navbar */
 body {
   padding-top: 3.5rem;
