@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react"; // Added useState import
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Services from "./pages/Services";
